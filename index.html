@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LNV Framework - Laboratorio Nacional de Vigilancia</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="css/lnv-framework.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #7DD3E0 0%, #4DB8AC 100%);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .hero-title {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      animation: lnv-fade-in-down 1s;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      animation: lnv-fade-in-up 1s;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: lnv-fade-in-up 1s;
+      animation-delay: 0.3s;
+      animation-fill-mode: both;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: var(--lnv-radius-lg);
+      background: white;
+      transition: all var(--lnv-transition-base);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--lnv-shadow-xl);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--lnv-primary);
+    }
+    
+    .example-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--lnv-radius-lg);
+      cursor: pointer;
+    }
+    
+    .example-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform var(--lnv-transition-base);
+    }
+    
+    .example-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .example-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      padding: 1.5rem;
+    }
+    
+    .footer {
+      background: var(--lnv-dark);
+      color: var(--lnv-white);
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="lnv-container">
+      <div class="lnv-mb-6">
+        <img src="assets/images/logo-lnv.png" alt="LNV" style="max-width: 150px; margin-bottom: 2rem; filter: brightness(0) invert(1);">
+      </div>
+      
+      <h1 class="hero-title">LNV Framework</h1>
+      <p class="hero-subtitle">
+        Framework CSS/JS para aplicaciones del<br>
+        Laboratorio Nacional de Vigilancia
+      </p>
+      
+      <div class="hero-buttons">
+        <a href="examples/dashboard.html" class="lnv-btn lnv-btn-lg" style="background: white; color: var(--lnv-primary);">
+          <i class="fas fa-rocket"></i> Ver Ejemplos
+        </a>
+        <a href="examples/components-showcase.html" class="lnv-btn lnv-btn-lg lnv-btn-outline-primary" style="border-color: white; color: white;">
+          <i class="fas fa-puzzle-piece"></i> Componentes
+        </a>
+        <a href="docs/guia-uso.md" class="lnv-btn lnv-btn-lg lnv-btn-outline-primary" style="border-color: white; color: white;">
+          <i class="fas fa-book"></i> Documentación
+        </a>
+      </div>
+      
+      <div class="lnv-mt-6 lnv-flex lnv-justify-center lnv-gap-3 lnv-flex-wrap">
+        <span class="lnv-badge lnv-badge-lg" style="background: rgba(255,255,255,0.2); color: white;">
+          <i class="fas fa-puzzle-piece"></i> 22 Componentes
+        </span>
+        <span class="lnv-badge lnv-badge-lg" style="background: rgba(255,255,255,0.2); color: white;">
+          <i class="fas fa-mobile-alt"></i> Responsive
+        </span>
+        <span class="lnv-badge lnv-badge-lg" style="background: rgba(255,255,255,0.2); color: white;">
+          <i class="fas fa-moon"></i> Modo Oscuro
+        </span>
+        <span class="lnv-badge lnv-badge-lg" style="background: rgba(255,255,255,0.2); color: white;">
+          <i class="fas fa-code"></i> Sin dependencias
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Características -->
+  <section class="lnv-py-6" style="background: var(--lnv-light);">
+    <div class="lnv-container">
+      <div class="lnv-text-center lnv-mb-6">
+        <h2 class="lnv-mb-3" style="font-size: 2.5rem; color: var(--lnv-primary);">
+          ¿Por qué usar LNV Framework?
+        </h2>
+        <p class="lnv-text-gray lnv-text-lg">
+          Diseñado específicamente para aplicaciones del sector salud
+        </p>
+      </div>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="feature-card lnv-fade-in-up">
+            <div class="feature-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h4 class="lnv-mb-2">Rápido y Ligero</h4>
+            <p class="lnv-text-sm lnv-text-gray">
+              Solo 2 archivos para empezar. Sin dependencias pesadas.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="feature-card lnv-fade-in-up lnv-delay-100">
+            <div class="feature-icon">
+              <i class="fas fa-cubes"></i>
+            </div>
+            <h4 class="lnv-mb-2">Componentes Listos</h4>
+            <p class="lnv-text-sm lnv-text-gray">
+              22+ componentes UI pre-diseñados y personalizables.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="feature-card lnv-fade-in-up lnv-delay-200">
+            <div class="feature-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h4 class="lnv-mb-2">Agnóstico del Backend</h4>
+            <p class="lnv-text-sm lnv-text-gray">
+              Funciona con Java, Django, PHP o cualquier tecnología.
+            </p>
+          </div>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="feature-card lnv-fade-in-up lnv-delay-300">
+            <div class="feature-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <h4 class="lnv-mb-2">Totalmente Personalizable</h4>
+            <p class="lnv-text-sm lnv-text-gray">
+              Variables CSS fáciles de modificar según tu marca.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ejemplos -->
+  <section class="lnv-py-6">
+    <div class="lnv-container">
+      <div class="lnv-text-center lnv-mb-6">
+        <h2 class="lnv-mb-3" style="font-size: 2.5rem; color: var(--lnv-primary);">
+          Ejemplos Incluidos
+        </h2>
+        <p class="lnv-text-gray lnv-text-lg">
+          7 ejemplos completos y funcionales listos para usar
+        </p>
+      </div>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+          <a href="examples/dashboard.html" class="example-card lnv-card lnv-hover-lift" style="text-decoration: none;">
+            <div style="background: linear-gradient(135deg, #7DD3E0, #4DB8AC); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+              📊
+            </div>
+            <div class="example-overlay">
+              <h4 style="color: white; margin-bottom: 0.5rem;">Dashboard</h4>
+              <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">Panel principal con estadísticas</p>
+            </div>
+          </a>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+          <a href="examples/formulario.html" class="example-card lnv-card lnv-hover-lift" style="text-decoration: none;">
+            <div style="background: linear-gradient(135deg, #28A745, #20C997); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+              📝
+            </div>
+            <div class="example-overlay">
+              <h4 style="color: white; margin-bottom: 0.5rem;">Formularios</h4>
+              <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">Formulario completo con validación</p>
+            </div>
+          </a>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+          <a href="examples/tabla-datos.html" class="example-card lnv-card lnv-hover-lift" style="text-decoration: none;">
+            <div style="background: linear-gradient(135deg, #FFC107, #FF9800); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+              📋
+            </div>
+            <div class="example-overlay">
+              <h4 style="color: white; margin-bottom: 0.5rem;">Tablas de Datos</h4>
+              <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">DataTables con filtros avanzados</p>
+            </div>
+          </a>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+          <a href="examples/graficos.html" class="example-card lnv-card lnv-hover-lift" style="text-decoration: none;">
+            <div style="background: linear-gradient(135deg, #9C27B0, #E91E63); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+              📈
+            </div>
+            <div class="example-overlay">
+              <h4 style="color: white; margin-bottom: 0.5rem;">Gráficos</h4>
+              <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">Visualización con Chart.js</p>
+            </div>
+          </a>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+          <a href="examples/mapas.html" class="example-card lnv-card lnv-hover-lift" style="text-decoration: none;">
+            <div style="background: linear-gradient(135deg, #00BCD4, #03A9F4); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+              🗺️
+            </div>
+            <div class="example-overlay">
+              <h4 style="color: white; margin-bottom: 0.5rem;">Mapas</h4>
+              <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">Mapas interactivos con Leaflet</p>
+            </div>
+          </a>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+          <a href="examples/gamificacion.html" class="example-card lnv-card lnv-hover-lift" style="text-decoration: none;">
+            <div style="background: linear-gradient(135deg, #FFD700, #FFA500); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+              🏆
+            </div>
+            <div class="example-overlay">
+              <h4 style="color: white; margin-bottom: 0.5rem;">Gamificación</h4>
+              <p style="font-size: 0.9rem; opacity: 0.9; margin: 0;">Sistema de logros y ranking</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="lnv-text-center lnv-mt-6">
+        <a href="examples/components-showcase.html" class="lnv-btn lnv-btn-primary lnv-btn-lg">
+          <i class="fas fa-th"></i> Ver Todos los Componentes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instalación Rápida -->
+  <section class="lnv-py-6" style="background: var(--lnv-light);">
+    <div class="lnv-container">
+      <div class="lnv-text-center lnv-mb-6">
+        <h2 class="lnv-mb-3" style="font-size: 2.5rem; color: var(--lnv-primary);">
+          Instalación Rápida
+        </h2>
+        <p class="lnv-text-gray lnv-text-lg">
+          Comienza a usar LNV Framework en 3 simples pasos
+        </p>
+      </div>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-lg-8" style="margin: 0 auto;">
+          <div class="lnv-card">
+            <div class="lnv-card-body">
+              <h4 class="lnv-mb-4"><span class="lnv-badge lnv-badge-primary">1</span> Incluye el CSS</h4>
+              <pre style="background: var(--lnv-dark); color: var(--lnv-white); padding: 1rem; border-radius: var(--lnv-radius-md); overflow-x: auto;"><code>&lt;link rel="stylesheet" href="css/lnv-framework.css"&gt;</code></pre>
+              
+              <h4 class="lnv-mb-4 lnv-mt-5"><span class="lnv-badge lnv-badge-primary">2</span> Incluye el JavaScript</h4>
+              <pre style="background: var(--lnv-dark); color: var(--lnv-white); padding: 1rem; border-radius: var(--lnv-radius-md); overflow-x: auto;"><code>&lt;script src="js/lnv-core.js"&gt;&lt;/script&gt;</code></pre>
+              
+              <h4 class="lnv-mb-4 lnv-mt-5"><span class="lnv-badge lnv-badge-primary">3</span> ¡Listo para usar!</h4>
+              <pre style="background: var(--lnv-dark); color: var(--lnv-white); padding: 1rem; border-radius: var(--lnv-radius-md); overflow-x: auto;"><code>&lt;button class="lnv-btn lnv-btn-primary"&gt;Mi Botón&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div class="lnv-text-center lnv-mt-5">
+            <a href="https://github.com/jcsanchez1/lnv-framework.git" class="lnv-btn lnv-btn-dark lnv-btn-lg" target="_blank">
+              <i class="fab fa-github"></i> Ver en GitHub
+            </a>
+            <a href="docs/guia-uso.md" class="lnv-btn lnv-btn-outline-primary lnv-btn-lg">
+              <i class="fas fa-book"></i> Leer Documentación
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="lnv-container">
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-4 lnv-mb-4">
+          <h4 class="lnv-mb-3">LNV Framework</h4>
+          <p class="lnv-text-sm" style="opacity: 0.8;">
+            Framework de diseño para aplicaciones del Laboratorio Nacional de Vigilancia.
+          </p>
+          <p class="lnv-text-sm" style="opacity: 0.8;">
+            Secretaría de Salud - Honduras
+          </p>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-4 lnv-mb-4">
+          <h4 class="lnv-mb-3">Enlaces Rápidos</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li class="lnv-mb-2">
+              <a href="examples/dashboard.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                <i class="fas fa-angle-right"></i> Ejemplos
+              </a>
+            </li>
+            <li class="lnv-mb-2">
+              <a href="examples/components-showcase.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                <i class="fas fa-angle-right"></i> Componentes
+              </a>
+            </li>
+            <li class="lnv-mb-2">
+              <a href="docs/guia-uso.md" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                <i class="fas fa-angle-right"></i> Documentación
+              </a>
+            </li>
+            <li class="lnv-mb-2">
+              <a href="https://github.com/jcsanchez1/lnv-framework.git" target="_blank" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                <i class="fas fa-angle-right"></i> GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-md-4 lnv-mb-4">
+          <h4 class="lnv-mb-3">Contacto</h4>
+          <p class="lnv-text-sm" style="opacity: 0.8;">
+            <i class="fas fa-envelope"></i> soporte@lnv.gob.hn
+          </p>
+          <p class="lnv-text-sm" style="opacity: 0.8;">
+            <i class="fas fa-map-marker-alt"></i> Tegucigalpa, Honduras
+          </p>
+          <div class="lnv-mt-3">
+            <a href="#" class="lnv-btn lnv-btn-circle lnv-btn-light lnv-btn-sm" style="margin-right: 0.5rem;">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="lnv-btn lnv-btn-circle lnv-btn-light lnv-btn-sm" style="margin-right: 0.5rem;">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://github.com/jcsanchez1/lnv-framework.git" target="_blank" class="lnv-btn lnv-btn-circle lnv-btn-light lnv-btn-sm">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lnv-divider" style="border-color: rgba(255,255,255,0.1);"></div>
+      
+      <div class="lnv-text-center lnv-pt-4">
+        <p class="lnv-text-sm" style="opacity: 0.7; margin: 0;">
+          &copy; 2025 Laboratorio Nacional de Vigilancia - Secretaría de Salud, Honduras. 
+          <br class="lnv-hidden-desktop">
+          Todos los derechos reservados. Versión 1.0.0
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LNV Framework JS -->
+  <script src="js/lnv-core.js"></script>
+  
+  <script>
+    // Mensaje de bienvenida
+    setTimeout(() => {
+      LNV.Toast.success('¡Bienvenido al LNV Framework!', 'Hola');
+    }, 1000);
+  </script>
+
+</body>
+</html>

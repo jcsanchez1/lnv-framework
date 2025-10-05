@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Logros - LNV Framework</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .medalla {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto;
+      position: relative;
+      cursor: pointer;
+      transition: all var(--lnv-transition-base);
+    }
+    
+    .medalla:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .medalla.oro {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+    
+    .medalla.plata {
+      background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+      box-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
+    }
+    
+    .medalla.bronce {
+      background: linear-gradient(135deg, #CD7F32, #B87333);
+      box-shadow: 0 0 20px rgba(205, 127, 50, 0.5);
+    }
+    
+    .medalla.bloqueado {
+      background: linear-gradient(135deg, #BDC3C7, #95A5A6);
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    
+    .medalla.bloqueado:hover {
+      transform: none;
+    }
+    
+    .logro-card {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logro-card.desbloqueado::before {
+      content: "✓";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: var(--lnv-success);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      z-index: 1;
+    }
+    
+    .nivel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--lnv-radius-full);
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--lnv-primary), var(--lnv-secondary));
+      color: white;
+      box-shadow: var(--lnv-shadow-md);
+    }
+    
+    .racha-fuego {
+      animation: lnv-pulse 2s infinite;
+    }
+    
+    .podio {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .podio-posicion {
+      text-align: center;
+      flex: 1;
+      max-width: 150px;
+    }
+    
+    .podio-barra {
+      background: linear-gradient(to top, var(--lnv-gray-light), white);
+      border-radius: var(--lnv-radius-md) var(--lnv-radius-md) 0 0;
+      padding: 1.5rem 1rem;
+      position: relative;
+      transition: all var(--lnv-transition-base);
+    }
+    
+    .podio-barra:hover {
+      transform: translateY(-10px);
+    }
+    
+    .podio-barra.primero {
+      height: 200px;
+      background: linear-gradient(to top, #FFD700, #FFF59D);
+    }
+    
+    .podio-barra.segundo {
+      height: 160px;
+      background: linear-gradient(to top, #C0C0C0, #E8E8E8);
+    }
+    
+    .podio-barra.tercero {
+      height: 140px;
+      background: linear-gradient(to top, #CD7F32, #E6B894);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+    
+<!-- Sidebar -->
+<aside class="lnv-sidebar">
+  <div class="lnv-sidebar-header">
+    <div class="lnv-sidebar-brand">
+      <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+      <span>LNV</span>
+    </div>
+    <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <nav class="lnv-sidebar-nav">
+    <div class="lnv-nav-header">Principal</div>
+    
+    <a href="../index.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+      <span class="lnv-nav-item-text">Inicio</span>
+    </a>
+    
+    <a href="dashboard.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="lnv-nav-item-text">Dashboard</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Funcionalidades</div>
+    
+    <a href="formulario.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-edit"></i></span>
+      <span class="lnv-nav-item-text">Formularios</span>
+    </a>
+    
+    <a href="tabla-datos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-table"></i></span>
+      <span class="lnv-nav-item-text">Tablas de Datos</span>
+    </a>
+    
+    <a href="graficos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-bar"></i></span>
+      <span class="lnv-nav-item-text">Gráficos</span>
+    </a>
+    
+    <a href="mapas.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-map-marked-alt"></i></span>
+      <span class="lnv-nav-item-text">Mapas</span>
+    </a>
+    
+    <a href="gamificacion.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-trophy"></i></span>
+      <span class="lnv-nav-item-text">Gamificación</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Recursos</div>
+    
+    <a href="components-showcase.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+      <span class="lnv-nav-item-text">Componentes</span>
+    </a>
+    
+    <a href="../docs/guia-uso.md" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-book"></i></span>
+      <span class="lnv-nav-item-text">Documentación</span>
+    </a>
+  </nav>
+</aside>
+    
+    <!-- Overlay para móvil -->
+    <div class="lnv-sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="lnv-main-content">
+      
+      <!-- Navbar -->
+      <nav class="lnv-navbar">
+        <div class="lnv-navbar-left">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="lnv-breadcrumb lnv-hidden-mobile">
+            <div class="lnv-breadcrumb-item">
+              <a href="dashboard.html">Inicio</a>
+            </div>
+            <div class="lnv-breadcrumb-item active">Sistema de Logros</div>
+          </div>
+        </div>
+        
+        <div class="lnv-navbar-right">
+          <!-- Puntos totales -->
+          <div class="lnv-tooltip lnv-tooltip-bottom">
+            <div class="lnv-flex lnv-items-center lnv-gap-2 lnv-p-2" style="background: var(--lnv-light); border-radius: var(--lnv-radius-md);">
+              <i class="fas fa-coins" style="color: var(--lnv-accent);"></i>
+              <span class="lnv-font-bold" style="color: var(--lnv-accent);">6,720</span>
+            </div>
+            <span class="lnv-tooltip-text">Puntos Totales</span>
+          </div>
+          
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <div class="lnv-avatar lnv-avatar-sm">
+            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="Usuario">
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Content -->
+      <main class="lnv-content">
+        <div class="lnv-container-fluid">
+          
+          <!-- Título -->
+          <div class="lnv-mb-6 lnv-fade-in-down">
+            <h1><i class="fas fa-trophy" style="color: var(--lnv-accent);"></i> Sistema de Logros</h1>
+            <p class="lnv-text-gray">Completa desafíos, gana puntos y desbloquea recompensas</p>
+          </div>
+          
+          <!-- Resumen del usuario -->
+          <div class="lnv-row lnv-mb-6">
+            
+            <!-- Nivel y Progreso -->
+            <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+              <div class="lnv-card lnv-fade-in-up">
+                <div class="lnv-card-body lnv-text-center">
+                  <div class="nivel-badge lnv-mb-4">
+                    <i class="fas fa-star"></i>
+                    <span>Nivel 12</span>
+                  </div>
+                  
+                  <h3 class="lnv-mb-2">Experto en Laboratorio</h3>
+                  <p class="lnv-text-gray lnv-text-sm lnv-mb-4">3,280 puntos para siguiente nivel</p>
+                  
+                  <div class="lnv-progress lnv-mb-2">
+                    <div class="lnv-progress-bar lnv-progress-bar-striped lnv-progress-bar-animated lnv-progress-bar-success" style="width: 67%">
+                      67%
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-flex lnv-justify-between lnv-text-sm">
+                    <span>6,720 / 10,000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Racha -->
+            <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+              <div class="lnv-card lnv-fade-in-up lnv-delay-100">
+                <div class="lnv-card-body lnv-text-center">
+                  <div class="racha-fuego" style="font-size: 4rem; color: var(--lnv-warning);">
+                    🔥
+                  </div>
+                  <h3 class="lnv-mb-2">Racha Activa</h3>
+                  <div class="lnv-text-4xl lnv-font-bold lnv-text-warning lnv-mb-2">15 días</div>
+                  <p class="lnv-text-sm lnv-text-gray">¡Sigue así para mantener tu racha!</p>
+                  
+                  <button class="lnv-btn lnv-btn-outline-warning lnv-btn-sm lnv-mt-3">
+                    <i class="fas fa-history"></i> Ver Historial
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Logros Desbloqueados -->
+            <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+              <div class="lnv-card lnv-fade-in-up lnv-delay-200">
+                <div class="lnv-card-body lnv-text-center">
+                  <i class="fas fa-medal" style="font-size: 4rem; color: var(--lnv-primary);"></i>
+                  <h3 class="lnv-mb-2 lnv-mt-3">Logros</h3>
+                  <div class="lnv-text-4xl lnv-font-bold lnv-text-primary lnv-mb-2">24 / 36</div>
+                  <p class="lnv-text-sm lnv-text-gray">12 logros por desbloquear</p>
+                  
+                  <div class="lnv-progress lnv-progress-sm lnv-mt-3">
+                    <div class="lnv-progress-bar lnv-progress-bar-primary" style="width: 67%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Tabs -->
+          <div class="lnv-tabs lnv-mb-6">
+            <button class="lnv-tab active" data-tab="tab-logros">
+              <i class="fas fa-trophy"></i> Logros
+            </button>
+            <button class="lnv-tab" data-tab="tab-ranking">
+              <i class="fas fa-ranking-star"></i> Ranking
+            </button>
+            <button class="lnv-tab" data-tab="tab-recompensas">
+              <i class="fas fa-gift"></i> Recompensas
+            </button>
+            <button class="lnv-tab" data-tab="tab-desafios">
+              <i class="fas fa-tasks"></i> Desafíos Activos
+            </button>
+          </div>
+          
+          <!-- Tab Content: Logros -->
+          <div id="tab-logros" class="lnv-tab-content active">
+            
+            <!-- Filtros de logros -->
+            <div class="lnv-mb-4 lnv-flex lnv-gap-2 lnv-flex-wrap">
+              <button class="lnv-btn lnv-btn-sm lnv-btn-primary" data-filtro="todos">Todos</button>
+              <button class="lnv-btn lnv-btn-sm lnv-btn-outline-primary" data-filtro="desbloqueados">Desbloqueados</button>
+              <button class="lnv-btn lnv-btn-sm lnv-btn-outline-primary" data-filtro="bloqueados">Bloqueados</button>
+            </div>
+            
+            <div class="lnv-row">
+              
+              <!-- Logro 1 - Desbloqueado -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card logro-card desbloqueado lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div class="medalla oro lnv-medal-animation">
+                      🏆
+                    </div>
+                    <h4 class="lnv-mt-4 lnv-mb-2">Primer Procesamiento</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Procesa tu primera muestra en el sistema</p>
+                    <div class="lnv-badge lnv-badge-success">Desbloqueado</div>
+                    <div class="lnv-mt-2">
+                      <span class="lnv-text-xs lnv-text-gray">+100 puntos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Logro 2 - Desbloqueado -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card logro-card desbloqueado lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div class="medalla plata">
+                      📊
+                    </div>
+                    <h4 class="lnv-mt-4 lnv-mb-2">Estadístico</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Genera 10 reportes estadísticos</p>
+                    <div class="lnv-badge lnv-badge-success">Desbloqueado</div>
+                    <div class="lnv-mt-2">
+                      <span class="lnv-text-xs lnv-text-gray">+250 puntos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Logro 3 - Desbloqueado -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card logro-card desbloqueado lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div class="medalla oro lnv-medal-shine">
+                      🔥
+                    </div>
+                    <h4 class="lnv-mt-4 lnv-mb-2">Racha de Fuego</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Mantén una racha de 7 días consecutivos</p>
+                    <div class="lnv-badge lnv-badge-success">Desbloqueado</div>
+                    <div class="lnv-mt-2">
+                      <span class="lnv-text-xs lnv-text-gray">+500 puntos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Logro 4 - En Progreso -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card logro-card">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div class="medalla bronce">
+                      🎯
+                    </div>
+                    <h4 class="lnv-mt-4 lnv-mb-2">Centurión</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Procesa 100 muestras</p>
+                    <div class="lnv-badge lnv-badge-warning">En Progreso</div>
+                    <div class="lnv-mt-3">
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar" style="width: 73%">73%</div>
+                      </div>
+                      <div class="lnv-text-xs lnv-text-gray lnv-mt-1">73/100 muestras</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Logro 5 - Bloqueado -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card logro-card">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div class="medalla bloqueado">
+                      🔒
+                    </div>
+                    <h4 class="lnv-mt-4 lnv-mb-2">Maestro del Lab</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Procesa 1,000 muestras</p>
+                    <div class="lnv-badge lnv-badge-light">Bloqueado</div>
+                    <div class="lnv-mt-2">
+                      <span class="lnv-text-xs lnv-text-gray">+1,000 puntos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Logro 6 - Bloqueado -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card logro-card">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div class="medalla bloqueado">
+                      🔒
+                    </div>
+                    <h4 class="lnv-mt-4 lnv-mb-2">Guardián COVID</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Procesa 500 pruebas COVID-19</p>
+                    <div class="lnv-badge lnv-badge-light">Bloqueado</div>
+                    <div class="lnv-mt-2">
+                      <span class="lnv-text-xs lnv-text-gray">+750 puntos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Tab Content: Ranking -->
+          <div id="tab-ranking" class="lnv-tab-content">
+            
+            <!-- Podio Top 3 -->
+            <div class="lnv-card lnv-mb-4">
+              <div class="lnv-card-header">
+                <i class="fas fa-crown" style="color: var(--lnv-accent);"></i> Top 3 del Mes
+              </div>
+              <div class="lnv-card-body">
+                <div class="podio">
+                  
+                  <!-- Segundo Lugar -->
+                  <div class="podio-posicion">
+                    <div class="lnv-avatar lnv-avatar-lg lnv-mb-3">
+                      <img src="https://ui-avatars.com/api/?name=Maria+Lopez&background=C0C0C0&color=fff" alt="2">
+                    </div>
+                    <div class="podio-barra segundo">
+                      <div style="font-size: 2rem;">🥈</div>
+                      <div class="lnv-font-bold lnv-mt-2">María López</div>
+                      <div class="lnv-text-sm lnv-text-gray">8,450 pts</div>
+                    </div>
+                  </div>
+                  
+                  <!-- Primer Lugar -->
+                  <div class="podio-posicion">
+                    <div class="lnv-avatar lnv-avatar-xl lnv-mb-3">
+                      <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=FFD700&color=000" alt="1">
+                    </div>
+                    <div class="podio-barra primero">
+                      <div style="font-size: 2.5rem;">🏆</div>
+                      <div class="lnv-font-bold lnv-mt-2">Juan Pérez</div>
+                      <div class="lnv-text-sm lnv-text-gray">9,830 pts</div>
+                      <div class="lnv-badge lnv-badge-warning lnv-mt-2">TÚ</div>
+                    </div>
+                  </div>
+                  
+                  <!-- Tercer Lugar -->
+                  <div class="podio-posicion">
+                    <div class="lnv-avatar lnv-avatar-lg lnv-mb-3">
+                      <img src="https://ui-avatars.com/api/?name=Carlos+Ruiz&background=CD7F32&color=fff" alt="3">
+                    </div>
+                    <div class="podio-barra tercero">
+                      <div style="font-size: 2rem;">🥉</div>
+                      <div class="lnv-font-bold lnv-mt-2">Carlos Ruiz</div>
+                      <div class="lnv-text-sm lnv-text-gray">7,920 pts</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tabla de Ranking -->
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <div class="lnv-flex lnv-justify-between lnv-items-center">
+                  <span><i class="fas fa-list-ol"></i> Ranking Global</span>
+                  <div class="lnv-dropdown">
+                    <button class="lnv-btn lnv-btn-sm lnv-btn-light lnv-dropdown-toggle">
+                      Este Mes
+                    </button>
+                    <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+                      <a href="#" class="lnv-dropdown-item active">Este Mes</a>
+                      <a href="#" class="lnv-dropdown-item">Este Año</a>
+                      <a href="#" class="lnv-dropdown-item">Histórico</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="lnv-card-body lnv-p-0">
+                <table class="lnv-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 60px;">Posición</th>
+                      <th>Usuario</th>
+                      <th>Nivel</th>
+                      <th>Puntos</th>
+                      <th>Logros</th>
+                      <th>Racha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background: rgba(255, 215, 0, 0.1);">
+                      <td class="lnv-text-center"><strong style="font-size: 1.5rem;">🏆</strong></td>
+                      <td>
+                        <div class="lnv-flex lnv-items-center lnv-gap-2">
+                          <div class="lnv-avatar lnv-avatar-sm">
+                            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="JP">
+                          </div>
+                          <div>
+                            <div class="lnv-font-semibold">Juan Pérez</div>
+                            <div class="lnv-text-xs lnv-text-gray">Laboratorista Senior</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td><span class="lnv-badge lnv-badge-primary">Nivel 12</span></td>
+                      <td><strong>9,830</strong></td>
+                      <td>24/36</td>
+                      <td><span class="lnv-badge lnv-badge-warning">15 días 🔥</span></td>
+                    </tr>
+                    <tr>
+                      <td class="lnv-text-center"><strong style="font-size: 1.5rem;">🥈</strong></td>
+                      <td>
+                        <div class="lnv-flex lnv-items-center lnv-gap-2">
+                          <div class="lnv-avatar lnv-avatar-sm">
+                            <img src="https://ui-avatars.com/api/?name=Maria+Lopez&background=4DB8AC&color=fff" alt="ML">
+                          </div>
+                          <span class="lnv-font-semibold">María López</span>
+                        </div>
+                      </td>
+                      <td><span class="lnv-badge lnv-badge-secondary">Nivel 11</span></td>
+                      <td><strong>8,450</strong></td>
+                      <td>22/36</td>
+                      <td><span class="lnv-badge lnv-badge-light">8 días</span></td>
+                    </tr>
+                    <tr>
+                      <td class="lnv-text-center"><strong style="font-size: 1.5rem;">🥉</strong></td>
+                      <td>
+                        <div class="lnv-flex lnv-items-center lnv-gap-2">
+                          <div class="lnv-avatar lnv-avatar-sm">
+                            <img src="https://ui-avatars.com/api/?name=Carlos+Ruiz&background=FFD700&color=000" alt="CR">
+                          </div>
+                          <span class="lnv-font-semibold">Carlos Ruiz</span>
+                        </div>
+                      </td>
+                      <td><span class="lnv-badge lnv-badge-success">Nivel 10</span></td>
+                      <td><strong>7,920</strong></td>
+                      <td>20/36</td>
+                      <td><span class="lnv-badge lnv-badge-light">3 días</span></td>
+                    </tr>
+                    <tr>
+                      <td class="lnv-text-center"><strong>4</strong></td>
+                      <td>
+                        <div class="lnv-flex lnv-items-center lnv-gap-2">
+                          <div class="lnv-avatar lnv-avatar-sm">
+                            <img src="https://ui-avatars.com/api/?name=Ana+Martinez&background=28A745&color=fff" alt="AM">
+                          </div>
+                          <span class="lnv-font-semibold">Ana Martínez</span>
+                        </div>
+                      </td>
+                      <td><span class="lnv-badge lnv-badge-light">Nivel 9</span></td>
+                      <td><strong>6,780</strong></td>
+                      <td>18/36</td>
+                      <td><span class="lnv-badge lnv-badge-light">5 días</span></td>
+                    </tr>
+                    <tr>
+                      <td class="lnv-text-center"><strong>5</strong></td>
+                      <td>
+                        <div class="lnv-flex lnv-items-center lnv-gap-2">
+                          <div class="lnv-avatar lnv-avatar-sm">
+                            <img src="https://ui-avatars.com/api/?name=Luis+Garcia&background=FFC107&color=000" alt="LG">
+                          </div>
+                          <span class="lnv-font-semibold">Luis García</span>
+                        </div>
+                      </td>
+                      <td><span class="lnv-badge lnv-badge-light">Nivel 8</span></td>
+                      <td><strong>5,430</strong></td>
+                      <td>15/36</td>
+                      <td><span class="lnv-badge lnv-badge-light">1 día</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="lnv-card-footer">
+                <button class="lnv-btn lnv-btn-outline-primary lnv-btn-block">
+                  Ver Ranking Completo
+                </button>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Tab Content: Recompensas -->
+          <div id="tab-recompensas" class="lnv-tab-content">
+            
+            <div class="lnv-alert lnv-alert-info lnv-mb-4">
+              <div class="lnv-alert-icon"><i class="fas fa-gift"></i></div>
+              <div class="lnv-alert-content">
+                <div class="lnv-alert-title">Puntos Disponibles</div>
+                <div class="lnv-alert-message">
+                  Tienes <strong>6,720 puntos</strong> para canjear por recompensas
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-row">
+              
+              <!-- Recompensa 1 -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">☕</div>
+                    <h4>Voucher Café</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Cupón para cafetería del hospital</p>
+                    <div class="lnv-flex lnv-items-center lnv-justify-center lnv-gap-2 lnv-mb-3">
+                      <i class="fas fa-coins" style="color: var(--lnv-accent);"></i>
+                      <strong style="color: var(--lnv-accent);">500 puntos</strong>
+                    </div>
+                    <button class="lnv-btn lnv-btn-primary lnv-btn-block" onclick="canjearRecompensa('Voucher Café', 500)">
+                      <i class="fas fa-exchange-alt"></i> Canjear
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recompensa 2 -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎽</div>
+                    <h4>Polo LNV</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Polo oficial del Laboratorio</p>
+                    <div class="lnv-flex lnv-items-center lnv-justify-center lnv-gap-2 lnv-mb-3">
+                      <i class="fas fa-coins" style="color: var(--lnv-accent);"></i>
+                      <strong style="color: var(--lnv-accent);">2,000 puntos</strong>
+                    </div>
+                    <button class="lnv-btn lnv-btn-primary lnv-btn-block" onclick="canjearRecompensa('Polo LNV', 2000)">
+                      <i class="fas fa-exchange-alt"></i> Canjear
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recompensa 3 -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🏖️</div>
+                    <h4>Día Libre</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Día de descanso adicional</p>
+                    <div class="lnv-flex lnv-items-center lnv-justify-center lnv-gap-2 lnv-mb-3">
+                      <i class="fas fa-coins" style="color: var(--lnv-accent);"></i>
+                      <strong style="color: var(--lnv-accent);">5,000 puntos</strong>
+                    </div>
+                    <button class="lnv-btn lnv-btn-primary lnv-btn-block" onclick="canjearRecompensa('Día Libre', 5000)">
+                      <i class="fas fa-exchange-alt"></i> Canjear
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recompensa 4 -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">📚</div>
+                    <h4>Curso Online</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Acceso a curso de capacitación</p>
+                    <div class="lnv-flex lnv-items-center lnv-justify-center lnv-gap-2 lnv-mb-3">
+                      <i class="fas fa-coins" style="color: var(--lnv-accent);"></i>
+                      <strong style="color: var(--lnv-accent);">3,500 puntos</strong>
+                    </div>
+                    <button class="lnv-btn lnv-btn-primary lnv-btn-block" onclick="canjearRecompensa('Curso Online', 3500)">
+                      <i class="fas fa-exchange-alt"></i> Canjear
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recompensa 5 -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card lnv-hover-lift">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎟️</div>
+                    <h4>Sorteo Mensual</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Entrada al sorteo de premios</p>
+                    <div class="lnv-flex lnv-items-center lnv-justify-center lnv-gap-2 lnv-mb-3">
+                      <i class="fas fa-coins" style="color: var(--lnv-accent);"></i>
+                      <strong style="color: var(--lnv-accent);">1,000 puntos</strong>
+                    </div>
+                    <button class="lnv-btn lnv-btn-primary lnv-btn-block" onclick="canjearRecompensa('Sorteo Mensual', 1000)">
+                      <i class="fas fa-exchange-alt"></i> Canjear
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recompensa 6 - No disponible -->
+              <div class="lnv-col-12 lnv-col-md-6 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card" style="opacity: 0.6;">
+                  <div class="lnv-card-body lnv-text-center">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🏆</div>
+                    <h4>Bono Anual</h4>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mb-3">Bono económico especial</p>
+                    <div class="lnv-flex lnv-items-center lnv-justify-center lnv-gap-2 lnv-mb-3">
+                      <i class="fas fa-coins" style="color: var(--lnv-gray);"></i>
+                      <strong style="color: var(--lnv-gray);">10,000 puntos</strong>
+                    </div>
+                    <button class="lnv-btn lnv-btn-light lnv-btn-block" disabled>
+                      <i class="fas fa-lock"></i> Puntos Insuficientes
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Tab Content: Desafíos Activos -->
+          <div id="tab-desafios" class="lnv-tab-content">
+            
+            <div class="lnv-alert lnv-alert-warning lnv-mb-4">
+              <div class="lnv-alert-icon"><i class="fas fa-clock"></i></div>
+              <div class="lnv-alert-content">
+                <div class="lnv-alert-title">Desafíos Disponibles</div>
+                <div class="lnv-alert-message">
+                  Completa los desafíos antes de que termine el mes para ganar puntos extra
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-row">
+              
+              <!-- Desafío 1 -->
+              <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+                <div class="lnv-card lnv-card-border-primary">
+                  <div class="lnv-card-body">
+                    <div class="lnv-flex lnv-justify-between lnv-items-start lnv-mb-3">
+                      <div class="lnv-flex lnv-items-center lnv-gap-3">
+                        <div style="font-size: 2.5rem;">🎯</div>
+                        <div>
+                          <h4 class="lnv-mb-1">Procesamiento Rápido</h4>
+                          <p class="lnv-text-sm lnv-text-gray">Procesa 50 muestras en un día</p>
+                        </div>
+                      </div>
+                      <span class="lnv-badge lnv-badge-primary">+300 pts</span>
+                    </div>
+                    
+                    <div class="lnv-progress">
+                      <div class="lnv-progress-bar lnv-progress-bar-striped lnv-progress-bar-animated" style="width: 46%">
+                        46%
+                      </div>
+                    </div>
+                    <div class="lnv-text-sm lnv-text-gray lnv-mt-2">23/50 muestras procesadas hoy</div>
+                    
+                    <div class="lnv-flex lnv-items-center lnv-gap-2 lnv-mt-3 lnv-text-sm">
+                      <i class="fas fa-clock" style="color: var(--lnv-warning);"></i>
+                      <span class="lnv-text-gray">Termina en: <strong>8 horas</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Desafío 2 -->
+              <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+                <div class="lnv-card lnv-card-border-success">
+                  <div class="lnv-card-body">
+                    <div class="lnv-flex lnv-justify-between lnv-items-start lnv-mb-3">
+                      <div class="lnv-flex lnv-items-center lnv-gap-3">
+                        <div style="font-size: 2.5rem;">📊</div>
+                        <div>
+                          <h4 class="lnv-mb-1">Analista Completo</h4>
+                          <p class="lnv-text-sm lnv-text-gray">Genera 5 reportes esta semana</p>
+                        </div>
+                      </div>
+                      <span class="lnv-badge lnv-badge-success">+200 pts</span>
+                    </div>
+                    
+                    <div class="lnv-progress">
+                      <div class="lnv-progress-bar lnv-progress-bar-success" style="width: 80%">
+                        80%
+                      </div>
+                    </div>
+                    <div class="lnv-text-sm lnv-text-gray lnv-mt-2">4/5 reportes generados</div>
+                    
+                    <div class="lnv-flex lnv-items-center lnv-gap-2 lnv-mt-3 lnv-text-sm">
+                      <i class="fas fa-clock" style="color: var(--lnv-success);"></i>
+                      <span class="lnv-text-gray">Termina en: <strong>3 días</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Desafío 3 -->
+              <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+                <div class="lnv-card lnv-card-border-warning">
+                  <div class="lnv-card-body">
+                    <div class="lnv-flex lnv-justify-between lnv-items-start lnv-mb-3">
+                      <div class="lnv-flex lnv-items-center lnv-gap-3">
+                        <div style="font-size: 2.5rem;">🔥</div>
+                        <div>
+                          <h4 class="lnv-mb-1">Racha Semanal</h4>
+                          <p class="lnv-text-sm lnv-text-gray">Inicia sesión 7 días seguidos</p>
+                        </div>
+                      </div>
+                      <span class="lnv-badge lnv-badge-warning">+400 pts</span>
+                    </div>
+                    
+                    <div class="lnv-progress">
+                      <div class="lnv-progress-bar lnv-progress-bar-warning lnv-progress-bar-striped lnv-progress-bar-animated" style="width: 71%">
+                        71%
+                      </div>
+                    </div>
+                    <div class="lnv-text-sm lnv-text-gray lnv-mt-2">5/7 días consecutivos</div>
+                    
+                    <div class="lnv-flex lnv-items-center lnv-gap-2 lnv-mt-3 lnv-text-sm">
+                      <i class="fas fa-info-circle" style="color: var(--lnv-primary);"></i>
+                      <span class="lnv-text-gray">¡Sigue así! No rompas tu racha</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Desafío 4 -->
+              <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+                <div class="lnv-card lnv-card-border-danger">
+                  <div class="lnv-card-body">
+                    <div class="lnv-flex lnv-justify-between lnv-items-start lnv-mb-3">
+                      <div class="lnv-flex lnv-items-center lnv-gap-3">
+                        <div style="font-size: 2.5rem;">⚡</div>
+                        <div>
+                          <h4 class="lnv-mb-1">Respuesta Urgente</h4>
+                          <p class="lnv-text-sm lnv-text-gray">Procesa 10 muestras urgentes</p>
+                        </div>
+                      </div>
+                      <span class="lnv-badge lnv-badge-danger">+500 pts</span>
+                    </div>
+                    
+                    <div class="lnv-progress">
+                      <div class="lnv-progress-bar lnv-progress-bar-danger" style="width: 30%">
+                        30%
+                      </div>
+                    </div>
+                    <div class="lnv-text-sm lnv-text-gray lnv-mt-2">3/10 muestras urgentes</div>
+                    
+                    <div class="lnv-flex lnv-items-center lnv-gap-2 lnv-mt-3 lnv-text-sm">
+                      <i class="fas fa-clock" style="color: var(--lnv-danger);"></i>
+                      <span class="lnv-text-gray">Termina en: <strong>14 días</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </main>
+<!-- Footer -->
+<footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+  <div class="lnv-container-fluid">
+    <div class="lnv-row">
+      <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+        <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+          <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+        </p>
+        <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+          Secretaría de Salud - Gobierno de la República de Honduras
+        </p>
+      </div>
+      <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+        <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+        <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+        <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+      </div>
+    </div>
+    <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+&copy; 2025 Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>      
+    </div>
+  </div>
+
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  
+  <script>
+    // Función para canjear recompensas
+    function canjearRecompensa(nombre, puntos) {
+      const puntosActuales = 6720; // En producción vendría del backend
+      
+      if (puntosActuales >= puntos) {
+        LNV.Confirm.show({
+          title: '¿Canjear recompensa?',
+          message: `¿Deseas canjear <strong>${nombre}</strong> por <strong>${puntos} puntos</strong>?`,
+          confirmText: 'Sí, canjear',
+          cancelText: 'Cancelar',
+          onConfirm: () => {
+            LNV.Loading.show('Procesando canje...');
+            
+            setTimeout(() => {
+              LNV.Loading.hide();
+              
+              // Animación de confetti (simulado)
+              LNV.Toast.success(
+                `¡Has canjeado ${nombre} exitosamente! Revisa tu correo para más detalles.`,
+                '¡Recompensa Canjeada! 🎉'
+              );
+              
+              // Actualizar puntos (en producción)
+              const nuevosPuntos = puntosActuales - puntos;
+              console.log('Nuevos puntos:', nuevosPuntos);
+            }, 1500);
+          }
+        });
+      } else {
+        LNV.Toast.warning(
+          `Necesitas ${puntos - puntosActuales} puntos más para canjear esta recompensa`,
+          'Puntos Insuficientes'
+        );
+      }
+    }
+    
+    // Simular desbloqueo de logro
+    function simularDesbloqueoLogro() {
+      const logro = {
+        nombre: 'Centurión',
+        descripcion: 'Has procesado 100 muestras',
+        puntos: 350
+      };
+      
+      // Mostrar modal de logro desbloqueado
+      const modalId = LNV.Utils.generateId();
+      const modal = LNV.Utils.create('div', {
+        id: modalId,
+        class: 'lnv-modal active',
+        html: `
+          <div class="lnv-modal-backdrop"></div>
+          <div class="lnv-modal-content lnv-modal-sm">
+            <div class="lnv-modal-body lnv-text-center lnv-p-6">
+              <div class="medalla oro lnv-medal-animation" style="margin: 0 auto 1.5rem;">
+                🏆
+              </div>
+              <h2 class="lnv-mb-2">¡Logro Desbloqueado!</h2>
+              <h3 class="lnv-text-primary lnv-mb-2">${logro.nombre}</h3>
+              <p class="lnv-text-gray lnv-mb-4">${logro.descripcion}</p>
+              <div class="lnv-badge lnv-badge-success lnv-badge-lg">
+                +${logro.puntos} puntos
+              </div>
+            </div>
+            <div class="lnv-modal-footer">
+              <button class="lnv-btn lnv-btn-primary lnv-btn-block" onclick="LNV.Modal.close('${modalId}')">
+                ¡Genial!
+              </button>
+            </div>
+          </div>
+        `
+      });
+      
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+      
+      LNV.Toast.success('¡Felicidades! Has desbloqueado un nuevo logro', 'Logro Alcanzado');
+    }
+    
+    // Botón de prueba (puedes agregarlo temporalmente)
+    // setTimeout(() => simularDesbloqueoLogro(), 3000);
+  </script>
+
+</body>
+</html>

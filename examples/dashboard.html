@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - LNV Framework</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  
+  <!-- Font Awesome para iconos (opcional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+    
+<!-- Sidebar -->
+<aside class="lnv-sidebar">
+  <div class="lnv-sidebar-header">
+    <div class="lnv-sidebar-brand">
+      <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+      <span>LNV</span>
+    </div>
+    <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <nav class="lnv-sidebar-nav">
+    <div class="lnv-nav-header">Principal</div>
+    
+    <a href="../index.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+      <span class="lnv-nav-item-text">Inicio</span>
+    </a>
+    
+    <a href="dashboard.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="lnv-nav-item-text">Dashboard</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Funcionalidades</div>
+    
+    <a href="formulario.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-edit"></i></span>
+      <span class="lnv-nav-item-text">Formularios</span>
+    </a>
+    
+    <a href="tabla-datos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-table"></i></span>
+      <span class="lnv-nav-item-text">Tablas de Datos</span>
+    </a>
+    
+    <a href="graficos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-bar"></i></span>
+      <span class="lnv-nav-item-text">Gráficos</span>
+    </a>
+    
+    <a href="mapas.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-map-marked-alt"></i></span>
+      <span class="lnv-nav-item-text">Mapas</span>
+    </a>
+    
+    <a href="gamificacion.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-trophy"></i></span>
+      <span class="lnv-nav-item-text">Gamificación</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Recursos</div>
+    
+    <a href="components-showcase.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+      <span class="lnv-nav-item-text">Componentes</span>
+    </a>
+    
+    <a href="../docs/guia-uso.md" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-book"></i></span>
+      <span class="lnv-nav-item-text">Documentación</span>
+    </a>
+  </nav>
+</aside>
+    
+    <!-- Overlay para móvil -->
+    <div class="lnv-sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="lnv-main-content">
+      
+      <!-- Navbar -->
+      <nav class="lnv-navbar">
+        <div class="lnv-navbar-left">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="lnv-breadcrumb lnv-hidden-mobile">
+            <div class="lnv-breadcrumb-item">
+              <a href="#">Inicio</a>
+            </div>
+            <div class="lnv-breadcrumb-item active">Dashboard</div>
+          </div>
+        </div>
+        
+        <div class="lnv-navbar-right">
+          <!-- Theme Toggle -->
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <!-- Notificaciones -->
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" style="position: relative;">
+            <i class="fas fa-bell"></i>
+            <span class="lnv-badge lnv-badge-danger lnv-badge-notification">5</span>
+          </button>
+          
+          <!-- Usuario -->
+          <div class="lnv-dropdown">
+            <button class="lnv-dropdown-toggle lnv-flex lnv-items-center lnv-gap-2" style="border: none; background: none; cursor: pointer;">
+              <div class="lnv-avatar lnv-avatar-sm">
+                <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="Usuario">
+                <span class="lnv-avatar-status online"></span>
+              </div>
+              <span class="lnv-hidden-mobile">Juan Pérez</span>
+            </button>
+            
+            <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+              <div class="lnv-dropdown-header">Mi Cuenta</div>
+              <a href="#" class="lnv-dropdown-item">
+                <i class="fas fa-user"></i> Perfil
+              </a>
+              <a href="#" class="lnv-dropdown-item">
+                <i class="fas fa-cog"></i> Configuración
+              </a>
+              <div class="lnv-dropdown-divider"></div>
+              <a href="#" class="lnv-dropdown-item">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Content -->
+      <main class="lnv-content">
+        <div class="lnv-container-fluid">
+          
+          <!-- Título de página -->
+          <div class="lnv-mb-6">
+            <h1>Dashboard</h1>
+            <p class="lnv-text-gray">Bienvenido al Laboratorio Nacional de Vigilancia</p>
+          </div>
+          
+          <!-- Stat Cards -->
+          <div class="lnv-row lnv-mb-6">
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-stat-card lnv-fade-in-up">
+                <div class="lnv-stat-card-icon primary">
+                  <i class="fas fa-vial"></i>
+                </div>
+                <div class="lnv-stat-card-content">
+                  <div class="lnv-stat-card-label">Muestras Hoy</div>
+                  <div class="lnv-stat-card-value">1,234</div>
+                  <div class="lnv-stat-card-change positive">
+                    <i class="fas fa-arrow-up"></i> 12% vs ayer
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-stat-card lnv-fade-in-up lnv-delay-100">
+                <div class="lnv-stat-card-icon success">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="lnv-stat-card-content">
+                  <div class="lnv-stat-card-label">Procesadas</div>
+                  <div class="lnv-stat-card-value">987</div>
+                  <div class="lnv-stat-card-change positive">
+                    <i class="fas fa-arrow-up"></i> 8% vs ayer
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-stat-card lnv-fade-in-up lnv-delay-200">
+                <div class="lnv-stat-card-icon warning">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="lnv-stat-card-content">
+                  <div class="lnv-stat-card-label">Pendientes</div>
+                  <div class="lnv-stat-card-value">247</div>
+                  <div class="lnv-stat-card-change negative">
+                    <i class="fas fa-arrow-down"></i> 3% vs ayer
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-stat-card lnv-fade-in-up lnv-delay-300">
+                <div class="lnv-stat-card-icon danger">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="lnv-stat-card-content">
+                  <div class="lnv-stat-card-label">Urgentes</div>
+                  <div class="lnv-stat-card-value">12</div>
+                  <div class="lnv-stat-card-change positive">
+                    <i class="fas fa-arrow-up"></i> Requieren atención
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Charts y Tablas -->
+          <div class="lnv-row">
+            
+            <!-- Card con gráfico -->
+            <div class="lnv-col-12 lnv-col-lg-8 lnv-mb-4">
+              <div class="lnv-card lnv-fade-in-up lnv-delay-400">
+                <div class="lnv-card-header">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <span>Muestras Procesadas (Últimos 7 días)</span>
+                    <div class="lnv-dropdown">
+                      <button class="lnv-btn lnv-btn-sm lnv-btn-light lnv-dropdown-toggle">
+                        Esta semana
+                      </button>
+                      <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+                        <a href="#" class="lnv-dropdown-item active">Esta semana</a>
+                        <a href="#" class="lnv-dropdown-item">Este mes</a>
+                        <a href="#" class="lnv-dropdown-item">Este año</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lnv-card-body">
+                  <!-- Aquí iría un gráfico con Chart.js -->
+                  <div style="height: 300px; display: flex; align-items: center; justify-content: center; background: var(--lnv-light); border-radius: var(--lnv-radius-md);">
+                    <div style="text-align: center; color: var(--lnv-gray);">
+                      <i class="fas fa-chart-area" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                      <p>Gráfico de líneas (Chart.js)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card con progreso -->
+            <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+              <div class="lnv-card lnv-fade-in-up lnv-delay-500">
+                <div class="lnv-card-header">Meta Mensual</div>
+                <div class="lnv-card-body">
+                  <div class="lnv-mb-4">
+                    <div class="lnv-flex lnv-justify-between lnv-mb-2">
+                      <span class="lnv-text-sm lnv-font-medium">Progreso</span>
+                      <span class="lnv-text-sm lnv-font-semibold">75%</span>
+                    </div>
+                    <div class="lnv-progress">
+                      <div class="lnv-progress-bar lnv-progress-bar-striped lnv-progress-bar-animated" style="width: 75%">
+                        75%
+                      </div>
+                    </div>
+                    <p class="lnv-text-sm lnv-text-gray lnv-mt-2">
+                      7,500 de 10,000 muestras procesadas
+                    </p>
+                  </div>
+                  
+                  <div class="lnv-mb-4">
+                    <h4 class="lnv-mb-3">Por Tipo de Muestra</h4>
+                    
+                    <div class="lnv-mb-3">
+                      <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                        <span class="lnv-text-sm">COVID-19</span>
+                        <span class="lnv-text-sm lnv-font-semibold">45%</span>
+                      </div>
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar lnv-progress-bar-success" style="width: 45%"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="lnv-mb-3">
+                      <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                        <span class="lnv-text-sm">Dengue</span>
+                        <span class="lnv-text-sm lnv-font-semibold">30%</span>
+                      </div>
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar lnv-progress-bar-warning" style="width: 30%"></div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                        <span class="lnv-text-sm">Otros</span>
+                        <span class="lnv-text-sm lnv-font-semibold">25%</span>
+                      </div>
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar" style="width: 25%"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <button class="lnv-btn lnv-btn-primary lnv-btn-block">
+                    Ver Reporte Completo
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Tabla de Muestras Recientes -->
+          <div class="lnv-row">
+            <div class="lnv-col-12">
+              <div class="lnv-card lnv-fade-in-up lnv-delay-600">
+                <div class="lnv-card-header">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <span>Muestras Recientes</span>
+                    <button class="lnv-btn lnv-btn-sm lnv-btn-primary">
+                      <i class="fas fa-plus"></i> Nueva Muestra
+                    </button>
+                  </div>
+                </div>
+                <div class="lnv-card-body lnv-p-0">
+                  <table class="lnv-table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Paciente</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>#12345</strong></td>
+                        <td>
+                          <div class="lnv-flex lnv-items-center lnv-gap-2">
+                            <div class="lnv-avatar lnv-avatar-sm">
+                              <img src="https://ui-avatars.com/api/?name=Maria+Lopez&background=7DD3E0&color=fff" alt="M">
+                            </div>
+                            María López
+                          </div>
+                        </td>
+                        <td>COVID-19</td>
+                        <td>04/10/2025 10:30</td>
+                        <td><span class="lnv-badge lnv-badge-success">Procesada</span></td>
+                        <td>
+                          <button class="lnv-btn lnv-btn-sm lnv-btn-light">
+                            <i class="fas fa-eye"></i>
+                          </button>
+                          <button class="lnv-btn lnv-btn-sm lnv-btn-light">
+                            <i class="fas fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>#12344</strong></td>
+                        <td>
+                          <div class="lnv-flex lnv-items-center lnv-gap-2">
+                            <div class="lnv-avatar lnv-avatar-sm">
+                              <img src="https://ui-avatars.com/api/?name=Carlos+Ruiz&background=4DB8AC&color=fff" alt="C">
+                            </div>
+                            Carlos Ruiz
+                          </div>
+                        </td>
+                        <td>Dengue</td>
+                        <td>04/10/2025 09:15</td>
+                        <td><span class="lnv-badge lnv-badge-warning">Pendiente</span></td>
+                        <td>
+                          <button class="lnv-btn lnv-btn-sm lnv-btn-light">
+                            <i class="fas fa-eye"></i>
+                          </button>
+                          <button class="lnv-btn lnv-btn-sm lnv-btn-light">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>#12343</strong></td>
+                        <td>
+                          <div class="lnv-flex lnv-items-center lnv-gap-2">
+                            <div class="lnv-avatar lnv-avatar-sm">
+                              <img src="https://ui-avatars.com/api/?name=Ana+Martinez&background=FFD700&color=000" alt="A">
+                            </div>
+                            Ana Martínez
+                          </div>
+                        </td>
+                        <td>Influenza</td>
+                        <td>04/10/2025 08:45</td>
+                        <td><span class="lnv-badge lnv-badge-danger">Urgente</span></td>
+                        <td>
+                          <button class="lnv-btn lnv-btn-sm lnv-btn-light">
+                            <i class="fas fa-eye"></i>
+                          </button>
+                          <button class="lnv-btn lnv-btn-sm lnv-btn-primary">
+                            <i class="fas fa-play"></i> Procesar
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="lnv-card-footer">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <span class="lnv-text-sm lnv-text-gray">Mostrando 3 de 247 registros</span>
+                    <nav>
+                      <ul class="lnv-pagination">
+                        <li class="lnv-pagination-item">
+                          <a href="#" class="lnv-pagination-link disabled">‹</a>
+                        </li>
+                        <li class="lnv-pagination-item">
+                          <a href="#" class="lnv-pagination-link active">1</a>
+                        </li>
+                        <li class="lnv-pagination-item">
+                          <a href="#" class="lnv-pagination-link">2</a>
+                        </li>
+                        <li class="lnv-pagination-item">
+                          <a href="#" class="lnv-pagination-link">3</a>
+                        </li>
+                        <li class="lnv-pagination-item">
+                          <a href="#" class="lnv-pagination-link">›</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </main>
+<!-- Footer -->
+<footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+  <div class="lnv-container-fluid">
+    <div class="lnv-row">
+      <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+        <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+          <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+        </p>
+        <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+          Secretaría de Salud - Gobierno de la República de Honduras
+        </p>
+      </div>
+      <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+        <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+        <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+        <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+      </div>
+    </div>
+    <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+&copy; 2025 Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>      
+    </div>
+  </div>
+
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  
+  <!-- Demo: Toast de bienvenida -->
+  <script>
+    // Mostrar toast de bienvenida
+    setTimeout(() => {
+      LNV.Toast.success('Bienvenido al Dashboard del LNV', 'Sistema Iniciado');
+    }, 1000);
+  </script>
+
+</body>
+</html>

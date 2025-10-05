@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Muestra - LNV Framework</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+    
+<!-- Sidebar -->
+<aside class="lnv-sidebar">
+  <div class="lnv-sidebar-header">
+    <div class="lnv-sidebar-brand">
+      <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+      <span>LNV</span>
+    </div>
+    <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <nav class="lnv-sidebar-nav">
+    <div class="lnv-nav-header">Principal</div>
+    
+    <a href="../index.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+      <span class="lnv-nav-item-text">Inicio</span>
+    </a>
+    
+    <a href="dashboard.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="lnv-nav-item-text">Dashboard</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Funcionalidades</div>
+    
+    <a href="formulario.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-edit"></i></span>
+      <span class="lnv-nav-item-text">Formularios</span>
+    </a>
+    
+    <a href="tabla-datos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-table"></i></span>
+      <span class="lnv-nav-item-text">Tablas de Datos</span>
+    </a>
+    
+    <a href="graficos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-bar"></i></span>
+      <span class="lnv-nav-item-text">Gráficos</span>
+    </a>
+    
+    <a href="mapas.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-map-marked-alt"></i></span>
+      <span class="lnv-nav-item-text">Mapas</span>
+    </a>
+    
+    <a href="gamificacion.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-trophy"></i></span>
+      <span class="lnv-nav-item-text">Gamificación</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Recursos</div>
+    
+    <a href="components-showcase.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+      <span class="lnv-nav-item-text">Componentes</span>
+    </a>
+    
+    <a href="../docs/guia-uso.md" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-book"></i></span>
+      <span class="lnv-nav-item-text">Documentación</span>
+    </a>
+  </nav>
+</aside>
+    
+    <!-- Overlay para móvil -->
+    <div class="lnv-sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="lnv-main-content">
+      
+      <!-- Navbar -->
+      <nav class="lnv-navbar">
+        <div class="lnv-navbar-left">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="lnv-breadcrumb lnv-hidden-mobile">
+            <div class="lnv-breadcrumb-item">
+              <a href="dashboard.html">Inicio</a>
+            </div>
+            <div class="lnv-breadcrumb-item active">Nueva Muestra</div>
+          </div>
+        </div>
+        
+        <div class="lnv-navbar-right">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <div class="lnv-avatar lnv-avatar-sm">
+            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="Usuario">
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Content -->
+      <main class="lnv-content">
+        <div class="lnv-container">
+          
+          <!-- Título -->
+          <div class="lnv-mb-6 lnv-fade-in-down">
+            <h1>Registro de Nueva Muestra</h1>
+            <p class="lnv-text-gray">Complete todos los campos requeridos para registrar una nueva muestra</p>
+          </div>
+          
+          <!-- Alert de información -->
+          <div class="lnv-alert lnv-alert-info lnv-alert-dismissible lnv-mb-6 lnv-fade-in-up">
+            <div class="lnv-alert-icon"><i class="fas fa-info-circle"></i></div>
+            <div class="lnv-alert-content">
+              <div class="lnv-alert-title">Información Importante</div>
+              <div class="lnv-alert-message">
+                Los campos marcados con <span style="color: var(--lnv-danger);">*</span> son obligatorios. 
+                Asegúrese de verificar todos los datos antes de enviar.
+              </div>
+            </div>
+            <span class="lnv-alert-close">×</span>
+          </div>
+          
+          <!-- Formulario -->
+          <form id="formMuestra" class="lnv-fade-in-up lnv-delay-200">
+            
+            <!-- Tabs para secciones del formulario -->
+            <div class="lnv-tabs lnv-mb-6">
+              <button type="button" class="lnv-tab active" data-tab="tab-paciente">
+                <i class="fas fa-user"></i> Datos del Paciente
+              </button>
+              <button type="button" class="lnv-tab" data-tab="tab-muestra">
+                <i class="fas fa-vial"></i> Datos de la Muestra
+              </button>
+              <button type="button" class="lnv-tab" data-tab="tab-clinicos">
+                <i class="fas fa-notes-medical"></i> Datos Clínicos
+              </button>
+            </div>
+            
+            <!-- Tab Content: Datos del Paciente -->
+            <div id="tab-paciente" class="lnv-tab-content active">
+              <div class="lnv-card">
+                <div class="lnv-card-header">
+                  <i class="fas fa-user"></i> Información del Paciente
+                </div>
+                <div class="lnv-card-body">
+                  
+                  <div class="lnv-row">
+                    <!-- Nombres -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Nombres</label>
+                        <input type="text" class="lnv-form-control" id="nombres" name="nombres" placeholder="Ingrese los nombres" required>
+                        <span class="lnv-form-error" style="display: none;">Este campo es obligatorio</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Apellidos -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Apellidos</label>
+                        <input type="text" class="lnv-form-control" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos" required>
+                        <span class="lnv-form-error" style="display: none;">Este campo es obligatorio</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Identificación -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Número de Identidad</label>
+                        <div class="lnv-input-group">
+                          <span class="lnv-input-group-prepend">
+                            <i class="fas fa-id-card"></i>
+                          </span>
+                          <input type="text" class="lnv-form-control" id="identidad" name="identidad" placeholder="0000-0000-00000" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}" required>
+                        </div>
+                        <span class="lnv-form-help">Formato: 0000-0000-00000</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Fecha de Nacimiento -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Fecha de Nacimiento</label>
+                        <input type="date" class="lnv-form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Sexo -->
+                    <div class="lnv-col-12 lnv-col-md-4">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Sexo</label>
+                        <select class="lnv-form-control lnv-form-select" id="sexo" name="sexo" required>
+                          <option value="">Seleccione...</option>
+                          <option value="M">Masculino</option>
+                          <option value="F">Femenino</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <!-- Teléfono -->
+                    <div class="lnv-col-12 lnv-col-md-4">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Teléfono</label>
+                        <div class="lnv-input-group">
+                          <span class="lnv-input-group-prepend">
+                            <i class="fas fa-phone"></i>
+                          </span>
+                          <input type="tel" class="lnv-form-control" id="telefono" name="telefono" placeholder="0000-0000">
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="lnv-col-12 lnv-col-md-4">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Correo Electrónico</label>
+                        <div class="lnv-input-group">
+                          <span class="lnv-input-group-prepend">@</span>
+                          <input type="email" class="lnv-form-control" id="email" name="email" placeholder="ejemplo@correo.com">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Dirección -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Dirección</label>
+                        <textarea class="lnv-form-control textarea" id="direccion" name="direccion" rows="3" placeholder="Ingrese la dirección completa"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Departamento -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Departamento</label>
+                        <select class="lnv-form-control lnv-form-select" id="departamento" name="departamento" required>
+                          <option value="">Seleccione...</option>
+                          <option value="FM">Francisco Morazán</option>
+                          <option value="CR">Cortés</option>
+                          <option value="AT">Atlántida</option>
+                          <option value="YO">Yoro</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <!-- Municipio -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Municipio</label>
+                        <select class="lnv-form-control lnv-form-select" id="municipio" name="municipio" required>
+                          <option value="">Seleccione primero un departamento...</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tab Content: Datos de la Muestra -->
+            <div id="tab-muestra" class="lnv-tab-content">
+              <div class="lnv-card">
+                <div class="lnv-card-header">
+                  <i class="fas fa-vial"></i> Información de la Muestra
+                </div>
+                <div class="lnv-card-body">
+                  
+                  <div class="lnv-row">
+                    <!-- Tipo de Muestra -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Tipo de Muestra</label>
+                        <select class="lnv-form-control lnv-form-select" id="tipoMuestra" name="tipoMuestra" required>
+                          <option value="">Seleccione...</option>
+                          <option value="sangre">Sangre</option>
+                          <option value="orina">Orina</option>
+                          <option value="hisopado">Hisopado Nasofaríngeo</option>
+                          <option value="esputo">Esputo</option>
+                          <option value="otro">Otro</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <!-- Fecha de Toma -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Fecha y Hora de Toma</label>
+                        <input type="datetime-local" class="lnv-form-control" id="fechaToma" name="fechaToma" required>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Tipo de Análisis -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Tipo de Análisis Solicitado</label>
+                        
+                        <label class="lnv-checkbox">
+                          <input type="checkbox" name="analisis[]" value="covid19">
+                          <span>COVID-19 (PCR)</span>
+                        </label>
+                        
+                        <label class="lnv-checkbox">
+                          <input type="checkbox" name="analisis[]" value="dengue">
+                          <span>Dengue</span>
+                        </label>
+                        
+                        <label class="lnv-checkbox">
+                          <input type="checkbox" name="analisis[]" value="influenza">
+                          <span>Influenza</span>
+                        </label>
+                        
+                        <label class="lnv-checkbox">
+                          <input type="checkbox" name="analisis[]" value="zika">
+                          <span>Zika</span>
+                        </label>
+                        
+                        <label class="lnv-checkbox">
+                          <input type="checkbox" name="analisis[]" value="chikungunya">
+                          <span>Chikungunya</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Prioridad -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Prioridad</label>
+                        
+                        <label class="lnv-radio">
+                          <input type="radio" name="prioridad" value="normal" checked>
+                          <span>Normal</span>
+                        </label>
+                        
+                        <label class="lnv-radio">
+                          <input type="radio" name="prioridad" value="urgente">
+                          <span>Urgente</span>
+                        </label>
+                        
+                        <label class="lnv-radio">
+                          <input type="radio" name="prioridad" value="emergencia">
+                          <span>Emergencia</span>
+                        </label>
+                      </div>
+                    </div>
+                    
+                    <!-- Centro de Salud -->
+                    <div class="lnv-col-12 lnv-col-md-6">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label required">Centro de Salud Solicitante</label>
+                        <select class="lnv-form-control lnv-form-select" id="centroSalud" name="centroSalud" required>
+                          <option value="">Seleccione...</option>
+                          <option value="hospital-escuela">Hospital Escuela</option>
+                          <option value="hospital-san-felipe">Hospital San Felipe</option>
+                          <option value="cesamo-tegucigalpa">CESAMO Tegucigalpa Centro</option>
+                          <option value="cesar-comayagua">CESAR Comayagua</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Notificación por Email -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-switch">
+                          <input type="checkbox" id="notificarEmail" name="notificarEmail">
+                          <span class="lnv-switch-input"></span>
+                          <span>Enviar notificación por correo electrónico cuando el resultado esté listo</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Adjuntar Archivo -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Adjuntar Orden Médica (Opcional)</label>
+                        <label for="archivoOrden" class="lnv-file-input">
+                          <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                          <p><strong>Click para seleccionar archivo</strong></p>
+                          <p class="lnv-text-sm lnv-text-gray">o arrastre y suelte aquí</p>
+                          <p class="lnv-text-xs lnv-text-gray lnv-mt-2">Formatos: PDF, JPG, PNG (Max. 5MB)</p>
+                          <input type="file" id="archivoOrden" name="archivoOrden" accept=".pdf,.jpg,.jpeg,.png">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tab Content: Datos Clínicos -->
+            <div id="tab-clinicos" class="lnv-tab-content">
+              <div class="lnv-card">
+                <div class="lnv-card-header">
+                  <i class="fas fa-notes-medical"></i> Información Clínica
+                </div>
+                <div class="lnv-card-body">
+                  
+                  <div class="lnv-row">
+                    <!-- Síntomas -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Síntomas Presentados</label>
+                        <textarea class="lnv-form-control textarea" id="sintomas" name="sintomas" rows="4" placeholder="Describa los síntomas del paciente"></textarea>
+                        <span class="lnv-form-help">Describa detalladamente los síntomas y su duración</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Antecedentes -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Antecedentes Relevantes</label>
+                        <textarea class="lnv-form-control textarea" id="antecedentes" name="antecedentes" rows="3" placeholder="Enfermedades previas, alergias, medicamentos, etc."></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Temperatura -->
+                    <div class="lnv-col-12 lnv-col-md-4">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Temperatura (°C)</label>
+                        <div class="lnv-input-group">
+                          <input type="number" class="lnv-form-control" id="temperatura" name="temperatura" step="0.1" min="35" max="42" placeholder="37.0">
+                          <span class="lnv-input-group-append">°C</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Presión Arterial -->
+                    <div class="lnv-col-12 lnv-col-md-4">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Presión Arterial</label>
+                        <input type="text" class="lnv-form-control" id="presion" name="presion" placeholder="120/80">
+                      </div>
+                    </div>
+                    
+                    <!-- Frecuencia Cardíaca -->
+                    <div class="lnv-col-12 lnv-col-md-4">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Frecuencia Cardíaca</label>
+                        <div class="lnv-input-group">
+                          <input type="number" class="lnv-form-control" id="frecuencia" name="frecuencia" placeholder="70">
+                          <span class="lnv-input-group-append">lpm</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="lnv-row">
+                    <!-- Observaciones -->
+                    <div class="lnv-col-12">
+                      <div class="lnv-form-group">
+                        <label class="lnv-form-label">Observaciones Adicionales</label>
+                        <textarea class="lnv-form-control textarea" id="observaciones" name="observaciones" rows="4" placeholder="Cualquier información adicional relevante"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Botones de Acción -->
+            <div class="lnv-card lnv-mt-6">
+              <div class="lnv-card-footer">
+                <div class="lnv-flex lnv-justify-between lnv-items-center">
+                  <button type="button" class="lnv-btn lnv-btn-light" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Cancelar
+                  </button>
+                  
+                  <div class="lnv-flex lnv-gap-3">
+                    <button type="button" class="lnv-btn lnv-btn-outline-primary" id="btnGuardarBorrador">
+                      <i class="fas fa-save"></i> Guardar Borrador
+                    </button>
+                    <button type="submit" class="lnv-btn lnv-btn-primary">
+                      <i class="fas fa-paper-plane"></i> Enviar Muestra
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </form>
+          
+        </div>
+      </main>
+<!-- Footer -->
+<footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+  <div class="lnv-container-fluid">
+    <div class="lnv-row">
+      <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+        <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+          <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+        </p>
+        <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+          Secretaría de Salud - Gobierno de la República de Honduras
+        </p>
+      </div>
+      <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+        <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+        <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+        <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+      </div>
+    </div>
+    <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+&copy; 2025 Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>      
+    </div>
+  </div>
+
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  
+  <!-- Validación del Formulario -->
+  <script>
+    // Formulario
+    const form = document.getElementById('formMuestra');
+    
+    // Validación básica al enviar
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Mostrar loading
+      LNV.Loading.show('Enviando muestra...');
+      
+      // Simular envío
+      setTimeout(() => {
+        LNV.Loading.hide();
+        
+        LNV.Toast.success(
+          'La muestra ha sido registrada exitosamente con el ID #' + Math.floor(Math.random() * 90000 + 10000),
+          'Muestra Registrada'
+        );
+        
+        // Opcional: limpiar formulario o redirigir
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 2000);
+      }, 2000);
+    });
+    
+    // Guardar borrador
+    document.getElementById('btnGuardarBorrador').addEventListener('click', function() {
+      LNV.Loading.show('Guardando borrador...');
+      
+      setTimeout(() => {
+        LNV.Loading.hide();
+        LNV.Toast.info('El borrador ha sido guardado correctamente', 'Borrador Guardado');
+      }, 1500);
+    });
+    
+    // Validación en tiempo real de campos requeridos
+    const camposRequeridos = form.querySelectorAll('[required]');
+    camposRequeridos.forEach(campo => {
+      campo.addEventListener('blur', function() {
+        if (!this.value) {
+          this.classList.add('is-invalid');
+          const error = this.parentElement.querySelector('.lnv-form-error');
+          if (error) error.style.display = 'block';
+        } else {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+          const error = this.parentElement.querySelector('.lnv-form-error');
+          if (error) error.style.display = 'none';
+        }
+      });
+    });
+    
+    // Actualizar nombre de archivo seleccionado
+    document.getElementById('archivoOrden').addEventListener('change', function(e) {
+      const fileName = e.target.files[0]?.name;
+      if (fileName) {
+        LNV.Toast.info('Archivo seleccionado: ' + fileName);
+      }
+    });
+  </script>
+
+</body>
+</html>

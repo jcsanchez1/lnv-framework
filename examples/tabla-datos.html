@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Muestras - LNV Framework</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Personalización de DataTables con colores LNV */
+    .dataTables_wrapper .dataTables_length select,
+    .dataTables_wrapper .dataTables_filter input {
+      border: 1px solid var(--lnv-gray-light);
+      border-radius: var(--lnv-radius-md);
+      padding: var(--lnv-spacing-2) var(--lnv-spacing-3);
+    }
+    
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      background: var(--lnv-primary) !important;
+      color: white !important;
+      border-color: var(--lnv-primary) !important;
+    }
+    
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background: var(--lnv-primary-light) !important;
+      color: white !important;
+      border-color: var(--lnv-primary-light) !important;
+    }
+    
+    table.dataTable thead th {
+      background-color: var(--lnv-light);
+      font-weight: var(--lnv-font-semibold);
+      color: var(--lnv-dark);
+    }
+    
+    table.dataTable tbody tr:hover {
+      background-color: rgba(125, 211, 224, 0.05) !important;
+    }
+    
+    .dt-buttons {
+      margin-bottom: 1rem;
+    }
+    
+    .dt-button {
+      background-color: var(--lnv-white) !important;
+      border: 1px solid var(--lnv-gray-light) !important;
+      color: var(--lnv-dark) !important;
+      border-radius: var(--lnv-radius-md) !important;
+      padding: var(--lnv-spacing-2) var(--lnv-spacing-4) !important;
+      margin-right: var(--lnv-spacing-2) !important;
+    }
+    
+    .dt-button:hover {
+      background-color: var(--lnv-light) !important;
+      border-color: var(--lnv-primary) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+    
+<!-- Sidebar -->
+<aside class="lnv-sidebar">
+  <div class="lnv-sidebar-header">
+    <div class="lnv-sidebar-brand">
+      <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+      <span>LNV</span>
+    </div>
+    <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <nav class="lnv-sidebar-nav">
+    <div class="lnv-nav-header">Principal</div>
+    
+    <a href="../index.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+      <span class="lnv-nav-item-text">Inicio</span>
+    </a>
+    
+    <a href="dashboard.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="lnv-nav-item-text">Dashboard</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Funcionalidades</div>
+    
+    <a href="formulario.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-edit"></i></span>
+      <span class="lnv-nav-item-text">Formularios</span>
+    </a>
+    
+    <a href="tabla-datos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-table"></i></span>
+      <span class="lnv-nav-item-text">Tablas de Datos</span>
+    </a>
+    
+    <a href="graficos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-bar"></i></span>
+      <span class="lnv-nav-item-text">Gráficos</span>
+    </a>
+    
+    <a href="mapas.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-map-marked-alt"></i></span>
+      <span class="lnv-nav-item-text">Mapas</span>
+    </a>
+    
+    <a href="gamificacion.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-trophy"></i></span>
+      <span class="lnv-nav-item-text">Gamificación</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Recursos</div>
+    
+    <a href="components-showcase.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+      <span class="lnv-nav-item-text">Componentes</span>
+    </a>
+    
+    <a href="../docs/guia-uso.md" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-book"></i></span>
+      <span class="lnv-nav-item-text">Documentación</span>
+    </a>
+  </nav>
+</aside>
+    
+    <!-- Overlay para móvil -->
+    <div class="lnv-sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="lnv-main-content">
+      
+      <!-- Navbar -->
+      <nav class="lnv-navbar">
+        <div class="lnv-navbar-left">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="lnv-breadcrumb lnv-hidden-mobile">
+            <div class="lnv-breadcrumb-item">
+              <a href="dashboard.html">Inicio</a>
+            </div>
+            <div class="lnv-breadcrumb-item active">Gestión de Muestras</div>
+          </div>
+        </div>
+        
+        <div class="lnv-navbar-right">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <div class="lnv-avatar lnv-avatar-sm">
+            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="Usuario">
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Content -->
+      <main class="lnv-content">
+        <div class="lnv-container-fluid">
+          
+          <!-- Título -->
+          <div class="lnv-mb-6 lnv-fade-in-down">
+            <div class="lnv-flex lnv-justify-between lnv-items-center lnv-flex-wrap lnv-gap-4">
+              <div>
+                <h1>Gestión de Muestras</h1>
+                <p class="lnv-text-gray">Administre todas las muestras del laboratorio</p>
+              </div>
+              <a href="formulario.html" class="lnv-btn lnv-btn-primary">
+                <i class="fas fa-plus"></i> Nueva Muestra
+              </a>
+            </div>
+          </div>
+          
+          <!-- Estadísticas rápidas -->
+          <div class="lnv-row lnv-mb-6">
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-card lnv-card-compact lnv-card-border-primary lnv-fade-in-up">
+                <div class="lnv-card-body">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <div>
+                      <div class="lnv-text-sm lnv-text-gray lnv-mb-1">Total Muestras</div>
+                      <div class="lnv-text-2xl lnv-font-bold lnv-text-primary">8,547</div>
+                    </div>
+                    <i class="fas fa-vial" style="font-size: 2rem; color: var(--lnv-primary); opacity: 0.2;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-card lnv-card-compact lnv-card-border-success lnv-fade-in-up lnv-delay-100">
+                <div class="lnv-card-body">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <div>
+                      <div class="lnv-text-sm lnv-text-gray lnv-mb-1">Procesadas</div>
+                      <div class="lnv-text-2xl lnv-font-bold" style="color: var(--lnv-success);">6,234</div>
+                    </div>
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--lnv-success); opacity: 0.2;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-card lnv-card-compact lnv-card-border-warning lnv-fade-in-up lnv-delay-200">
+                <div class="lnv-card-body">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <div>
+                      <div class="lnv-text-sm lnv-text-gray lnv-mb-1">Pendientes</div>
+                      <div class="lnv-text-2xl lnv-font-bold" style="color: var(--lnv-warning);">2,289</div>
+                    </div>
+                    <i class="fas fa-clock" style="font-size: 2rem; color: var(--lnv-warning); opacity: 0.2;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+              <div class="lnv-card lnv-card-compact lnv-card-border-danger lnv-fade-in-up lnv-delay-300">
+                <div class="lnv-card-body">
+                  <div class="lnv-flex lnv-justify-between lnv-items-center">
+                    <div>
+                      <div class="lnv-text-sm lnv-text-gray lnv-mb-1">Urgentes</div>
+                      <div class="lnv-text-2xl lnv-font-bold" style="color: var(--lnv-danger);">24</div>
+                    </div>
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--lnv-danger); opacity: 0.2;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Filtros -->
+          <div class="lnv-card lnv-mb-4 lnv-fade-in-up lnv-delay-400">
+            <div class="lnv-card-header">
+              <div class="lnv-flex lnv-justify-between lnv-items-center">
+                <span><i class="fas fa-filter"></i> Filtros Avanzados</span>
+                <button class="lnv-btn lnv-btn-sm lnv-btn-light" id="btnToggleFiltros">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+            </div>
+            <div class="lnv-card-body" id="panelFiltros" style="display: none;">
+              <div class="lnv-row">
+                <div class="lnv-col-12 lnv-col-md-3">
+                  <div class="lnv-form-group">
+                    <label class="lnv-form-label">Estado</label>
+                    <select class="lnv-form-control lnv-form-select" id="filtroEstado">
+                      <option value="">Todos</option>
+                      <option value="procesada">Procesada</option>
+                      <option value="pendiente">Pendiente</option>
+                      <option value="urgente">Urgente</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="lnv-col-12 lnv-col-md-3">
+                  <div class="lnv-form-group">
+                    <label class="lnv-form-label">Tipo de Muestra</label>
+                    <select class="lnv-form-control lnv-form-select" id="filtroTipo">
+                      <option value="">Todos</option>
+                      <option value="covid">COVID-19</option>
+                      <option value="dengue">Dengue</option>
+                      <option value="influenza">Influenza</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="lnv-col-12 lnv-col-md-3">
+                  <div class="lnv-form-group">
+                    <label class="lnv-form-label">Fecha Desde</label>
+                    <input type="date" class="lnv-form-control" id="filtroFechaDesde">
+                  </div>
+                </div>
+                
+                <div class="lnv-col-12 lnv-col-md-3">
+                  <div class="lnv-form-group">
+                    <label class="lnv-form-label">Fecha Hasta</label>
+                    <input type="date" class="lnv-form-control" id="filtroFechaHasta">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-flex lnv-gap-2">
+                <button class="lnv-btn lnv-btn-primary" id="btnAplicarFiltros">
+                  <i class="fas fa-search"></i> Aplicar Filtros
+                </button>
+                <button class="lnv-btn lnv-btn-light" id="btnLimpiarFiltros">
+                  <i class="fas fa-times"></i> Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tabla -->
+          <div class="lnv-card lnv-fade-in-up lnv-delay-500">
+            <div class="lnv-card-header">
+              <i class="fas fa-table"></i> Listado de Muestras
+            </div>
+            <div class="lnv-card-body">
+              <table id="tablaMuestras" class="display" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Paciente</th>
+                    <th>Tipo</th>
+                    <th>Fecha Toma</th>
+                    <th>Centro Salud</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Los datos se cargarán con JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+        </div>
+      </main>
+<!-- Footer -->
+<footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+  <div class="lnv-container-fluid">
+    <div class="lnv-row">
+      <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+        <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+          <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+        </p>
+        <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+          Secretaría de Salud - Gobierno de la República de Honduras
+        </p>
+      </div>
+      <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+        <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+        <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+        <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+      </div>
+    </div>
+    <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+&copy; 2025 Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>              
+    </div>
+  </div>
+  
+  <!-- Modal de Detalles -->
+  <div id="modalDetalles" class="lnv-modal">
+    <div class="lnv-modal-backdrop"></div>
+    <div class="lnv-modal-content">
+      <div class="lnv-modal-header">
+        <h3 class="lnv-modal-title">Detalles de la Muestra</h3>
+        <button class="lnv-modal-close">×</button>
+      </div>
+      <div class="lnv-modal-body" id="contenidoDetalles">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="lnv-modal-footer">
+        <button class="lnv-btn lnv-btn-light" onclick="LNV.Modal.close('modalDetalles')">
+          Cerrar
+        </button>
+        <button class="lnv-btn lnv-btn-primary">
+          <i class="fas fa-print"></i> Imprimir
+        </button>
+      </div>
+    </div>
+  </div>
+
+ <!-- jQuery (requerido por DataTables) -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  
+  <!-- DataTables -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+  
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  
+  <!-- Script de la tabla -->
+  <script>
+    // Datos de ejemplo
+    const datosMuestras = [
+      { id: '#12345', paciente: 'María López', tipo: 'COVID-19', fecha: '2025-10-04 10:30', centro: 'Hospital Escuela', estado: 'procesada', prioridad: 'normal' },
+      { id: '#12344', paciente: 'Carlos Ruiz', tipo: 'Dengue', fecha: '2025-10-04 09:15', centro: 'Hospital San Felipe', estado: 'pendiente', prioridad: 'normal' },
+      { id: '#12343', paciente: 'Ana Martínez', tipo: 'Influenza', fecha: '2025-10-04 08:45', centro: 'CESAMO Centro', estado: 'urgente', prioridad: 'emergencia' },
+      { id: '#12342', paciente: 'José García', tipo: 'COVID-19', fecha: '2025-10-03 16:20', centro: 'Hospital Escuela', estado: 'procesada', prioridad: 'urgente' },
+      { id: '#12341', paciente: 'Laura Hernández', tipo: 'Zika', fecha: '2025-10-03 14:10', centro: 'CESAR Comayagua', estado: 'pendiente', prioridad: 'normal' },
+      { id: '#12340', paciente: 'Pedro Sánchez', tipo: 'Dengue', fecha: '2025-10-03 11:30', centro: 'Hospital San Felipe', estado: 'procesada', prioridad: 'normal' },
+      { id: '#12339', paciente: 'Sofía Ramírez', tipo: 'COVID-19', fecha: '2025-10-03 09:45', centro: 'CESAMO Centro', estado: 'urgente', prioridad: 'emergencia' },
+      { id: '#12338', paciente: 'Diego Torres', tipo: 'Influenza', fecha: '2025-10-02 15:20', centro: 'Hospital Escuela', estado: 'procesada', prioridad: 'normal' },
+      { id: '#12337', paciente: 'Valentina Cruz', tipo: 'Chikungunya', fecha: '2025-10-02 13:10', centro: 'Hospital San Felipe', estado: 'pendiente', prioridad: 'urgente' },
+      { id: '#12336', paciente: 'Miguel Flores', tipo: 'COVID-19', fecha: '2025-10-02 10:30', centro: 'CESAR Comayagua', estado: 'procesada', prioridad: 'normal' },
+      { id: '#12335', paciente: 'Isabella Morales', tipo: 'Dengue', fecha: '2025-10-01 16:45', centro: 'CESAMO Centro', estado: 'procesada', prioridad: 'normal' },
+      { id: '#12334', paciente: 'Andrés Vargas', tipo: 'Influenza', fecha: '2025-10-01 14:20', centro: 'Hospital Escuela', estado: 'urgente', prioridad: 'emergencia' },
+      { id: '#12333', paciente: 'Camila Díaz', tipo: 'COVID-19', fecha: '2025-10-01 11:10', centro: 'Hospital San Felipe', estado: 'pendiente', prioridad: 'normal' },
+      { id: '#12332', paciente: 'Santiago Méndez', tipo: 'Zika', fecha: '2025-10-01 09:30', centro: 'CESAR Comayagua', estado: 'procesada', prioridad: 'normal' },
+      { id: '#12331', paciente: 'Lucía Castro', tipo: 'Dengue', fecha: '2025-09-30 15:45', centro: 'CESAMO Centro', estado: 'procesada', prioridad: 'urgente' }
+    ];
+    
+    // Función para obtener badge de estado
+    function getBadgeEstado(estado) {
+      const badges = {
+        'procesada': '<span class="lnv-badge lnv-badge-success">Procesada</span>',
+        'pendiente': '<span class="lnv-badge lnv-badge-warning">Pendiente</span>',
+        'urgente': '<span class="lnv-badge lnv-badge-danger">Urgente</span>'
+      };
+      return badges[estado] || estado;
+    }
+    
+    // Función para obtener badge de prioridad
+    function getBadgePrioridad(prioridad) {
+      const badges = {
+        'normal': '<span class="lnv-badge lnv-badge-light">Normal</span>',
+        'urgente': '<span class="lnv-badge lnv-badge-outline-danger">Urgente</span>',
+        'emergencia': '<span class="lnv-badge lnv-badge-danger lnv-pulse">Emergencia</span>'
+      };
+      return badges[prioridad] || prioridad;
+    }
+    
+    // Inicializar DataTable
+    $(document).ready(function() {
+      const tabla = $('#tablaMuestras').DataTable({
+        data: datosMuestras,
+        columns: [
+          { data: 'id', render: (data) => `<strong>${data}</strong>` },
+          { data: 'paciente' },
+          { data: 'tipo' },
+          { data: 'fecha' },
+          { data: 'centro' },
+          { data: 'estado', render: (data) => getBadgeEstado(data) },
+          { data: 'prioridad', render: (data) => getBadgePrioridad(data) },
+          {
+            data: null,
+            orderable: false,
+            render: function(data, type, row) {
+              return `
+                <div class="lnv-flex lnv-gap-1">
+                  <button class="lnv-btn lnv-btn-sm lnv-btn-light btn-ver" data-id="${row.id}" title="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button class="lnv-btn lnv-btn-sm lnv-btn-light btn-editar" data-id="${row.id}" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="lnv-btn lnv-btn-sm lnv-btn-light btn-eliminar" data-id="${row.id}" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                  <button class="lnv-btn lnv-btn-sm lnv-btn-primary btn-descargar" data-id="${row.id}" title="Descargar">
+                    <i class="fas fa-download"></i>
+                  </button>
+                </div>
+              `;
+            }
+          }
+        ],
+        language: {
+          url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+        },
+        dom: 'Bfrtip',
+        buttons: [
+          {
+            extend: 'excel',
+            text: '<i class="fas fa-file-excel"></i> Excel',
+            className: 'lnv-btn-export'
+          },
+          {
+            extend: 'pdf',
+            text: '<i class="fas fa-file-pdf"></i> PDF',
+            className: 'lnv-btn-export'
+          },
+          {
+            extend: 'print',
+            text: '<i class="fas fa-print"></i> Imprimir',
+            className: 'lnv-btn-export'
+          }
+        ],
+        pageLength: 10,
+        order: [[0, 'desc']]
+      });
+      
+      // Toggle filtros
+      $('#btnToggleFiltros').click(function() {
+        $('#panelFiltros').slideToggle();
+        $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+      });
+      
+      // Aplicar filtros
+      $('#btnAplicarFiltros').click(function() {
+        const estado = $('#filtroEstado').val();
+        const tipo = $('#filtroTipo').val();
+        
+        tabla.column(5).search(estado).draw();
+        tabla.column(2).search(tipo).draw();
+        
+        LNV.Toast.info('Filtros aplicados correctamente');
+      });
+      
+      // Limpiar filtros
+      $('#btnLimpiarFiltros').click(function() {
+        $('#filtroEstado, #filtroTipo').val('');
+        $('#filtroFechaDesde, #filtroFechaHasta').val('');
+        tabla.search('').columns().search('').draw();
+        LNV.Toast.info('Filtros limpiados');
+      });
+      
+      // Eventos de botones
+      $('#tablaMuestras').on('click', '.btn-descargar', function() {
+        const id = $(this).data('id');
+        LNV.Loading.show('Generando reporte...');
+        
+        setTimeout(() => {
+          LNV.Loading.hide();
+          LNV.Toast.success(`Reporte de muestra ${id} descargado correctamente`);
+        }, 1500);
+      });
+    });
+  </script>
+
+</body>
+</html>aMuestras').on('click', '.btn-ver', function() {
+        const id = $(this).data('id');
+        const muestra = datosMuestras.find(m => m.id === id);
+        
+        $('#contenidoDetalles').html(`
+          <div class="lnv-row">
+            <div class="lnv-col-6"><strong>ID:</strong></div>
+            <div class="lnv-col-6">${muestra.id}</div>
+          </div>
+          <div class="lnv-row lnv-mt-2">
+            <div class="lnv-col-6"><strong>Paciente:</strong></div>
+            <div class="lnv-col-6">${muestra.paciente}</div>
+          </div>
+          <div class="lnv-row lnv-mt-2">
+            <div class="lnv-col-6"><strong>Tipo:</strong></div>
+            <div class="lnv-col-6">${muestra.tipo}</div>
+          </div>
+          <div class="lnv-row lnv-mt-2">
+            <div class="lnv-col-6"><strong>Fecha:</strong></div>
+            <div class="lnv-col-6">${muestra.fecha}</div>
+          </div>
+          <div class="lnv-row lnv-mt-2">
+            <div class="lnv-col-6"><strong>Centro:</strong></div>
+            <div class="lnv-col-6">${muestra.centro}</div>
+          </div>
+          <div class="lnv-row lnv-mt-2">
+            <div class="lnv-col-6"><strong>Estado:</strong></div>
+            <div class="lnv-col-6">${getBadgeEstado(muestra.estado)}</div>
+          </div>
+        `);
+        
+        LNV.Modal.open('modalDetalles');
+      });
+      
+      $('#tablaMuestras').on('click', '.btn-editar', function() {
+        const id = $(this).data('id');
+        LNV.Toast.info(`Editando muestra ${id}...`);
+      });
+      
+      $('#tablaMuestras').on('click', '.btn-eliminar', function() {
+        const id = $(this).data('id');
+        
+        LNV.Confirm.show({
+          title: '¿Eliminar muestra?',
+          message: `¿Está seguro que desea eliminar la muestra ${id}? Esta acción no se puede deshacer.`,
+          confirmText: 'Sí, eliminar',
+          cancelText: 'Cancelar',
+          onConfirm: () => {
+            LNV.Toast.success(`Muestra ${id} eliminada correctamente`);
+          }
+        });
+      });
+      
+      $('#tablaMuestras').on('click', '.btn-descargar', function() {
+        const id = $(this).data('id');
+        LNV.Loading.show('Generando reporte...');
+        
+        setTimeout(() => {
+          LNV.Loading.hide();
+          LNV.Toast.success(`Reporte de muestra ${id} descargado correctamente`);
+        }, 1500);
+      });
+    });
+  </script>
+
+</body>

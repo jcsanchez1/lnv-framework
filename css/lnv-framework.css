@@ -1,0 +1,44 @@
+/* Importa todos los estilos */ 
+/**
+ * ====================================
+ * LNV FRAMEWORK - CSS UNIFICADO
+ * Laboratorio Nacional de Vigilancia
+ * Secretaría de Salud - Honduras
+ * 
+ * Este archivo importa todos los módulos CSS
+ * del framework en el orden correcto.
+ * 
+ * Uso:
+ * <link rel="stylesheet" href="css/lnv-framework.css">
+ * ====================================
+ */
+
+/* 1. Variables y colores base */
+@import url('01-core.css');
+
+/* 2. Reset y normalización */
+@import url('02-reset.css');
+
+/* 3. Sistema de grid y layout */
+@import url('03-layout.css');
+
+/* 4. Componentes UI */
+@import url('04-components.css');
+
+/* 5. Animaciones y efectos */
+@import url('05-animations.css');
+
+
+/**
+ * ====================================
+ * ORDEN DE CARGA (IMPORTANTE)
+ * ====================================
+ * 
+ * 1. core.css       → Define variables CSS necesarias para todo
+ * 2. reset.css      → Normaliza estilos del navegador
+ * 3. layout.css     → Estructura base (grid, containers)
+ * 4. components.css → Componentes visuales
+ * 5. animations.css → Efectos y transiciones
+ * 
+ * NO CAMBIAR EL ORDEN - Los archivos dependen entre sí
+ */

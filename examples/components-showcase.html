@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showcase de Componentes - LNV Framework</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .component-section {
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 2px solid var(--lnv-gray-light);
+    }
+    
+    .component-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--lnv-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .component-demo {
+      background: var(--lnv-white);
+      padding: 2rem;
+      border-radius: var(--lnv-radius-md);
+      border: 1px solid var(--lnv-gray-light);
+      margin-bottom: 1rem;
+    }
+    
+    .code-block {
+      background: var(--lnv-dark);
+      color: var(--lnv-white);
+      padding: 1rem;
+      border-radius: var(--lnv-radius-md);
+      overflow-x: auto;
+      font-family: var(--lnv-font-mono);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    
+    .sticky-nav {
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+    
+    <!-- Sidebar -->
+    <aside class="lnv-sidebar">
+      <div class="lnv-sidebar-header">
+        <div class="lnv-sidebar-brand">
+          <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+          <span>LNV</span>
+        </div>
+        <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="lnv-sidebar-nav">
+        <div class="lnv-nav-header">Navegación</div>
+        
+        <a href="dashboard.html" class="lnv-nav-item">
+          <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+          <span class="lnv-nav-item-text">Dashboard</span>
+        </a>
+        
+        <a href="components-showcase.html" class="lnv-nav-item active">
+          <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+          <span class="lnv-nav-item-text">Componentes</span>
+        </a>
+        
+        <div class="lnv-nav-divider"></div>
+        
+        <div class="lnv-nav-header">Componentes</div>
+        
+        <a href="#botones" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Botones</span>
+        </a>
+        <a href="#cards" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Cards</span>
+        </a>
+        <a href="#badges" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Badges</span>
+        </a>
+        <a href="#alerts" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Alerts</span>
+        </a>
+        <a href="#forms" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Forms</span>
+        </a>
+        <a href="#modales" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Modales</span>
+        </a>
+        <a href="#dropdowns" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Dropdowns</span>
+        </a>
+        <a href="#tabs" class="lnv-nav-item">
+          <span class="lnv-nav-item-text">Tabs</span>
+        </a>
+      </nav>
+    </aside>
+    
+    <!-- Overlay para móvil -->
+    <div class="lnv-sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="lnv-main-content">
+      
+      <!-- Navbar -->
+      <nav class="lnv-navbar">
+        <div class="lnv-navbar-left">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="lnv-breadcrumb lnv-hidden-mobile">
+            <div class="lnv-breadcrumb-item">
+              <a href="dashboard.html">Inicio</a>
+            </div>
+            <div class="lnv-breadcrumb-item active">Showcase de Componentes</div>
+          </div>
+        </div>
+        
+        <div class="lnv-navbar-right">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <div class="lnv-avatar lnv-avatar-sm">
+            <img src="https://ui-avatars.com/api/?name=LNV+Framework&background=7DD3E0&color=fff" alt="LNV">
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Content -->
+      <main class="lnv-content">
+        <div class="lnv-container-fluid">
+          
+          <!-- Hero -->
+          <div class="lnv-mb-6 lnv-fade-in-down lnv-text-center">
+            <h1 class="lnv-mb-2" style="font-size: 3rem;">
+              <i class="fas fa-puzzle-piece" style="color: var(--lnv-primary);"></i>
+              LNV Framework
+            </h1>
+            <p class="lnv-text-xl lnv-text-gray">Galería Completa de Componentes</p>
+            <p class="lnv-text-gray">Framework CSS/JS para aplicaciones del Laboratorio Nacional de Vigilancia</p>
+            
+            <div class="lnv-flex lnv-justify-center lnv-gap-3 lnv-mt-4">
+              <span class="lnv-badge lnv-badge-primary lnv-badge-lg">22 Componentes</span>
+              <span class="lnv-badge lnv-badge-success lnv-badge-lg">Responsive</span>
+              <span class="lnv-badge lnv-badge-info lnv-badge-lg">Modo Oscuro</span>
+            </div>
+          </div>
+          
+          <div class="lnv-divider"></div>
+          
+          <!-- ========== BOTONES ========== -->
+          <section id="botones" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-hand-pointer"></i> Botones
+            </div>
+            
+            <div class="component-demo">
+              <h4 class="lnv-mb-4">Variantes de Color</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-flex-wrap">
+                <button class="lnv-btn lnv-btn-primary">Primary</button>
+                <button class="lnv-btn lnv-btn-secondary">Secondary</button>
+                <button class="lnv-btn lnv-btn-success">Success</button>
+                <button class="lnv-btn lnv-btn-danger">Danger</button>
+                <button class="lnv-btn lnv-btn-warning">Warning</button>
+                <button class="lnv-btn lnv-btn-light">Light</button>
+                <button class="lnv-btn lnv-btn-dark">Dark</button>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Botones Outline</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-flex-wrap">
+                <button class="lnv-btn lnv-btn-outline-primary">Primary</button>
+                <button class="lnv-btn lnv-btn-outline-secondary">Secondary</button>
+                <button class="lnv-btn lnv-btn-outline-danger">Danger</button>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Tamaños</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-items-center lnv-flex-wrap">
+                <button class="lnv-btn lnv-btn-primary lnv-btn-sm">Pequeño</button>
+                <button class="lnv-btn lnv-btn-primary">Normal</button>
+                <button class="lnv-btn lnv-btn-primary lnv-btn-lg">Grande</button>
+                <button class="lnv-btn lnv-btn-primary lnv-btn-xl">Muy Grande</button>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Botones Especiales</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-items-center lnv-flex-wrap">
+                <button class="lnv-btn lnv-btn-primary lnv-btn-block" style="max-width: 300px;">Ancho Completo</button>
+                <button class="lnv-btn lnv-btn-primary lnv-btn-circle"><i class="fas fa-plus"></i></button>
+                <button class="lnv-btn lnv-btn-primary" disabled>Deshabilitado</button>
+                <button class="lnv-btn lnv-btn-primary">
+                  <i class="fas fa-download"></i> Con Icono
+                </button>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== CARDS ========== -->
+          <section id="cards" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-square"></i> Cards
+            </div>
+            
+            <div class="lnv-row">
+              <div class="lnv-col-12 lnv-col-md-4 lnv-mb-4">
+                <div class="lnv-card">
+                  <div class="lnv-card-header">Card Básica</div>
+                  <div class="lnv-card-body">
+                    Esta es una card básica con header y body.
+                  </div>
+                  <div class="lnv-card-footer">
+                    <button class="lnv-btn lnv-btn-sm lnv-btn-primary">Acción</button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-col-12 lnv-col-md-4 lnv-mb-4">
+                <div class="lnv-card lnv-card-border-primary lnv-hover-lift">
+                  <div class="lnv-card-body">
+                    <h4>Card con Borde</h4>
+                    <p>Card con borde de color y efecto hover lift.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-col-12 lnv-col-md-4 lnv-mb-4">
+                <div class="lnv-stat-card">
+                  <div class="lnv-stat-card-icon primary">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div class="lnv-stat-card-content">
+                    <div class="lnv-stat-card-label">Usuarios</div>
+                    <div class="lnv-stat-card-value">1,234</div>
+                    <div class="lnv-stat-card-change positive">
+                      <i class="fas fa-arrow-up"></i> 12%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== BADGES ========== -->
+          <section id="badges" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-tag"></i> Badges
+            </div>
+            
+            <div class="component-demo">
+              <h4 class="lnv-mb-4">Badges de Color</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-flex-wrap">
+                <span class="lnv-badge lnv-badge-primary">Primary</span>
+                <span class="lnv-badge lnv-badge-secondary">Secondary</span>
+                <span class="lnv-badge lnv-badge-success">Success</span>
+                <span class="lnv-badge lnv-badge-danger">Danger</span>
+                <span class="lnv-badge lnv-badge-warning">Warning</span>
+                <span class="lnv-badge lnv-badge-info">Info</span>
+                <span class="lnv-badge lnv-badge-light">Light</span>
+                <span class="lnv-badge lnv-badge-dark">Dark</span>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Badges Outline</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-flex-wrap">
+                <span class="lnv-badge lnv-badge-outline-primary">Primary</span>
+                <span class="lnv-badge lnv-badge-outline-success">Success</span>
+                <span class="lnv-badge lnv-badge-outline-danger">Danger</span>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Badge con Punto</h4>
+              <div class="lnv-flex lnv-gap-2 lnv-flex-wrap">
+                <span class="lnv-badge lnv-badge-primary lnv-badge-dot">En línea</span>
+                <span class="lnv-badge lnv-badge-success lnv-badge-dot">Activo</span>
+                <span class="lnv-badge lnv-badge-danger lnv-badge-dot">Urgente</span>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== ALERTS ========== -->
+          <section id="alerts" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-exclamation-triangle"></i> Alerts
+            </div>
+            
+            <div class="lnv-alert lnv-alert-primary lnv-mb-3">
+              <div class="lnv-alert-icon"><i class="fas fa-info-circle"></i></div>
+              <div class="lnv-alert-content">
+                <div class="lnv-alert-title">Información</div>
+                <div class="lnv-alert-message">Esta es una alerta de tipo informativo.</div>
+              </div>
+            </div>
+            
+            <div class="lnv-alert lnv-alert-success lnv-mb-3">
+              <div class="lnv-alert-icon"><i class="fas fa-check-circle"></i></div>
+              <div class="lnv-alert-content">
+                <div class="lnv-alert-title">Éxito</div>
+                <div class="lnv-alert-message">La operación se completó correctamente.</div>
+              </div>
+            </div>
+            
+            <div class="lnv-alert lnv-alert-warning lnv-mb-3">
+              <div class="lnv-alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+              <div class="lnv-alert-content">
+                <div class="lnv-alert-title">Advertencia</div>
+                <div class="lnv-alert-message">Por favor revisa esta información importante.</div>
+              </div>
+            </div>
+            
+            <div class="lnv-alert lnv-alert-danger lnv-alert-dismissible">
+              <div class="lnv-alert-icon"><i class="fas fa-times-circle"></i></div>
+              <div class="lnv-alert-content">
+                <div class="lnv-alert-title">Error</div>
+                <div class="lnv-alert-message">Ocurrió un error al procesar la solicitud.</div>
+              </div>
+              <span class="lnv-alert-close">×</span>
+            </div>
+          </section>
+          
+          <!-- ========== FORMS ========== -->
+          <section id="forms" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-keyboard"></i> Formularios
+            </div>
+            
+            <div class="lnv-row">
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label required">Input de Texto</label>
+                  <input type="text" class="lnv-form-control" placeholder="Ingrese texto">
+                  <span class="lnv-form-help">Texto de ayuda aquí</span>
+                </div>
+                
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label">Select</label>
+                  <select class="lnv-form-control lnv-form-select">
+                    <option>Opción 1</option>
+                    <option>Opción 2</option>
+                    <option>Opción 3</option>
+                  </select>
+                </div>
+                
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label">Textarea</label>
+                  <textarea class="lnv-form-control textarea" rows="3" placeholder="Ingrese texto largo"></textarea>
+                </div>
+              </div>
+              
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label">Input Group</label>
+                  <div class="lnv-input-group">
+                    <span class="lnv-input-group-prepend">@</span>
+                    <input type="text" class="lnv-form-control" placeholder="usuario">
+                  </div>
+                </div>
+                
+                <div class="lnv-form-group">
+                  <label class="lnv-checkbox">
+                    <input type="checkbox" checked>
+                    <span>Checkbox seleccionado</span>
+                  </label>
+                  
+                  <label class="lnv-checkbox">
+                    <input type="checkbox">
+                    <span>Checkbox no seleccionado</span>
+                  </label>
+                </div>
+                
+                <div class="lnv-form-group">
+                  <label class="lnv-radio">
+                    <input type="radio" name="ejemplo" checked>
+                    <span>Radio opción 1</span>
+                  </label>
+                  
+                  <label class="lnv-radio">
+                    <input type="radio" name="ejemplo">
+                    <span>Radio opción 2</span>
+                  </label>
+                </div>
+                
+                <div class="lnv-form-group">
+                  <label class="lnv-switch">
+                    <input type="checkbox" checked>
+                    <span class="lnv-switch-input"></span>
+                    <span>Switch activado</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== PROGRESS BARS ========== -->
+          <section id="progress" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-tasks"></i> Progress Bars
+            </div>
+            
+            <div class="component-demo">
+              <h4 class="lnv-mb-4">Progress Básico</h4>
+              <div class="lnv-progress lnv-mb-3">
+                <div class="lnv-progress-bar" style="width: 75%">75%</div>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Progress con Colores</h4>
+              <div class="lnv-progress lnv-mb-3">
+                <div class="lnv-progress-bar lnv-progress-bar-success" style="width: 60%">60%</div>
+              </div>
+              <div class="lnv-progress lnv-mb-3">
+                <div class="lnv-progress-bar lnv-progress-bar-warning" style="width: 80%">80%</div>
+              </div>
+              <div class="lnv-progress lnv-mb-3">
+                <div class="lnv-progress-bar lnv-progress-bar-danger" style="width: 45%">45%</div>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Progress Striped Animated</h4>
+              <div class="lnv-progress">
+                <div class="lnv-progress-bar lnv-progress-bar-striped lnv-progress-bar-animated lnv-progress-bar-primary" style="width: 70%">70%</div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== AVATARES ========== -->
+          <section id="avatares" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-user-circle"></i> Avatares
+            </div>
+            
+            <div class="component-demo">
+              <h4 class="lnv-mb-4">Tamaños</h4>
+              <div class="lnv-flex lnv-gap-3 lnv-items-center">
+                <div class="lnv-avatar lnv-avatar-xs">
+                  <img src="https://ui-avatars.com/api/?name=XS&background=7DD3E0&color=fff" alt="XS">
+                </div>
+                <div class="lnv-avatar lnv-avatar-sm">
+                  <img src="https://ui-avatars.com/api/?name=SM&background=7DD3E0&color=fff" alt="SM">
+                </div>
+                <div class="lnv-avatar">
+                  <img src="https://ui-avatars.com/api/?name=MD&background=7DD3E0&color=fff" alt="MD">
+                </div>
+                <div class="lnv-avatar lnv-avatar-lg">
+                  <img src="https://ui-avatars.com/api/?name=LG&background=7DD3E0&color=fff" alt="LG">
+                </div>
+                <div class="lnv-avatar lnv-avatar-xl">
+                  <img src="https://ui-avatars.com/api/?name=XL&background=7DD3E0&color=fff" alt="XL">
+                </div>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Con Status</h4>
+              <div class="lnv-flex lnv-gap-3">
+                <div class="lnv-avatar lnv-avatar-lg">
+                  <img src="https://ui-avatars.com/api/?name=Online&background=7DD3E0&color=fff" alt="Online">
+                  <span class="lnv-avatar-status online"></span>
+                </div>
+                <div class="lnv-avatar lnv-avatar-lg">
+                  <img src="https://ui-avatars.com/api/?name=Busy&background=7DD3E0&color=fff" alt="Busy">
+                  <span class="lnv-avatar-status busy"></span>
+                </div>
+                <div class="lnv-avatar lnv-avatar-lg">
+                  <img src="https://ui-avatars.com/api/?name=Away&background=7DD3E0&color=fff" alt="Away">
+                  <span class="lnv-avatar-status away"></span>
+                </div>
+                <div class="lnv-avatar lnv-avatar-lg">
+                  <img src="https://ui-avatars.com/api/?name=Offline&background=7DD3E0&color=fff" alt="Offline">
+                  <span class="lnv-avatar-status offline"></span>
+                </div>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Avatar Group</h4>
+              <div class="lnv-avatar-group">
+                <div class="lnv-avatar">
+                  <img src="https://ui-avatars.com/api/?name=User+1&background=7DD3E0&color=fff" alt="1">
+                </div>
+                <div class="lnv-avatar">
+                  <img src="https://ui-avatars.com/api/?name=User+2&background=4DB8AC&color=fff" alt="2">
+                </div>
+                <div class="lnv-avatar">
+                  <img src="https://ui-avatars.com/api/?name=User+3&background=FFD700&color=000" alt="3">
+                </div>
+                <div class="lnv-avatar">+5</div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== MODALES ========== -->
+          <section id="modales" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-window-maximize"></i> Modales
+            </div>
+            
+            <div class="component-demo">
+              <div class="lnv-flex lnv-gap-2 lnv-flex-wrap">
+                <button class="lnv-btn lnv-btn-primary" onclick="LNV.Modal.open('demoModal')">
+                  Abrir Modal
+                </button>
+                <button class="lnv-btn lnv-btn-success" onclick="mostrarToast('success')">
+                  Toast Success
+                </button>
+                <button class="lnv-btn lnv-btn-danger" onclick="mostrarToast('error')">
+                  Toast Error
+                </button>
+                <button class="lnv-btn lnv-btn-warning" onclick="mostrarConfirm()">
+                  Confirmación
+                </button>
+                <button class="lnv-btn lnv-btn-light" onclick="mostrarLoading()">
+                  Loading
+                </button>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== DROPDOWNS ========== -->
+          <section id="dropdowns" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-caret-down"></i> Dropdowns
+            </div>
+            
+            <div class="component-demo">
+              <div class="lnv-flex lnv-gap-3">
+                <div class="lnv-dropdown">
+                  <button class="lnv-btn lnv-btn-primary lnv-dropdown-toggle">
+                    Dropdown Normal
+                  </button>
+                  <div class="lnv-dropdown-menu">
+                    <div class="lnv-dropdown-header">Header</div>
+                    <a href="#" class="lnv-dropdown-item">Opción 1</a>
+                    <a href="#" class="lnv-dropdown-item active">Opción 2</a>
+                    <div class="lnv-dropdown-divider"></div>
+                    <a href="#" class="lnv-dropdown-item">Opción 3</a>
+                  </div>
+                </div>
+                
+                <div class="lnv-dropdown">
+                  <button class="lnv-btn lnv-btn-secondary lnv-dropdown-toggle">
+                    Dropdown Right
+                  </button>
+                  <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+                    <a href="#" class="lnv-dropdown-item"><i class="fas fa-user"></i> Perfil</a>
+                    <a href="#" class="lnv-dropdown-item"><i class="fas fa-cog"></i> Configuración</a>
+                    <div class="lnv-dropdown-divider"></div>
+                    <a href="#" class="lnv-dropdown-item"><i class="fas fa-sign-out-alt"></i> Salir</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!--
+          ========== TABS ========== -->
+          <section id="tabs" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-folder"></i> Tabs
+            </div>
+            
+            <div class="component-demo">
+              <div class="lnv-tabs">
+                <button class="lnv-tab active" data-tab="tab-demo1">Tab 1</button>
+                <button class="lnv-tab" data-tab="tab-demo2">Tab 2</button>
+                <button class="lnv-tab" data-tab="tab-demo3">Tab 3</button>
+              </div>
+              
+              <div id="tab-demo1" class="lnv-tab-content active">
+                <div class="lnv-p-4">Contenido del Tab 1</div>
+              </div>
+              <div id="tab-demo2" class="lnv-tab-content">
+                <div class="lnv-p-4">Contenido del Tab 2</div>
+              </div>
+              <div id="tab-demo3" class="lnv-tab-content">
+                <div class="lnv-p-4">Contenido del Tab 3</div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== ACCORDION ========== -->
+          <section id="accordion" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-list"></i> Accordion
+            </div>
+            
+            <div class="lnv-accordion">
+              <div class="lnv-accordion-item active">
+                <button class="lnv-accordion-header">
+                  Sección 1
+                </button>
+                <div class="lnv-accordion-body">
+                  <div class="lnv-accordion-content">
+                    Contenido de la sección 1. Este es un ejemplo de accordion.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-accordion-item">
+                <button class="lnv-accordion-header">
+                  Sección 2
+                </button>
+                <div class="lnv-accordion-body">
+                  <div class="lnv-accordion-content">
+                    Contenido de la sección 2.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-accordion-item">
+                <button class="lnv-accordion-header">
+                  Sección 3
+                </button>
+                <div class="lnv-accordion-body">
+                  <div class="lnv-accordion-content">
+                    Contenido de la sección 3.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== BREADCRUMBS ========== -->
+          <section id="breadcrumbs" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-map-signs"></i> Breadcrumbs
+            </div>
+            
+            <div class="component-demo">
+              <div class="lnv-breadcrumb">
+                <div class="lnv-breadcrumb-item">
+                  <a href="#">Inicio</a>
+                </div>
+                <div class="lnv-breadcrumb-item">
+                  <a href="#">Componentes</a>
+                </div>
+                <div class="lnv-breadcrumb-item active">Showcase</div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== PAGINATION ========== -->
+          <section id="pagination" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-ellipsis-h"></i> Pagination
+            </div>
+            
+            <div class="component-demo">
+              <nav>
+                <ul class="lnv-pagination">
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link">‹</a>
+                  </li>
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link active">1</a>
+                  </li>
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link">2</a>
+                  </li>
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link">3</a>
+                  </li>
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link">4</a>
+                  </li>
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link">5</a>
+                  </li>
+                  <li class="lnv-pagination-item">
+                    <a href="#" class="lnv-pagination-link">›</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </section>
+          
+          <!-- ========== TIMELINE ========== -->
+          <section id="timeline" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-stream"></i> Timeline
+            </div>
+            
+            <div class="lnv-timeline">
+              <div class="lnv-timeline-item">
+                <div class="lnv-timeline-marker"></div>
+                <div class="lnv-timeline-content">
+                  <div class="lnv-timeline-title">Evento 1</div>
+                  <div class="lnv-timeline-time">Hace 2 horas</div>
+                  <div class="lnv-timeline-text">Descripción del primer evento en el timeline.</div>
+                </div>
+              </div>
+              
+              <div class="lnv-timeline-item">
+                <div class="lnv-timeline-marker success"></div>
+                <div class="lnv-timeline-content">
+                  <div class="lnv-timeline-title">Evento 2</div>
+                  <div class="lnv-timeline-time">Hace 5 horas</div>
+                  <div class="lnv-timeline-text">Descripción del segundo evento exitoso.</div>
+                </div>
+              </div>
+              
+              <div class="lnv-timeline-item">
+                <div class="lnv-timeline-marker danger"></div>
+                <div class="lnv-timeline-content">
+                  <div class="lnv-timeline-title">Evento 3</div>
+                  <div class="lnv-timeline-time">Hace 1 día</div>
+                  <div class="lnv-timeline-text">Descripción del tercer evento importante.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== TOOLTIPS ========== -->
+          <section id="tooltips" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-comment"></i> Tooltips
+            </div>
+            
+            <div class="component-demo">
+              <div class="lnv-flex lnv-gap-4 lnv-flex-wrap">
+                <span class="lnv-tooltip lnv-tooltip-top">
+                  <button class="lnv-btn lnv-btn-primary">Tooltip Arriba</button>
+                  <span class="lnv-tooltip-text">Tooltip en la parte superior</span>
+                </span>
+                
+                <span class="lnv-tooltip lnv-tooltip-bottom">
+                  <button class="lnv-btn lnv-btn-primary">Tooltip Abajo</button>
+                  <span class="lnv-tooltip-text">Tooltip en la parte inferior</span>
+                </span>
+                
+                <span class="lnv-tooltip lnv-tooltip-left">
+                  <button class="lnv-btn lnv-btn-primary">Tooltip Izquierda</button>
+                  <span class="lnv-tooltip-text">Tooltip a la izquierda</span>
+                </span>
+                
+                <span class="lnv-tooltip lnv-tooltip-right">
+                  <button class="lnv-btn lnv-btn-primary">Tooltip Derecha</button>
+                  <span class="lnv-tooltip-text">Tooltip a la derecha</span>
+                </span>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== SPINNER ========== -->
+          <section id="spinner" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-spinner"></i> Spinners / Loading
+            </div>
+            
+            <div class="component-demo">
+              <div class="lnv-flex lnv-gap-4 lnv-items-center">
+                <div class="lnv-spinner lnv-spinner-sm"></div>
+                <div class="lnv-spinner"></div>
+                <div class="lnv-spinner lnv-spinner-lg"></div>
+                <div class="lnv-spinner lnv-spinner-success"></div>
+                <div class="lnv-spinner lnv-spinner-danger"></div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== LIST GROUP ========== -->
+          <section id="list-group" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-list-ul"></i> List Group
+            </div>
+            
+            <div class="lnv-row">
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-list-group">
+                  <div class="lnv-list-group-item">
+                    Item 1 de la lista
+                  </div>
+                  <div class="lnv-list-group-item active">
+                    Item activo
+                  </div>
+                  <div class="lnv-list-group-item">
+                    Item 3 de la lista
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-list-group">
+                  <div class="lnv-list-group-item lnv-list-group-item-action">
+                    <i class="fas fa-home"></i> Item con icono
+                  </div>
+                  <div class="lnv-list-group-item lnv-list-group-item-action">
+                    <i class="fas fa-user"></i> Item clickeable
+                  </div>
+                  <div class="lnv-list-group-item lnv-list-group-item-action">
+                    <i class="fas fa-cog"></i> Otro item
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== DIVIDER ========== -->
+          <section id="divider" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-minus"></i> Dividers
+            </div>
+            
+            <div class="component-demo">
+              <p>Contenido antes del divider</p>
+              <div class="lnv-divider"></div>
+              <p>Contenido después del divider</p>
+              
+              <div class="lnv-divider-text">Divider con texto</div>
+              
+              <p>Más contenido</p>
+            </div>
+          </section>
+          
+          <!-- ========== EMPTY STATE ========== -->
+          <section id="empty-state" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-inbox"></i> Empty State
+            </div>
+            
+            <div class="lnv-card">
+              <div class="lnv-card-body">
+                <div class="lnv-empty-state">
+                  <div class="lnv-empty-state-icon">📭</div>
+                  <div class="lnv-empty-state-title">No hay datos disponibles</div>
+                  <div class="lnv-empty-state-text">
+                    Aún no tienes ningún elemento aquí. Crea tu primer registro para empezar.
+                  </div>
+                  <button class="lnv-btn lnv-btn-primary">
+                    <i class="fas fa-plus"></i> Crear Nuevo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- ========== UTILIDADES ========== -->
+          <section id="utilidades" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-tools"></i> Clases de Utilidad
+            </div>
+            
+            <div class="component-demo">
+              <h4 class="lnv-mb-4">Colores de Texto</h4>
+              <p style="color: var(--lnv-primary);">Texto Primary</p>
+              <p style="color: var(--lnv-success);">Texto Success</p>
+              <p style="color: var(--lnv-danger);">Texto Danger</p>
+              <p style="color: var(--lnv-warning);">Texto Warning</p>
+              <p style="color: var(--lnv-gray);">Texto Gray</p>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Tamaños de Texto</h4>
+              <p class="lnv-text-xs">Texto Extra Small</p>
+              <p class="lnv-text-sm">Texto Small</p>
+              <p class="lnv-text-base">Texto Base</p>
+              <p class="lnv-text-lg">Texto Large</p>
+              <p class="lnv-text-xl">Texto Extra Large</p>
+              <p class="lnv-text-2xl">Texto 2XL</p>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Pesos de Fuente</h4>
+              <p style="font-weight: var(--lnv-font-light);">Texto Light</p>
+              <p style="font-weight: var(--lnv-font-normal);">Texto Normal</p>
+              <p style="font-weight: var(--lnv-font-medium);">Texto Medium</p>
+              <p style="font-weight: var(--lnv-font-semibold);">Texto Semibold</p>
+              <p style="font-weight: var(--lnv-font-bold);">Texto Bold</p>
+            </div>
+          </section>
+          
+          <!-- ========== ANIMACIONES ========== -->
+          <section id="animaciones" class="component-section lnv-fade-in-up">
+            <div class="component-title">
+              <i class="fas fa-magic"></i> Animaciones
+            </div>
+            
+            <div class="component-demo">
+              <h4 class="lnv-mb-4">Efectos de Entrada</h4>
+              <div class="lnv-flex lnv-gap-3 lnv-flex-wrap">
+                <button class="lnv-btn lnv-btn-primary" onclick="animar('fade-in')">Fade In</button>
+                <button class="lnv-btn lnv-btn-primary" onclick="animar('fade-in-up')">Fade In Up</button>
+                <button class="lnv-btn lnv-btn-primary" onclick="animar('fade-in-down')">Fade In Down</button>
+                <button class="lnv-btn lnv-btn-primary" onclick="animar('zoom-in')">Zoom In</button>
+                <button class="lnv-btn lnv-btn-primary" onclick="animar('bounce-in')">Bounce In</button>
+              </div>
+              
+              <div id="animation-demo" class="lnv-mt-4 lnv-p-4" style="background: var(--lnv-light); border-radius: var(--lnv-radius-md); min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                <div id="animation-target" class="lnv-card lnv-p-4">
+                  <strong>Elemento animado</strong>
+                </div>
+              </div>
+              
+              <h4 class="lnv-mt-5 lnv-mb-4">Efectos Continuos</h4>
+              <div class="lnv-flex lnv-gap-3 lnv-items-center lnv-flex-wrap">
+                <div class="lnv-pulse" style="width: 50px; height: 50px; background: var(--lnv-primary); border-radius: 50%;"></div>
+                <div class="lnv-bounce" style="width: 50px; height: 50px; background: var(--lnv-success); border-radius: 50%;"></div>
+                <div class="lnv-spin" style="width: 50px; height: 50px; border: 4px solid var(--lnv-danger); border-top-color: transparent; border-radius: 50%;"></div>
+              </div>
+            </div>
+          </section>
+          
+        </div>
+      </main>
+<!-- Footer -->
+<footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+  <div class="lnv-container-fluid">
+    <div class="lnv-row">
+      <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+        <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+          <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+        </p>
+        <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+          Secretaría de Salud - Gobierno de la República de Honduras
+        </p>
+      </div>
+      <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+        <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+        <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+        <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+      </div>
+    </div>
+    <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+&copy; 2025 Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>      
+    </div>
+  </div>
+  
+  <!-- Modal Demo -->
+  <div id="demoModal" class="lnv-modal">
+    <div class="lnv-modal-backdrop"></div>
+    <div class="lnv-modal-content">
+      <div class="lnv-modal-header">
+        <h3 class="lnv-modal-title">Modal de Ejemplo</h3>
+        <button class="lnv-modal-close">×</button>
+      </div>
+      <div class="lnv-modal-body">
+        <p>Este es un modal de demostración del framework LNV.</p>
+        <p>Puedes agregar cualquier contenido aquí.</p>
+      </div>
+      <div class="lnv-modal-footer">
+        <button class="lnv-btn lnv-btn-light" onclick="LNV.Modal.close('demoModal')">Cancelar</button>
+        <button class="lnv-btn lnv-btn-primary" onclick="LNV.Modal.close('demoModal')">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  
+  <script>
+    // Funciones de demostración
+    function mostrarToast(tipo) {
+      if (tipo === 'success') {
+        LNV.Toast.success('Operación completada correctamente', 'Éxito');
+      } else if (tipo === 'error') {
+        LNV.Toast.error('Ocurrió un error al procesar', 'Error');
+      }
+    }
+    
+    function mostrarConfirm() {
+      LNV.Confirm.show({
+        title: '¿Estás seguro?',
+        message: 'Esta acción no se puede deshacer',
+        confirmText: 'Sí, continuar',
+        cancelText: 'Cancelar',
+        onConfirm: () => {
+          LNV.Toast.success('Acción confirmada');
+        },
+        onCancel: () => {
+          LNV.Toast.info('Acción cancelada');
+        }
+      });
+    }
+    
+    function mostrarLoading() {
+      LNV.Loading.show('Cargando...');
+      setTimeout(() => {
+        LNV.Loading.hide();
+        LNV.Toast.success('Carga completada');
+      }, 2000);
+    }
+    
+    function animar(animacion) {
+      const target = document.getElementById('animation-target');
+      target.className = 'lnv-card lnv-p-4 lnv-' + animacion;
+      
+      setTimeout(() => {
+        target.className = 'lnv-card lnv-p-4';
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapas Geográficos - LNV Framework</title>
+  
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <!-- Leaflet Heatmap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
+      background-color: rgba(125, 211, 224, 0.6);
+    }
+    
+    .marker-cluster-small div,
+    .marker-cluster-medium div,
+    .marker-cluster-large div {
+      background-color: var(--lnv-primary);
+      color: white;
+      font-weight: bold;
+    }
+    
+    .custom-marker {
+      background: none;
+      border: none;
+    }
+    
+    .leaflet-popup-content-wrapper {
+      border-radius: var(--lnv-radius-md);
+      font-family: var(--lnv-font-primary);
+    }
+    
+    .leaflet-popup-content {
+      margin: var(--lnv-spacing-3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+    
+<!-- Sidebar -->
+<aside class="lnv-sidebar">
+  <div class="lnv-sidebar-header">
+    <div class="lnv-sidebar-brand">
+      <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+      <span>LNV</span>
+    </div>
+    <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <nav class="lnv-sidebar-nav">
+    <div class="lnv-nav-header">Principal</div>
+    
+    <a href="../index.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+      <span class="lnv-nav-item-text">Inicio</span>
+    </a>
+    
+    <a href="dashboard.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="lnv-nav-item-text">Dashboard</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Funcionalidades</div>
+    
+    <a href="formulario.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-edit"></i></span>
+      <span class="lnv-nav-item-text">Formularios</span>
+    </a>
+    
+    <a href="tabla-datos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-table"></i></span>
+      <span class="lnv-nav-item-text">Tablas de Datos</span>
+    </a>
+    
+    <a href="graficos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-bar"></i></span>
+      <span class="lnv-nav-item-text">Gráficos</span>
+    </a>
+    
+    <a href="mapas.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-map-marked-alt"></i></span>
+      <span class="lnv-nav-item-text">Mapas</span>
+    </a>
+    
+    <a href="gamificacion.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-trophy"></i></span>
+      <span class="lnv-nav-item-text">Gamificación</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Recursos</div>
+    
+    <a href="components-showcase.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+      <span class="lnv-nav-item-text">Componentes</span>
+    </a>
+    
+    <a href="../docs/guia-uso.md" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-book"></i></span>
+      <span class="lnv-nav-item-text">Documentación</span>
+    </a>
+  </nav>
+</aside>
+    
+    <!-- Overlay para móvil -->
+    <div class="lnv-sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="lnv-main-content">
+      
+      <!-- Navbar -->
+      <nav class="lnv-navbar">
+        <div class="lnv-navbar-left">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="lnv-breadcrumb lnv-hidden-mobile">
+            <div class="lnv-breadcrumb-item">
+              <a href="dashboard.html">Inicio</a>
+            </div>
+            <div class="lnv-breadcrumb-item active">Mapas Geográficos</div>
+          </div>
+        </div>
+        
+        <div class="lnv-navbar-right">
+          <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <div class="lnv-avatar lnv-avatar-sm">
+            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="Usuario">
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Content -->
+      <main class="lnv-content">
+        <div class="lnv-container-fluid">
+          
+          <!-- Título -->
+          <div class="lnv-mb-6 lnv-fade-in-down">
+            <h1>Mapas Geográficos Interactivos</h1>
+            <p class="lnv-text-gray">Visualización geoespacial de datos epidemiológicos</p>
+          </div>
+          
+          <!-- Tabs para diferentes mapas -->
+          <div class="lnv-tabs lnv-mb-6">
+            <button class="lnv-tab active" data-tab="tab-honduras">
+              <i class="fas fa-map"></i> Honduras Completo
+            </button>
+            <button class="lnv-tab" data-tab="tab-francisco">
+              <i class="fas fa-map-pin"></i> Francisco Morazán
+            </button>
+            <button class="lnv-tab" data-tab="tab-calor">
+              <i class="fas fa-fire"></i> Mapa de Calor
+            </button>
+            <button class="lnv-tab" data-tab="tab-clusters">
+              <i class="fas fa-layer-group"></i> Clusters
+            </button>
+          </div>
+          
+          <!-- Tab 1: Mapa de Honduras Completo -->
+          <div id="tab-honduras" class="lnv-tab-content active">
+            <div class="lnv-row">
+              
+              <!-- Mapa -->
+              <div class="lnv-col-12 lnv-col-lg-9 lnv-mb-4">
+                <div class="lnv-card lnv-fade-in-up">
+                  <div class="lnv-card-header">
+                    <div class="lnv-flex lnv-justify-between lnv-items-center">
+                      <span><i class="fas fa-map-marked-alt"></i> Distribución Nacional de Muestras</span>
+                      <div class="lnv-flex lnv-gap-2">
+                        <button class="lnv-btn lnv-btn-sm lnv-btn-light" id="btnResetHonduras">
+                          <i class="fas fa-sync"></i> Resetear
+                        </button>
+                        <button class="lnv-btn lnv-btn-sm lnv-btn-primary" id="btnFullscreenHonduras">
+                          <i class="fas fa-expand"></i> Pantalla Completa
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lnv-card-body">
+                    <div id="mapaHonduras" style="height: 500px; border-radius: var(--lnv-radius-md);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Estadísticas laterales -->
+              <div class="lnv-col-12 lnv-col-lg-3 lnv-mb-4">
+                <div class="lnv-card lnv-fade-in-up lnv-delay-100">
+                  <div class="lnv-card-header">
+                    <i class="fas fa-info-circle"></i> Información
+                  </div>
+                  <div class="lnv-card-body">
+                    
+                    <div class="lnv-mb-4">
+                      <div class="lnv-text-sm lnv-text-gray lnv-mb-2">Total Nacional</div>
+                      <div class="lnv-text-3xl lnv-font-bold lnv-text-primary">5,607</div>
+                      <div class="lnv-text-xs lnv-text-gray">muestras procesadas</div>
+                    </div>
+                    
+                    <div class="lnv-divider"></div>
+                    
+                    <h4 class="lnv-mb-3">Departamentos Activos</h4>
+                    
+                    <div class="lnv-mb-3">
+                      <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                        <span class="lnv-text-sm">Francisco Morazán</span>
+                        <span class="lnv-badge lnv-badge-danger">Muy Alta</span>
+                      </div>
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar lnv-progress-bar-danger" style="width: 95%"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="lnv-mb-3">
+                      <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                        <span class="lnv-text-sm">Cortés</span>
+                        <span class="lnv-badge lnv-badge-warning">Alta</span>
+                      </div>
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar lnv-progress-bar-warning" style="width: 76%"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="lnv-mb-3">
+                      <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                        <span class="lnv-text-sm">Atlántida</span>
+                        <span class="lnv-badge lnv-badge-success">Media</span>
+                      </div>
+                      <div class="lnv-progress lnv-progress-sm">
+                        <div class="lnv-progress-bar lnv-progress-bar-success" style="width: 44%"></div>
+                      </div>
+                    </div>
+                    
+                    <button class="lnv-btn lnv-btn-outline-primary lnv-btn-sm lnv-btn-block lnv-mt-4">
+                      Ver Todos
+                    </button>
+                    
+                  </div>
+                </div>
+                
+                <!-- Leyenda -->
+                <div class="lnv-card lnv-mt-4 lnv-fade-in-up lnv-delay-200">
+                  <div class="lnv-card-header">
+                    <i class="fas fa-palette"></i> Leyenda
+                  </div>
+                  <div class="lnv-card-body">
+                    <div class="lnv-mb-2">
+                      <div class="lnv-flex lnv-items-center lnv-gap-2">
+                        <span style="display: inline-block; width: 16px; height: 16px; background: #C1272D; border-radius: 50%;"></span>
+                        <span class="lnv-text-sm">Muy Alta (500+)</span>
+                      </div>
+                    </div>
+                    <div class="lnv-mb-2">
+                      <div class="lnv-flex lnv-items-center lnv-gap-2">
+                        <span style="display: inline-block; width: 16px; height: 16px; background: #FF6B35; border-radius: 50%;"></span>
+                        <span class="lnv-text-sm">Alta (301-500)</span>
+                      </div>
+                    </div>
+                    <div class="lnv-mb-2">
+                      <div class="lnv-flex lnv-items-center lnv-gap-2">
+                        <span style="display: inline-block; width: 16px; height: 16px; background: #FFC107; border-radius: 50%;"></span>
+                        <span class="lnv-text-sm">Media (101-300)</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="lnv-flex lnv-items-center lnv-gap-2">
+                        <span style="display: inline-block; width: 16px; height: 16px; background: #28A745; border-radius: 50%;"></span>
+                        <span class="lnv-text-sm">Baja (0-100)</span>
+                      </div>
+                    </div>
+                    
+                    <div class="lnv-divider"></div>
+                    
+                    <div class="lnv-mb-2">
+                      <div class="lnv-flex lnv-items-center lnv-gap-2">
+                        <i class="fas fa-hospital" style="color: var(--lnv-primary);"></i>
+                        <span class="lnv-text-sm">Hospital</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="lnv-flex lnv-items-center lnv-gap-2">
+                        <i class="fas fa-clinic-medical" style="color: var(--lnv-secondary);"></i>
+                        <span class="lnv-text-sm">CESAMO/CESAR</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Tab 2: Francisco Morazán Detallado -->
+          <div id="tab-francisco" class="lnv-tab-content">
+            <div class="lnv-row">
+              
+              <div class="lnv-col-12 lnv-col-lg-8 lnv-mb-4">
+                <div class="lnv-card">
+                  <div class="lnv-card-header">
+                    <i class="fas fa-map-pin"></i> Francisco Morazán - Vista Detallada
+                  </div>
+                  <div class="lnv-card-body">
+                    <div id="mapaFrancisco" style="height: 550px; border-radius: var(--lnv-radius-md);"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+                <div class="lnv-card">
+                  <div class="lnv-card-header">
+                    <i class="fas fa-building"></i> Centros de Salud
+                  </div>
+                  <div class="lnv-card-body">
+                    
+                    <div class="lnv-list-group">
+                      <div class="lnv-list-group-item lnv-list-group-item-action" data-centro="escuela">
+                        <div class="lnv-flex lnv-justify-between lnv-items-center">
+                          <div>
+                            <div class="lnv-font-semibold">Hospital Escuela</div>
+                            <div class="lnv-text-sm lnv-text-gray">
+                              <i class="fas fa-map-marker-alt"></i> Tegucigalpa Centro
+                            </div>
+                          </div>
+                          <span class="lnv-badge lnv-badge-primary">487</span>
+                        </div>
+                      </div>
+                      
+                      <div class="lnv-list-group-item lnv-list-group-item-action" data-centro="san-felipe">
+                        <div class="lnv-flex lnv-justify-between lnv-items-center">
+                          <div>
+                            <div class="lnv-font-semibold">Hospital San Felipe</div>
+                            <div class="lnv-text-sm lnv-text-gray">
+                              <i class="fas fa-map-marker-alt"></i> Barrio La Granja
+                            </div>
+                          </div>
+                          <span class="lnv-badge lnv-badge-primary">356</span>
+                        </div>
+                      </div>
+                      
+                      <div class="lnv-list-group-item lnv-list-group-item-action" data-centro="kennedy">
+                        <div class="lnv-flex lnv-justify-between lnv-items-center">
+                          <div>
+                            <div class="lnv-font-semibold">CESAMO Kennedy</div>
+                            <div class="lnv-text-sm lnv-text-gray">
+                              <i class="fas fa-map-marker-alt"></i> Colonia Kennedy
+                            </div>
+                          </div>
+                          <span class="lnv-badge lnv-badge-secondary">178</span>
+                        </div>
+                      </div>
+                      
+                      <div class="lnv-list-group-item lnv-list-group-item-action" data-centro="villa-nueva">
+                        <div class="lnv-flex lnv-justify-between lnv-items-center">
+                          <div>
+                            <div class="lnv-font-semibold">CESAMO Villa Nueva</div>
+                            <div class="lnv-text-sm lnv-text-gray">
+                              <i class="fas fa-map-marker-alt"></i> Villa Nueva
+                            </div>
+                          </div>
+                          <span class="lnv-badge lnv-badge-secondary">145</span>
+                        </div>
+                      </div>
+                      
+                      <div class="lnv-list-group-item lnv-list-group-item-action" data-centro="alonso-suazo">
+                        <div class="lnv-flex lnv-justify-between lnv-items-center">
+                          <div>
+                            <div class="lnv-font-semibold">CESAR Alonso Suazo</div>
+                            <div class="lnv-text-sm lnv-text-gray">
+                              <i class="fas fa-map-marker-alt"></i> Comayagüela
+                            </div>
+                          </div>
+                          <span class="lnv-badge lnv-badge-secondary">68</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                <div class="lnv-card lnv-mt-4">
+                  <div class="lnv-card-header">
+                    <i class="fas fa-chart-pie"></i> Distribución
+                  </div>
+                  <div class="lnv-card-body">
+                    <canvas id="chartFrancisco" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Tab 3: Mapa de Calor -->
+          <div id="tab-calor" class="lnv-tab-content">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <div class="lnv-flex lnv-justify-between lnv-items-center">
+                  <span><i class="fas fa-fire"></i> Mapa de Calor - Concentración de Casos</span>
+                  <div class="lnv-dropdown">
+                    <button class="lnv-btn lnv-btn-sm lnv-btn-primary lnv-dropdown-toggle">
+                      <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                    <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+                      <a href="#" class="lnv-dropdown-item active">Todos</a>
+                      <a href="#" class="lnv-dropdown-item">COVID-19</a>
+                      <a href="#" class="lnv-dropdown-item">Dengue</a>
+                      <a href="#" class="lnv-dropdown-item">Influenza</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="lnv-card-body">
+                <div class="lnv-alert lnv-alert-info lnv-mb-4">
+                  <div class="lnv-alert-icon"><i class="fas fa-info-circle"></i></div>
+                  <div class="lnv-alert-content">
+                    <div class="lnv-alert-message">
+                      El mapa de calor muestra la concentración de casos por área geográfica. 
+                      Las zonas más rojas indican mayor densidad de muestras.
+                    </div>
+                  </div>
+                </div>
+                
+                <div id="mapaCalor" style="height: 600px; border-radius: var(--lnv-radius-md);"></div>
+                
+                <div class="lnv-mt-4 lnv-flex lnv-items-center lnv-justify-center lnv-gap-4">
+                  <span class="lnv-text-sm lnv-font-semibold">Intensidad:</span>
+                  <div style="width: 200px; height: 20px; background: linear-gradient(to right, #28A745, #FFC107, #FF6B35, #C1272D); border-radius: var(--lnv-radius-sm);"></div>
+                  <div class="lnv-flex lnv-gap-4">
+                    <span class="lnv-text-sm">Baja</span>
+                    <span class="lnv-text-sm lnv-font-semibold">→</span>
+                    <span class="lnv-text-sm">Alta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tab 4: Clusters -->
+          <div id="tab-clusters" class="lnv-tab-content">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-layer-group"></i> Agrupación de Centros de Salud por Clusters
+              </div>
+              <div class="lnv-card-body">
+                <div class="lnv-alert lnv-alert-info lnv-mb-4">
+                  <div class="lnv-alert-icon"><i class="fas fa-info-circle"></i></div>
+                  <div class="lnv-alert-content">
+                    <div class="lnv-alert-message">
+                      Los marcadores se agrupan automáticamente según el nivel de zoom. 
+                      Haz click en un cluster para expandirlo.
+                    </div>
+                  </div>
+                </div>
+                
+                <div id="mapaClusters" style="height: 600px; border-radius: var(--lnv-radius-md);"></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </main>
+<!-- Footer -->
+<footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+  <div class="lnv-container-fluid">
+    <div class="lnv-row">
+      <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+        <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+          <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+        </p>
+        <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+          Secretaría de Salud - Gobierno de la República de Honduras
+        </p>
+      </div>
+      <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+        <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+        <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+        <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+      </div>
+    </div>
+    <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+&copy; 2025 Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>      
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Leaflet Heatmap -->
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  
+  <!-- Leaflet MarkerCluster -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  
+  <!-- Chart.js para gráfico de Francisco Morazán -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  
+  <script>
+    // Colores LNV
+    const coloresLNV = {
+      primary: '#7DD3E0',
+      secondary: '#4DB8AC',
+      success: '#28A745',
+      danger: '#C1272D',
+      warning: '#FFC107',
+      accent: '#FFD700'
+    };
+    
+    // Función para obtener color según muestras
+    function getColorPorMuestras(muestras) {
+      if (muestras > 500) return '#C1272D';
+      if (muestras > 300) return '#FF6B35';
+      if (muestras > 100) return '#FFC107';
+      return '#28A745';
+    }
+    
+    // ===================================
+    // MAPA 1: HONDURAS COMPLETO
+    // ===================================
+    
+    const mapaHonduras = L.map('mapaHonduras').setView([14.6, -86.5], 7);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapaHonduras);
+    
+    // Datos de departamentos
+    const departamentos = {
+      'Francisco Morazán': { lat: 14.0723, lng: -87.1921, muestras: 1234 },
+      'Cortés': { lat: 15.5080, lng: -88.0260, muestras: 987 },
+      'Atlántida': { lat: 15.7700, lng: -86.7850, muestras: 567 },
+      'Yoro': { lat: 15.1350, lng: -87.1280, muestras: 432 },
+      'Comayagua': { lat: 14.4600, lng: -87.6420, muestras: 387 },
+      'Olancho': { lat: 14.8890, lng: -86.0883, muestras: 298 },
+      'El Paraíso': { lat: 13.8680, lng: -86.5580, muestras: 245 },
+      'Choluteca': { lat: 13.3000, lng: -87.1900, muestras: 198 },
+      'Colón': { lat: 15.6310, lng: -85.9920, muestras: 167 },
+      'Santa Bárbara': { lat: 14.9170, lng: -88.2360, muestras: 156 }
+    };
+    
+    // Agregar círculos por departamento
+    Object.keys(departamentos).forEach(dept => {
+      const datos = departamentos[dept];
+      const color = getColorPorMuestras(datos.muestras);
+      
+      L.circle([datos.lat, datos.lng], {
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.6,
+        radius: datos.muestras * 50
+      }).addTo(mapaHonduras)
+        .bindPopup(`
+          <strong style="color: ${color};">${dept}</strong><br>
+          <span style="font-size: 1.2em; font-weight: bold;">${datos.muestras}</span> muestras
+        `);
+    });
+    
+    // Botón reset
+    document.getElementById('btnResetHonduras').addEventListener('click', () => {
+      mapaHonduras.setView([14.6, -86.5], 7);
+      LNV.Toast.info('Vista restablecida');
+    });
+    
+    // ===================================
+    // MAPA 2: FRANCISCO MORAZÁN
+    // ===================================
+    
+    const mapaFrancisco = L.map('mapaFrancisco').setView([14.0818, -87.2068], 12);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapaFrancisco);
+    
+    // Polígono de Francisco Morazán (simplificado)
+    const coordsFM = [
+      [14.25, -87.50],
+      [14.25, -86.85],
+      [13.80, -86.85],
+      [13.80, -87.50],
+      [14.25, -87.50]
+    ];
+    
+    L.polygon(coordsFM, {
+      color: coloresLNV.primary,
+      weight: 3,
+      fillColor: coloresLNV.primary,
+      fillOpacity: 0.1
+    }).addTo(mapaFrancisco);
+    
+    // Centros de salud en Francisco Morazán
+    const centrosFM = [
+      { nombre: 'Hospital Escuela', lat: 14.0818, lng: -87.2068, tipo: 'hospital', muestras: 487 },
+      { nombre: 'Hospital San Felipe', lat: 14.0978, lng: -87.1921, tipo: 'hospital', muestras: 356 },
+      { nombre: 'CESAMO Kennedy', lat: 14.0523, lng: -87.1721, tipo: 'cesamo', muestras: 178 },
+      { nombre: 'CESAMO Villa Nueva', lat: 14.0323, lng: -87.1521, tipo: 'cesamo', muestras: 145 },
+      { nombre: 'CESAR Alonso Suazo', lat: 14.1018, lng: -87.2168, tipo: 'cesar', muestras: 68 }
+    ];
+    
+    centrosFM.forEach(centro => {
+      const icon = L.divIcon({
+        html: `<i class="fas ${centro.tipo === 'hospital' ? 'fa-hospital' : 'fa-clinic-medical'}" style="color: ${centro.tipo === 'hospital' ? coloresLNV.primary : coloresLNV.secondary}; font-size: 24px;"></i>`,
+        className: 'custom-marker',
+        iconSize: [30, 30]
+      });
+      
+      L.marker([centro.lat, centro.lng], { icon: icon })
+        .addTo(mapaFrancisco)
+        .bindPopup(`
+          <strong>${centro.nombre}</strong><br>
+          <span style="font-size: 1.1em; font-weight: bold; color: ${coloresLNV.primary};">${centro.muestras}</span> muestras<br>
+          <span style="font-size: 0.85em; color: gray;">Tipo: ${centro.tipo.toUpperCase()}</span>
+        `);
+    });
+    
+    // Gráfico de Francisco Morazán
+    const ctxFM = document.getElementById('chartFrancisco').getContext('2d');
+    new Chart(ctxFM, {
+      type: 'doughnut',
+      data: {
+        labels: centrosFM.map(c => c.nombre),
+        datasets: [{
+          data: centrosFM.map(c => c.muestras),
+          backgroundColor: [
+            coloresLNV.primary,
+            coloresLNV.secondary,
+            coloresLNV.success,
+            coloresLNV.warning,
+            coloresLNV.accent
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+    
+    // Click en lista de centros
+    document.querySelectorAll('[data-centro]').forEach(item => {
+      item.addEventListener('click', function() {
+        const centroId = this.getAttribute('data-centro');
+        const centro = centrosFM.find(c => c.nombre.toLowerCase().includes(centroId));
+        
+        if (centro) {
+          mapaFrancisco.setView([centro.lat, centro.lng], 15);
+          LNV.Toast.info(`Mostrando ${centro.nombre}`);
+        }
+      });
+    });
+    
+    // ===================================
+    // MAPA 3: MAPA DE CALOR
+    // ===================================
+    
+    const mapaCalor = L.map('mapaCalor').setView([14.0818, -87.2068], 11);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapaCalor);
+    
+    // Generar puntos de calor (datos simulados)
+    const puntosCalor = [];
+    for (let i = 0; i < 500; i++) {
+      puntosCalor.push([
+        14.0818 + (Math.random() - 0.5) * 0.3,
+        -87.2068 + (Math.random() - 0.5) * 0.3,
+        Math.random() // intensidad
+      ]);
+    }
+    
+    // Capa de calor
+    L.heatLayer(puntosCalor, {
+      radius: 25,
+      blur: 35,
+      maxZoom: 17,
+      gradient: {
+        0.0: '#28A745',
+        0.4: '#FFC107',
+        0.6: '#FF6B35',
+        1.0: '#C1272D'
+      }
+    }).addTo(mapaCalor);
+    
+    // ===================================
+    // MAPA 4: CLUSTERS
+    // ===================================
+    
+    const mapaClusters = L.map('mapaClusters').setView([14.6, -86.5], 7);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapaClusters);
+    
+    // Crear cluster group
+    const markers = L.markerClusterGroup();
+    
+    // Generar 100 centros de salud aleatorios en Honduras
+    for (let i = 0; i < 100; i++) {
+      const lat = 13.5 + Math.random() * 2.5;
+      const lng = -89 + Math.random() * 3;
+      const muestras = Math.floor(Math.random() * 150) + 10;
+      
+      const marker = L.marker([lat, lng]);
+      marker.bindPopup(`
+        <strong>Centro de Salud #${i + 1}</strong><br>
+        <span style="font-weight: bold; color: ${coloresLNV.primary};">${muestras}</span> muestras procesadas
+      `);
+      
+      markers.addLayer(marker);
+    }
+    
+    mapaClusters.addLayer(markers);
+    
+  </script>
+
+</body>
+</html>
