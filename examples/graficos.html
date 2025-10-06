@@ -1,0 +1,1169 @@
+¡Tienes razón! Lo siento mucho. Déjame crear un graficos.html COMPLETO y PROFESIONAL desde cero. 🚀
+
+<artifact identifier="graficos-html-completo" type="application/vnd.ant.code" language="html" title="graficos.html - Análisis Epidemiológico Completo">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis Epidemiológico - LNV Framework</title>
+  <!-- LNV Framework CSS -->
+  <link rel="stylesheet" href="../css/lnv-framework.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .chart-container {
+      position: relative;
+      height: 350px;
+      margin-bottom: 1rem;
+    }
+    
+    .chart-container-small {
+      position: relative;
+      height: 250px;
+    }
+    
+    .metric-card {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: var(--lnv-radius-lg);
+      background: linear-gradient(135deg, var(--lnv-primary), var(--lnv-secondary));
+      color: white;
+      transition: all var(--lnv-transition-base);
+    }
+    
+    .metric-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--lnv-shadow-xl);
+    }
+    
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+    
+    .metric-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <!-- App Wrapper -->
+  <div class="lnv-app-wrapper">
+<!-- Sidebar -->
+<aside class="lnv-sidebar">
+  <div class="lnv-sidebar-header">
+    <div class="lnv-sidebar-brand">
+      <img src="../assets/images/logo-lnv.png" alt="LNV" width="40" style="object-fit: contain;">
+      <span>LNV</span>
+    </div>
+    <button class="lnv-btn lnv-btn-circle lnv-btn-light lnv-hidden-desktop" data-toggle="sidebar">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <nav class="lnv-sidebar-nav">
+    <div class="lnv-nav-header">Principal</div>
+    
+    <a href="../index.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-home"></i></span>
+      <span class="lnv-nav-item-text">Inicio</span>
+    </a>
+    
+    <a href="dashboard.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-line"></i></span>
+      <span class="lnv-nav-item-text">Dashboard</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Funcionalidades</div>
+    
+    <a href="formulario.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-edit"></i></span>
+      <span class="lnv-nav-item-text">Formularios</span>
+    </a>
+    
+    <a href="tabla-datos.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-table"></i></span>
+      <span class="lnv-nav-item-text">Tablas de Datos</span>
+    </a>
+    
+    <a href="graficos.html" class="lnv-nav-item active">
+      <span class="lnv-nav-item-icon"><i class="fas fa-chart-bar"></i></span>
+      <span class="lnv-nav-item-text">Gráficos</span>
+    </a>
+    
+    <a href="mapas.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-map-marked-alt"></i></span>
+      <span class="lnv-nav-item-text">Mapas</span>
+    </a>
+    
+    <a href="gamificacion.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-trophy"></i></span>
+      <span class="lnv-nav-item-text">Gamificación</span>
+    </a>
+    
+    <div class="lnv-nav-divider"></div>
+    
+    <div class="lnv-nav-header">Recursos</div>
+    
+    <a href="components-showcase.html" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-puzzle-piece"></i></span>
+      <span class="lnv-nav-item-text">Componentes</span>
+    </a>
+    
+    <a href="../docs/guia-uso.md" class="lnv-nav-item">
+      <span class="lnv-nav-item-icon"><i class="fas fa-book"></i></span>
+      <span class="lnv-nav-item-text">Documentación</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- Overlay para móvil -->
+<div class="lnv-sidebar-overlay"></div>
+
+<!-- Main Content -->
+<div class="lnv-main-content">
+  
+  <!-- Navbar -->
+  <nav class="lnv-navbar">
+    <div class="lnv-navbar-left">
+      <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <div class="lnv-breadcrumb lnv-hidden-mobile">
+        <div class="lnv-breadcrumb-item">
+          <a href="dashboard.html">Inicio</a>
+        </div>
+        <div class="lnv-breadcrumb-item active">Análisis Epidemiológico</div>
+      </div>
+    </div>
+    
+    <div class="lnv-navbar-right">
+      <div class="lnv-dropdown lnv-hidden-mobile">
+        <button class="lnv-btn lnv-btn-light lnv-dropdown-toggle">
+          <i class="fas fa-calendar"></i> Octubre 2025
+        </button>
+        <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+          <a href="#" class="lnv-dropdown-item active">Octubre 2025</a>
+          <a href="#" class="lnv-dropdown-item">Septiembre 2025</a>
+          <a href="#" class="lnv-dropdown-item">Agosto 2025</a>
+        </div>
+      </div>
+      
+      <button class="lnv-btn lnv-btn-circle lnv-btn-light" onclick="exportarReporte()">
+        <i class="fas fa-download"></i>
+      </button>
+      
+      <button class="lnv-btn lnv-btn-circle lnv-btn-light" data-toggle="theme">
+        <i class="fas fa-moon"></i>
+      </button>
+      
+      <div class="lnv-avatar lnv-avatar-sm">
+        <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=7DD3E0&color=fff" alt="Usuario">
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Content -->
+  <main class="lnv-content">
+    <div class="lnv-container-fluid">
+      
+      <!-- Título -->
+      <div class="lnv-mb-6 lnv-fade-in-down">
+        <h1><i class="fas fa-chart-line" style="color: var(--lnv-primary);"></i> Análisis Epidemiológico</h1>
+        <p class="lnv-text-gray">Visualización de datos y tendencias del laboratorio</p>
+      </div>
+      
+      <!-- Métricas Rápidas -->
+      <div class="lnv-row lnv-mb-6">
+        <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="metric-card lnv-fade-in-up">
+            <i class="fas fa-vial" style="font-size: 2rem; opacity: 0.8;"></i>
+            <div class="metric-value">8,547</div>
+            <div class="metric-label">Total Muestras</div>
+            <div style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">
+              <i class="fas fa-arrow-up"></i> +12% vs mes anterior
+            </div>
+          </div>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="metric-card lnv-fade-in-up lnv-delay-100" style="background: linear-gradient(135deg, #28A745, #20C997);">
+            <i class="fas fa-check-circle" style="font-size: 2rem; opacity: 0.8;"></i>
+            <div class="metric-value">6,234</div>
+            <div class="metric-label">Procesadas</div>
+            <div style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">
+              <i class="fas fa-arrow-up"></i> 73% del total
+            </div>
+          </div>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="metric-card lnv-fade-in-up lnv-delay-200" style="background: linear-gradient(135deg, #FFC107, #FF9800);">
+            <i class="fas fa-clock" style="font-size: 2rem; opacity: 0.8;"></i>
+            <div class="metric-value">2,289</div>
+            <div class="metric-label">Pendientes</div>
+            <div style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">
+              <i class="fas fa-minus"></i> 27% del total
+            </div>
+          </div>
+        </div>
+        
+        <div class="lnv-col-12 lnv-col-sm-6 lnv-col-lg-3 lnv-mb-4">
+          <div class="metric-card lnv-fade-in-up lnv-delay-300" style="background: linear-gradient(135deg, #C1272D, #E53935);">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem; opacity: 0.8;"></i>
+            <div class="metric-value">24</div>
+            <div class="metric-label">Urgentes</div>
+            <div style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">
+              <i class="fas fa-bell"></i> Atención inmediata
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tabs -->
+      <div class="lnv-tabs lnv-mb-6">
+        <button class="lnv-tab active" data-tab="tab-tendencias">
+          <i class="fas fa-chart-line"></i> Tendencias
+        </button>
+        <button class="lnv-tab" data-tab="tab-distribucion">
+          <i class="fas fa-chart-pie"></i> Distribución
+        </button>
+        <button class="lnv-tab" data-tab="tab-comparativo">
+          <i class="fas fa-chart-bar"></i> Comparativo
+        </button>
+        <button class="lnv-tab" data-tab="tab-rendimiento">
+          <i class="fas fa-tachometer-alt"></i> Rendimiento
+        </button>
+      </div>
+      
+      <!-- Tab 1: Tendencias -->
+      <div id="tab-tendencias" class="lnv-tab-content active">
+        <div class="lnv-row">
+          
+          <!-- Gráfico Principal: Line Chart -->
+          <div class="lnv-col-12 lnv-col-lg-8 lnv-mb-4">
+            <div class="lnv-card lnv-fade-in-up">
+              <div class="lnv-card-header">
+                <div class="lnv-flex lnv-justify-between lnv-items-center">
+                  <span><i class="fas fa-chart-line"></i> Tendencia de Muestras Procesadas</span>
+                  <div class="lnv-dropdown">
+                    <button class="lnv-btn lnv-btn-sm lnv-btn-light lnv-dropdown-toggle">
+                      Últimos 30 días
+                    </button>
+                    <div class="lnv-dropdown-menu lnv-dropdown-menu-right">
+                      <a href="#" class="lnv-dropdown-item active">Últimos 30 días</a>
+                      <a href="#" class="lnv-dropdown-item">Últimos 90 días</a>
+                      <a href="#" class="lnv-dropdown-item">Este año</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartTendencias"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Gráfico Secundario -->
+          <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+            <div class="lnv-card lnv-fade-in-up lnv-delay-100">
+              <div class="lnv-card-header">
+                <i class="fas fa-chart-area"></i> Promedio Diario
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container-small">
+                  <canvas id="chartPromedio"></canvas>
+                </div>
+                
+                <div class="lnv-mt-4">
+                  <div class="lnv-flex lnv-justify-between lnv-mb-2">
+                    <span class="lnv-text-sm lnv-text-gray">Meta Diaria</span>
+                    <span class="lnv-font-semibold">350 muestras</span>
+                  </div>
+                  <div class="lnv-progress">
+                    <div class="lnv-progress-bar lnv-progress-bar-success" style="width: 89%">89%</div>
+                  </div>
+                  <p class="lnv-text-xs lnv-text-gray lnv-mt-1">Promedio actual: 312 muestras/día</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Gráfico de Área Apilada -->
+        <div class="lnv-row">
+          <div class="lnv-col-12">
+            <div class="lnv-card lnv-fade-in-up lnv-delay-200">
+              <div class="lnv-card-header">
+                <i class="fas fa-layer-group"></i> Muestras por Estado (Últimos 30 días)
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartEstadosApilado"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tab 2: Distribución -->
+      <div id="tab-distribucion" class="lnv-tab-content">
+        <div class="lnv-row">
+          
+          <!-- Pie Chart -->
+          <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-chart-pie"></i> Distribución por Tipo de Muestra
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartTiposMuestra"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Doughnut Chart -->
+          <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-hospital"></i> Distribución por Centro de Salud
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartCentros"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Polar Area -->
+          <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-certificate"></i> Distribución por Prioridad
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container-small">
+                  <canvas id="chartPrioridades"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Estadísticas -->
+          <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-list"></i> Estadísticas Detalladas
+              </div>
+              <div class="lnv-card-body">
+                
+                <h4 class="lnv-mb-3">Por Tipo de Muestra</h4>
+                <div class="lnv-mb-3">
+                  <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                    <span class="lnv-text-sm">COVID-19</span>
+                    <span class="lnv-font-semibold">3,846 (45%)</span>
+                  </div>
+                  <div class="lnv-progress lnv-progress-sm">
+                    <div class="lnv-progress-bar" style="width: 45%; background: #7DD3E0;"></div>
+                  </div>
+                </div>
+                
+                <div class="lnv-mb-3">
+                  <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                    <span class="lnv-text-sm">Dengue</span>
+                    <span class="lnv-font-semibold">2,564 (30%)</span>
+                  </div>
+                  <div class="lnv-progress lnv-progress-sm">
+                    <div class="lnv-progress-bar" style="width: 30%; background: #4DB8AC;"></div>
+                  </div>
+                </div>
+                
+                <div class="lnv-mb-3">
+                  <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                    <span class="lnv-text-sm">Influenza</span>
+                    <span class="lnv-font-semibold">1,282 (15%)</span>
+                  </div>
+                  <div class="lnv-progress lnv-progress-sm">
+                    <div class="lnv-progress-bar" style="width: 15%; background: #28A745;"></div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="lnv-flex lnv-justify-between lnv-mb-1">
+                    <span class="lnv-text-sm">Otros</span>
+                    <span class="lnv-font-semibold">855 (10%)</span>
+                  </div>
+                  <div class="lnv-progress lnv-progress-sm">
+                    <div class="lnv-progress-bar" style="width: 10%; background: #FFC107;"></div>
+                  </div>
+                </div>
+                
+                <div class="lnv-divider"></div>
+                
+                <h4 class="lnv-mb-3">Resumen</h4>
+                <div class="lnv-list-group">
+                  <div class="lnv-list-group-item">
+                    <div class="lnv-flex lnv-justify-between">
+                      <span>Tiempo Promedio Procesamiento</span>
+                      <strong>2.3 días</strong>
+                    </div>
+                  </div>
+                  <div class="lnv-list-group-item">
+                    <div class="lnv-flex lnv-justify-between">
+                      <span>Tasa de Positividad</span>
+                      <strong>18.5%</strong>
+                    </div>
+                  </div>
+                  <div class="lnv-list-group-item">
+                    <div class="lnv-flex lnv-justify-between">
+                      <span>Eficiencia del Laboratorio</span>
+                      <strong>94.2%</strong>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Tab 3: Comparativo -->
+      <div id="tab-comparativo" class="lnv-tab-content">
+        <div class="lnv-row">
+          
+          <!-- Bar Chart Mensual -->
+          <div class="lnv-col-12 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-chart-bar"></i> Comparación Mensual - Año 2025
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartComparativoMensual"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Grouped Bar -->
+          <div class="lnv-col-12 lnv-col-lg-8 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-map-marked-alt"></i> Comparativo por Departamento
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartDepartamentos"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Horizontal Bar -->
+          <div class="lnv-col-12 lnv-col-lg-4 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-trophy"></i> Top 10 Centros
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartTopCentros"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Tab 4: Rendimiento -->
+      <div id="tab-rendimiento" class="lnv-tab-content">
+        <div class="lnv-row">
+          
+          <!-- Radar Chart -->
+          <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-radar"></i> Métricas de Rendimiento
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartRadar"></canvas>
+                </div>
+                
+                <div class="lnv-alert lnv-alert-info lnv-mt-4">
+                  <div class="lnv-alert-icon"><i class="fas fa-info-circle"></i></div>
+                  <div class="lnv-alert-content">
+                    <div class="lnv-alert-message">
+                      El laboratorio mantiene un rendimiento superior al 90% en todas las métricas clave.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Mixed Chart -->
+          <div class="lnv-col-12 lnv-col-lg-6 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-chart-mixed"></i> Volumen vs Eficiencia
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartMixto"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bubble Chart -->
+          <div class="lnv-col-12 lnv-mb-4">
+            <div class="lnv-card">
+              <div class="lnv-card-header">
+                <i class="fas fa-circle"></i> Análisis de Centros (Volumen vs Tiempo vs Calidad)
+              </div>
+              <div class="lnv-card-body">
+                <div class="chart-container">
+                  <canvas id="chartBubble"></canvas>
+                </div>
+                
+                <div class="lnv-mt-3 lnv-text-center">
+                  <span class="lnv-text-sm lnv-text-gray">
+                    <strong>Eje X:</strong> Volumen de muestras | 
+                    <strong>Eje Y:</strong> Tiempo promedio (días) | 
+                    <strong>Tamaño:</strong> Tasa de calidad
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer style="background: var(--lnv-dark); color: var(--lnv-white); padding: 2rem 0 1rem; margin-top: 3rem;">
+    <div class="lnv-container-fluid">
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6 lnv-mb-3">
+          <p class="lnv-text-sm" style="opacity: 0.8; margin: 0;">
+            <strong>LNV Framework v1.0.0</strong> - Laboratorio Nacional de Vigilancia
+          </p>
+          <p class="lnv-text-xs" style="opacity: 0.6; margin-top: 0.5rem;">
+            Secretaría de Salud - Gobierno de la República de Honduras
+          </p>
+        </div>
+        <div class="lnv-col-12 lnv-col-md-6 lnv-text-right lnv-mb-3">
+          <a href="../index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Inicio</a>
+          <a href="components-showcase.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-right: 1rem;">Componentes</a>
+          <a href="../docs/guia-uso.md" style="color: rgba(255,255,255,0.7); text-decoration: none;">Documentación</a>
+        </div>
+      </div>
+      <div class="lnv-text-center lnv-pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <p class="lnv-text-xs" style="opacity: 0.5; margin: 0;">
+          &copy; 2025 Todos los derechos reservados
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+  </div>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- LNV Framework JS -->
+  <script src="../js/lnv-core.js"></script>
+  <script>
+    // Colores LNV
+    const coloresLNV = {
+      primary: '#7DD3E0',
+      secondary: '#4DB8AC',
+      success: '#28A745',
+      danger: '#C1272D',
+      warning: '#FFC107',
+      info: '#17A2B8',
+      light: '#ECF0F1',
+      dark: '#2C3E50'
+    };
+    
+    // Configuración global de Chart.js
+    Chart.defaults.font.family = 'Segoe UI, sans-serif';
+    Chart.defaults.color = '#6C757D';
+    
+    // ===================================
+    // TAB 1: TENDENCIAS
+    // ===================================
+    
+    // Gráfico 1: Line Chart - Tendencias
+    const ctxTendencias = document.getElementById('chartTendencias').getContext('2d');
+    new Chart(ctxTendencias, {
+      type: 'line',
+      data: {
+        labels: ['1 Oct', '5 Oct', '10 Oct', '15 Oct', '20 Oct', '25 Oct', '30 Oct'],
+        datasets: [
+          {
+            label: 'Procesadas',
+            data: [245, 312, 289, 356, 398, 421, 387],
+            borderColor: coloresLNV.success,
+            backgroundColor: coloresLNV.success + '20',
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: 'Pendientes',
+            data: [89, 76, 95, 82, 73, 68, 91],
+            borderColor: coloresLNV.warning,
+            backgroundColor: coloresLNV.warning + '20',
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: 'Urgentes',
+            data: [12, 8, 15, 11, 6, 9, 14],
+            borderColor: coloresLNV.danger,
+            backgroundColor: coloresLNV.danger + '20',
+            fill: true,
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return value + ' muestras';
+              }
+            }
+          }
+        }
+      }
+    });
+    
+    // Gráfico 2: Doughnut - Promedio
+    const ctxPromedio = document.getElementById('chartPromedio').getContext('2d');
+    new Chart(ctxPromedio, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completadas', 'En proceso', 'Pendientes'],
+        datasets: [{
+          data: [312, 45, 28],
+          backgroundColor: [
+            coloresLNV.success,
+            coloresLNV.info,
+            coloresLNV.warning
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+    
+    // Gráfico 3: Área Apilada
+    const ctxEstadosApilado = document.getElementById('chartEstadosApilado').getContext('2d');
+    new Chart(ctxEstadosApilado, {
+      type: 'line',
+      data: {
+        labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+        datasets: [
+          {
+            label: 'Procesadas',
+            data: [1543, 1689, 1756, 1832],
+            backgroundColor: coloresLNV.success + '80',
+            borderColor: coloresLNV.success,
+            fill: true
+          },
+          {
+            label: 'Pendientes',
+            data: [456, 398, 423, 467],
+            backgroundColor: coloresLNV.warning + '80',
+            borderColor: coloresLNV.warning,
+            fill: true
+          },
+          {
+            label: 'Urgentes',
+            data: [87, 76, 93, 82],
+            backgroundColor: coloresLNV.danger + '80',
+            borderColor: coloresLNV.danger,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        },
+        scales: {
+          y: {
+            stacked: true,
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // ===================================
+    // TAB 2: DISTRIBUCIÓN
+    // ===================================
+    
+    // Gráfico 4: Pie Chart - Tipos de Muestra
+    const ctxTiposMuestra = document.getElementById('chartTiposMuestra').getContext('2d');
+    new Chart(ctxTiposMuestra, {
+      type: 'pie',
+      data: {
+        labels: ['COVID-19', 'Dengue', 'Influenza', 'Zika', 'Chikungunya', 'Otros'],
+        datasets: [{
+          data: [3846, 2564, 1282, 342, 231, 282],
+          backgroundColor: [
+            coloresLNV.primary,
+            coloresLNV.secondary,
+            coloresLNV.success,
+            coloresLNV.warning,
+            coloresLNV.danger,
+            coloresLNV.info
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.label || '';
+                let value = context.parsed || 0;
+                let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                let percentage = ((value / total) * 100).toFixed(1);
+                return label + ': ' + value + ' (' + percentage + '%)';
+              }
+            }
+          }
+        }
+      }
+    });
+    
+    // Gráfico 5: Doughnut - Centros
+    const ctxCentros = document.getElementById('chartCentros').getContext('2d');
+    new Chart(ctxCentros, {
+      type: 'doughnut',
+      data: {
+        labels: ['Hospital Escuela', 'H. San Felipe', 'CESAMO Centro', 'CESAR Comayagua', 'CESAMO Kennedy', 'Otros'],
+        datasets: [{
+          data: [2456, 1876, 1234, 987, 654, 1340],
+          backgroundColor: [
+            coloresLNV.primary,
+            coloresLNV.secondary,
+            coloresLNV.success,
+            coloresLNV.warning,
+            coloresLNV.info,
+            coloresLNV.light
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+    
+    // Gráfico 6: Polar Area - Prioridades
+    const ctxPrioridades = document.getElementById('chartPrioridades').getContext('2d');
+    new Chart(ctxPrioridades, {
+      type: 'polarArea',
+      data: {
+        labels: ['Normal', 'Urgente', 'Emergencia', 'Programada', 'Seguimiento'],
+        datasets: [{
+          data: [6234, 1876, 437, 543, 234],
+          backgroundColor: [
+            coloresLNV.success + '80',
+            coloresLNV.warning + '80',
+            coloresLNV.danger + '80',
+            coloresLNV.info + '80',
+            coloresLNV.primary + '80'
+          ],
+          borderColor: [
+            coloresLNV.success,
+            coloresLNV.warning,
+            coloresLNV.danger,
+            coloresLNV.info,
+            coloresLNV.primary
+          ],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+    
+    // ===================================
+    // TAB 3: COMPARATIVO
+    // ===================================
+    
+    // Gráfico 7: Bar Chart - Comparativo Mensual
+    const ctxComparativoMensual = document.getElementById('chartComparativoMensual').getContext('2d');
+    new Chart(ctxComparativoMensual, {
+      type: 'bar',
+      data: {
+        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+        datasets: [
+          {
+            label: 'Procesadas',
+            data: [6234, 6789, 7123, 6987, 7456, 7789, 8123, 8456, 8234, 8547],
+            backgroundColor: coloresLNV.success
+          },
+          {
+            label: 'Pendientes',
+            data: [1234, 1456, 1389, 1523, 1687, 1534, 1789, 1923, 2156, 2289],
+            backgroundColor: coloresLNV.warning
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // Gráfico 8: Grouped Bar - Departamentos
+    const ctxDepartamentos = document.getElementById('chartDepartamentos').getContext('2d');
+    new Chart(ctxDepartamentos, {
+      type: 'bar',
+      data: {
+        labels: ['Francisco Morazán', 'Cortés', 'Atlántida', 'Yoro', 'Comayagua'],
+        datasets: [
+          {
+            label: 'COVID-19',
+            data: [1234, 987, 567, 432, 387],
+            backgroundColor: coloresLNV.primary
+          },
+          {
+            label: 'Dengue',
+            data: [876, 765, 432, 321, 298],
+            backgroundColor: coloresLNV.secondary
+          },
+          {
+            label: 'Otros',
+            data: [543, 456, 321, 234, 198],
+            backgroundColor: coloresLNV.info
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // Gráfico 9: Horizontal Bar - Top Centros
+    const ctxTopCentros = document.getElementById('chartTopCentros').getContext('2d');
+    new Chart(ctxTopCentros, {
+      type: 'bar',
+      data: {
+        labels: ['H. Escuela', 'H. San Felipe', 'CESAMO Centro', 'CESAR Comay.', 'CESAMO Kennedy', 'CESAMO V. Nueva', 'CESAR A. Suazo', 'CESAMO Alonso', 'H. Roatán', 'CESAMO Choluteca'],
+        datasets: [{
+          label: 'Muestras Procesadas',
+          data: [2456, 1876, 1234, 987, 654, 543, 432, 387, 321, 276],
+          backgroundColor: coloresLNV.primary
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // ===================================
+    // TAB 4: RENDIMIENTO
+    // ===================================
+    
+    // Gráfico 10: Radar Chart
+    const ctxRadar = document.getElementById('chartRadar').getContext('2d');
+    new Chart(ctxRadar, {
+      type: 'radar',
+      data: {
+        labels: ['Velocidad', 'Precisión', 'Calidad', 'Eficiencia', 'Capacidad', 'Satisfacción'],
+        datasets: [
+          {
+            label: 'Meta',
+            data: [90, 95, 98, 92, 88, 90],
+            borderColor: coloresLNV.light,
+            backgroundColor: coloresLNV.light + '40',
+            pointBackgroundColor: coloresLNV.light
+          },
+          {
+            label: 'Actual',
+            data: [94, 97, 96, 95, 91, 93],
+            borderColor: coloresLNV.primary,
+            backgroundColor: coloresLNV.primary + '40',
+            pointBackgroundColor: coloresLNV.primary
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              stepSize: 20
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+    
+    // Gráfico 11: Mixed Chart
+    const ctxMixto = document.getElementById('chartMixto').getContext('2d');
+    new Chart(ctxMixto, {
+      type: 'bar',
+      data: {
+        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+        datasets: [
+          {
+            label: 'Volumen de Muestras',
+            data: [6234, 6789, 7123, 6987, 7456, 7789, 8123, 8456, 8234, 8547],
+            backgroundColor: coloresLNV.primary + '60',
+            borderColor: coloresLNV.primary,
+            borderWidth: 1,
+            yAxisID: 'y'
+          },
+          {
+            label: 'Eficiencia (%)',
+            data: [92, 94, 93, 95, 94, 96, 95, 97, 96, 94],
+            type: 'line',
+            borderColor: coloresLNV.success,
+            backgroundColor: coloresLNV.success,
+            yAxisID: 'y1',
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        },
+        scales: {
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Volumen de Muestras'
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            min: 80,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Eficiencia (%)'
+            },
+            grid: {
+              drawOnChartArea: false
+            }
+          }
+        }
+      }
+    });
+    
+    // Gráfico 12: Bubble Chart
+    const ctxBubble = document.getElementById('chartBubble').getContext('2d');
+    new Chart(ctxBubble, {
+      type: 'bubble',
+      data: {
+        datasets: [
+          {
+            label: 'Hospital Escuela',
+            data: [{x: 2456, y: 2.1, r: 15}],
+            backgroundColor: coloresLNV.primary + '80'
+          },
+          {
+            label: 'H. San Felipe',
+            data: [{x: 1876, y: 2.3, r: 12}],
+            backgroundColor: coloresLNV.secondary + '80'
+          },
+          {
+            label: 'CESAMO Centro',
+            data: [{x: 1234, y: 2.8, r: 10}],
+            backgroundColor: coloresLNV.success + '80'
+          },
+          {
+            label: 'CESAR Comayagua',
+            data: [{x: 987, y: 3.2, r: 8}],
+            backgroundColor: coloresLNV.warning + '80'
+          },
+          {
+            label: 'CESAMO Kennedy',
+            data: [{x: 654, y: 2.5, r: 9}],
+            backgroundColor: coloresLNV.info + '80'
+          },
+          {
+            label: 'Otros Centros',
+            data: [{x: 432, y: 3.5, r: 7}],
+            backgroundColor: coloresLNV.danger + '80'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                return label + ': ' + context.parsed.x + ' muestras, ' + context.parsed.y + ' días, ' + (context.raw.r * 6) + '% calidad';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Volumen de Muestras'
+            },
+            beginAtZero: true
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Tiempo Promedio (días)'
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // ===================================
+    // FUNCIONES AUXILIARES
+    // ===================================
+    
+    function exportarReporte() {
+      LNV.Loading.show('Generando reporte...');
+      
+      setTimeout(() => {
+        LNV.Loading.hide();
+        LNV.Toast.success('Reporte de análisis epidemiológico descargado correctamente', 'Descarga Completa');
+      }, 2000);
+    }
+    
+    // Toast de bienvenida
+    setTimeout(() => {
+      LNV.Toast.info('Datos actualizados al 06 de Octubre, 2025', 'Panel de Análisis');
+    }, 1000);
+    
+    console.log('%c✨ Gráficos Epidemiológicos Cargados', 'font-size: 16px; color: #7DD3E0; font-weight: bold;');
+  </script>
+
+</body>
+</html>
