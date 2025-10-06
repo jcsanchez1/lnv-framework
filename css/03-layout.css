@@ -429,10 +429,10 @@
    DISPLAY UTILITIES
    ========================== */
 
-.lnv-block { display: block; }
-.lnv-inline-block { display: inline-block; }
-.lnv-inline { display: inline; }
-.lnv-hidden { display: none; }
+.lnv-d-block { display: block; }
+.lnv-d-inline-block { display: inline-block; }
+.lnv-d-inline { display: inline; }
+.lnv-d-hidden { display: none; }
 
 /* Responsive display */
 @media (max-width: 768px) {

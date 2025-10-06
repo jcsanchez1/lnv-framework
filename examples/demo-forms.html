@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - LNV Forms Framework</title>
+  
+  <!-- Framework CSS -->
+  <link rel="stylesheet" href="css/lnv-framework.css">
+  
+  <style>
+    body {
+      padding: 2rem;
+      background-color: var(--lnv-light);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lnv-container">
+    
+    <!-- Header -->
+    <div class="lnv-mb-8">
+      <h1>🧪 Demo - Sistema de Formularios LNV</h1>
+      <p class="lnv-text-gray">Ejemplos de validación, máscaras y utilidades de formularios</p>
+    </div>
+
+    <!-- Grid de ejemplos -->
+    <div class="lnv-row">
+      
+      <!-- Formulario de Registro -->
+      <div class="lnv-col-12 lnv-col-md-6">
+        <div class="lnv-card lnv-mb-6">
+          <div class="lnv-card-header">
+            <h3>📝 Formulario de Registro</h3>
+          </div>
+          <div class="lnv-card-body">
+            <form id="registerForm" data-validator>
+              
+              <!-- Nombre completo -->
+              <div class="lnv-form-group">
+                <label class="lnv-form-label required">Nombre Completo</label>
+                <input 
+                  type="text" 
+                  name="fullname" 
+                  id="fullname"
+                  class="lnv-form-control"
+                  data-validate="required|minLength:3"
+                  placeholder="Juan Pérez"
+                >
+              </div>
+
+              <!-- DNI con máscara -->
+              <div class="lnv-form-group">
+                <label class="lnv-form-label required">DNI</label>
+                <input 
+                  type="text" 
+                  name="dni" 
+                  id="dni"
+                  class="lnv-form-control"
+                  data-mask="dni"
+                  data-validate="required|dni"
+                  placeholder="0000-0000-00000"
+                >
+              </div>
+
+              <!-- Email -->
+              <div class="lnv-form-group">
+                <label class="lnv-form-label required">Correo Electrónico</label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  id="email"
+                  class="lnv-form-control"
+                  data-validate="required|email"
+                  placeholder="correo@ejemplo.com"
+                >
+              </div>
+
+              <!-- Teléfono con máscara -->
+              <div class="lnv-form-group">
+                <label class="lnv-form-label required">Teléfono</label>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  id="phone"
+                  class="lnv-form-control"
+                  data-mask="phone"
+                  data-validate="required|phone"
+                  placeholder="0000-0000"
+                >
+              </div>
+
+              <!-- Contraseña con indicador de fuerza -->
+              <div class="lnv-form-group">
+                <label class="lnv-form-label required">Contraseña</label>
+                <input 
+                  type="password" 
+                  name="password" 
+                  id="password"
+                  class="lnv-form-control"
+                  data-validate="required|minLength:8"
+                  data-password-strength
+                  placeholder="Mínimo 8 caracteres"
+                >
+              </div>
+
+              <!-- Confirmar contraseña -->
+              <div class="lnv-form-group">
+                <label class="lnv-form-label required">Confirmar Contraseña</label>
+                <input 
+                  type="password" 
+                  name="confirm_password" 
+                  id="confirm_password"
+                  class="lnv-form-control"
+                  data-validate="required|match:password"
+                  data-match="password"
+                  placeholder="Repita su contraseña"
+                >
+              </div>
+
+              <!-- Botones -->
+              <div class="lnv-flex lnv-gap-3">
+                <button type="submit" class="lnv-btn lnv-btn-primary">
+                  Registrarse
+                </button>
+                <button type="reset" class="lnv-btn lnv-btn-light">
+                  Limpiar
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ejemplos de Máscaras -->
+      <div class="lnv-col-12 lnv-col-md-6">
+        
+        <!-- Máscaras de Input -->
+        <div class="lnv-card lnv-mb-6">
+          <div class="lnv-card-header">
+            <h3>🎭 Máscaras de Input</h3>
+          </div>
+          <div class="lnv-card-body">
+            
+            <!-- Moneda -->
+            <div class="lnv-form-group">
+              <label class="lnv-form-label">Moneda (Lempiras)</label>
+              <input 
+                type="text" 
+                class="lnv-form-control"
+                data-mask="currency"
+                placeholder="L 0.00"
+              >
+            </div>
+
+            <!-- Fecha -->
+            <div class="lnv-form-group">
+              <label class="lnv-form-label">Fecha (DD/MM/YYYY)</label>
+              <input 
+                type="text" 
+                class="lnv-form-control"
+                data-mask="date"
+                placeholder="DD/MM/YYYY"
+              >
+            </div>
+
+            <!-- DNI -->
+            <div class="lnv-form-group">
+              <label class="lnv-form-label">DNI Honduras</label>
+              <input 
+                type="text" 
+                class="lnv-form-control"
+                data-mask="dni"
+                placeholder="0000-0000-00000"
+              >
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Contador de Caracteres -->
+        <div class="lnv-card lnv-mb-6">
+          <div class="lnv-card-header">
+            <h3>📊 Contador de Caracteres</h3>
+          </div>
+          <div class="lnv-card-body">
+            
+            <div class="lnv-form-group">
+              <label class="lnv-form-label">Comentario (máx. 200 caracteres)</label>
+              <textarea 
+                id="comment"
+                class="lnv-form-control textarea"
+                data-maxlength="200"
+                placeholder="Escribe tu comentario aquí..."
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Utilidades LNVUtils -->
+        <div class="lnv-card">
+          <div class="lnv-card-header">
+            <h3>🛠️ Utilidades JavaScript</h3>
+          </div>
+          <div class="lnv-card-body">
+            
+            <div class="lnv-form-group">
+              <label class="lnv-form-label">Número a formatear</label>
+              <input 
+                type="number" 
+                id="numberInput"
+                class="lnv-form-control"
+                placeholder="1234567.89"
+                value="1234567.89"
+              >
+            </div>
+
+            <div class="lnv-mb-4">
+              <strong>Formatos:</strong>
+              <div id="numberFormats" class="lnv-mt-2"></div>
+            </div>
+
+            <div class="lnv-form-group">
+              <label class="lnv-form-label">Texto para copiar</label>
+              <div class="lnv-input-group">
+                <input 
+                  type="text" 
+                  id="copyText"
+                  class="lnv-form-control"
+                  value="¡Hola desde LNV Framework!"
+                  readonly
+                >
+                <div class="lnv-input-group-append">
+                  <button 
+                    class="lnv-btn lnv-btn-primary" 
+                    onclick="copyToClipboardDemo()"
+                  >
+                    📋 Copiar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Ejemplos de Iconos -->
+    <div class="lnv-row lnv-mt-6">
+      <div class="lnv-col-12">
+        <div class="lnv-card">
+          <div class="lnv-card-header">
+            <h3>🎨 Sistema de Iconos</h3>
+          </div>
+          <div class="lnv-card-body">
+            
+            <h4 class="lnv-mb-4">Tamaños de Iconos (usando emojis como ejemplo)</h4>
+            <div class="lnv-flex lnv-gap-4 lnv-mb-6">
+              <div class="lnv-icon lnv-icon-xs">🏥</div>
+              <div class="lnv-icon lnv-icon-sm">🏥</div>
+              <div class="lnv-icon lnv-icon-base">🏥</div>
+              <div class="lnv-icon lnv-icon-md">🏥</div>
+              <div class="lnv-icon lnv-icon-lg">🏥</div>
+              <div class="lnv-icon lnv-icon-xl">🏥</div>
+              <div class="lnv-icon lnv-icon-2xl">🏥</div>
+            </div>
+
+            <h4 class="lnv-mb-4">Icon Boxes</h4>
+            <div class="lnv-flex lnv-gap-4 lnv-mb-6">
+              <div class="lnv-icon-box lnv-icon-box-primary">📊</div>
+              <div class="lnv-icon-box lnv-icon-box-success">✓</div>
+              <div class="lnv-icon-box lnv-icon-box-danger">✗</div>
+              <div class="lnv-icon-box lnv-icon-box-warning">⚠</div>
+            </div>
+
+            <h4 class="lnv-mb-4">Icon Buttons</h4>
+            <div class="lnv-flex lnv-gap-3">
+              <button class="lnv-icon-btn">🔍</button>
+              <button class="lnv-icon-btn lnv-icon-btn-primary">❤️</button>
+              <button class="lnv-icon-btn lnv-icon-btn-success">✓</button>
+              <button class="lnv-icon-btn lnv-icon-btn-danger">✗</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Framework JavaScript -->
+  <script src="js/lnv-core.js"></script>
+  <script src="js/lnv-utils.js"></script>
+  <script src="js/lnv-forms.js"></script>
+
+  <script>
+    // Configurar validador del formulario de registro
+    const registerValidator = new LNVForms.FormValidator('registerForm', {
+      onSubmit: (data) => {
+        console.log('Datos del formulario:', data);
+        LNV.Toast.success('¡Formulario enviado correctamente!', 'Éxito');
+      },
+      onError: (errors) => {
+        console.error('Errores de validación:', errors);
+        LNV.Toast.error('Por favor corrija los errores en el formulario', 'Error');
+      }
+    });
+
+    // Demo de utilidades de número
+    const numberInput = document.getElementById('numberInput');
+    const numberFormats = document.getElementById('numberFormats');
+
+    function updateNumberFormats() {
+      const num = parseFloat(numberInput.value) || 0;
+      numberFormats.innerHTML = `
+        <div><strong>Moneda:</strong> ${LNVUtils.NumberUtils.currency(num)}</div>
+        <div><strong>Con separadores:</strong> ${LNVUtils.NumberUtils.format(num, 2)}</div>
+        <div><strong>Porcentaje:</strong> ${LNVUtils.NumberUtils.percentage(num / 100, 2)}</div>
+        <div><strong>Abreviado:</strong> ${LNVUtils.NumberUtils.abbreviate(num)}</div>
+      `;
+    }
+
+    numberInput.addEventListener('input', updateNumberFormats);
+    updateNumberFormats();
+
+    // Demo de copiar al portapapeles
+    async function copyToClipboardDemo() {
+      const text = document.getElementById('copyText').value;
+      const success = await LNVUtils.copyToClipboard(text);
+      
+      if (success) {
+        LNV.Toast.success('Texto copiado al portapapeles', 'Copiado');
+      } else {
+        LNV.Toast.error('No se pudo copiar el texto', 'Error');
+      }
+    }
+
+    // Mensaje de bienvenida
+    console.log('%c✨ LNV Framework Demo', 'font-size: 20px; color: #7DD3E0; font-weight: bold;');
+    console.log('Todos los módulos cargados correctamente:');
+    console.log('- LNV Core ✓');
+    console.log('- LNV Utils ✓');
+    console.log('- LNV Forms ✓');
+  </script>
+
+</body>
+</html>

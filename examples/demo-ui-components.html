@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - UI Components LNV</title>
+  
+  <!-- Framework CSS -->
+  <link rel="stylesheet" href="css/lnv-framework.css">
+</head>
+<body>
+
+  <div class="lnv-container lnv-py-8">
+    
+    <!-- Header -->
+    <div class="lnv-mb-8">
+      <h1>🎨 UI Components - LNV Framework</h1>
+      <p class="lnv-text-gray">Drawer, Range Slider, Date Picker y File Upload</p>
+    </div>
+
+    <!-- DRAWER / OFFCANVAS -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">📂 Drawer / Offcanvas</h2>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Ejemplos de Drawer</div>
+            <div class="lnv-card-body">
+              <div class="lnv-flex lnv-flex-column lnv-gap-3">
+                <button class="lnv-btn lnv-btn-primary" onclick="drawerLeft.open()">
+                  ← Abrir Drawer Izquierda
+                </button>
+                <button class="lnv-btn lnv-btn-success" onclick="drawerRight.open()">
+                  Abrir Drawer Derecha →
+                </button>
+                <button class="lnv-btn lnv-btn-info" onclick="drawerBottom.open()">
+                  Abrir Drawer Abajo ↓
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Uso del Drawer</div>
+            <div class="lnv-card-body">
+              <p class="lnv-text-sm lnv-mb-3">El drawer es perfecto para:</p>
+              <ul class="lnv-text-sm">
+                <li>• Menús de navegación móvil</li>
+                <li>• Paneles de filtros</li>
+                <li>• Configuraciones</li>
+                <li>• Carritos de compra</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- RANGE SLIDER -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">🎚️ Range Slider</h2>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-4">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Range Básico</div>
+            <div class="lnv-card-body">
+              <label class="lnv-form-label">Volumen</label>
+              <input type="range" id="rangeBasic" data-range min="0" max="100" value="50">
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-4">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Con Valor Visible</div>
+            <div class="lnv-card-body">
+              <label class="lnv-form-label">Precio</label>
+              <input type="range" id="rangePrice" data-range 
+                     data-range-options='{"min": 0, "max": 1000, "value": 500, "prefix": "L ", "showValue": true, "showLabels": true}'>
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-4">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Con Tooltip</div>
+            <div class="lnv-card-body">
+              <label class="lnv-form-label">Temperatura</label>
+              <input type="range" id="rangeTemp" data-range 
+                     data-range-options='{"min": 0, "max": 100, "value": 25, "suffix": "°C", "showTooltip": true}'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- DATE PICKER -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">📅 Date Picker</h2>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Selector de Fecha</div>
+            <div class="lnv-card-body">
+              <div class="lnv-form-group">
+                <label class="lnv-form-label">Fecha de Nacimiento</label>
+                <input type="text" id="datepicker1" data-datepicker placeholder="Selecciona una fecha">
+              </div>
+
+              <div class="lnv-form-group">
+                <label class="lnv-form-label">Fecha de Consulta</label>
+                <input type="text" id="datepicker2" data-datepicker placeholder="dd/mm/yyyy">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Características</div>
+            <div class="lnv-card-body">
+              <ul class="lnv-text-sm">
+                <li class="lnv-mb-2">✓ Navegación entre meses</li>
+                <li class="lnv-mb-2">✓ Destacado del día actual</li>
+                <li class="lnv-mb-2">✓ Formato personalizable</li>
+                <li class="lnv-mb-2">✓ Callback on select</li>
+                <li class="lnv-mb-2">✓ Fechas mín/máx (próximamente)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- FILE UPLOAD -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">📤 File Upload (Drag & Drop)</h2>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-8">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Subir Archivos</div>
+            <div class="lnv-card-body">
+              <div id="fileUpload" data-file-upload 
+                   data-upload-options='{"multiple": true, "maxFiles": 5, "maxSize": 5242880}'></div>
+              
+              <div class="lnv-mt-4 lnv-flex lnv-gap-3">
+                <button class="lnv-btn lnv-btn-sm lnv-btn-danger" onclick="fileUploadInstance.clear()">
+                  Limpiar Archivos
+                </button>
+                <button class="lnv-btn lnv-btn-sm lnv-btn-primary" onclick="showFileInfo()">
+                  Ver Info de Archivos
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-4">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Configuración</div>
+            <div class="lnv-card-body">
+              <p class="lnv-text-sm lnv-mb-3"><strong>Límites actuales:</strong></p>
+              <ul class="lnv-text-sm">
+                <li>• Máximo 5 archivos</li>
+                <li>• Tamaño máx: 5MB</li>
+                <li>• Múltiples archivos</li>
+                <li>• Drag & Drop habilitado</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJEMPLO INTEGRADO -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">💡 Ejemplo Integrado: Formulario Completo</h2>
+      
+      <div class="lnv-card">
+        <div class="lnv-card-header">Registro de Paciente</div>
+        <div class="lnv-card-body">
+          <form>
+            <div class="lnv-row">
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label required">Nombre Completo</label>
+                  <input type="text" class="lnv-form-control" placeholder="Juan Pérez">
+                </div>
+              </div>
+
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label required">Fecha de Nacimiento</label>
+                  <input type="text" id="patientBirthdate" data-datepicker placeholder="dd/mm/yyyy">
+                </div>
+              </div>
+
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label">Nivel de Urgencia</label>
+                  <input type="range" id="urgencyLevel" data-range 
+                         data-range-options='{"min": 1, "max": 5, "value": 3, "showValue": true, "showLabels": true}'>
+                </div>
+              </div>
+
+              <div class="lnv-col-12 lnv-col-md-6">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label">Documentos Médicos</label>
+                  <div id="medicalDocs" data-file-upload 
+                       data-upload-options='{"multiple": true, "maxFiles": 3}'></div>
+                </div>
+              </div>
+
+              <div class="lnv-col-12">
+                <div class="lnv-form-group">
+                  <label class="lnv-form-label">Observaciones</label>
+                  <textarea class="lnv-form-control textarea" rows="3" placeholder="Ingrese observaciones..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="lnv-flex lnv-gap-3 lnv-mt-4">
+              <button type="submit" class="lnv-btn lnv-btn-primary">
+                Guardar Registro
+              </button>
+              <button type="reset" class="lnv-btn lnv-btn-light">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DRAWER LEFT -->
+  <div id="drawerLeft" class="lnv-drawer lnv-drawer-left" data-drawer>
+    <div class="lnv-drawer-header">
+      <h3 class="lnv-drawer-title">Menú de Navegación</h3>
+      <button class="lnv-drawer-close">×</button>
+    </div>
+    <div class="lnv-drawer-body">
+      <nav>
+        <a href="#" class="lnv-nav-item active">
+          <span class="lnv-nav-item-icon">🏠</span>
+          <span class="lnv-nav-item-text">Inicio</span>
+        </a>
+        <a href="#" class="lnv-nav-item">
+          <span class="lnv-nav-item-icon">📊</span>
+          <span class="lnv-nav-item-text">Dashboard</span>
+        </a>
+        <a href="#" class="lnv-nav-item">
+          <span class="lnv-nav-item-icon">👥</span>
+          <span class="lnv-nav-item-text">Pacientes</span>
+        </a>
+        <a href="#" class="lnv-nav-item">
+          <span class="lnv-nav-item-icon">🧪</span>
+          <span class="lnv-nav-item-text">Muestras</span>
+        </a>
+        <a href="#" class="lnv-nav-item">
+          <span class="lnv-nav-item-icon">📋</span>
+          <span class="lnv-nav-item-text">Reportes</span>
+        </a>
+        <div class="lnv-nav-divider"></div>
+        <a href="#" class="lnv-nav-item">
+          <span class="lnv-nav-item-icon">⚙️</span>
+          <span class="lnv-nav-item-text">Configuración</span>
+        </a>
+      </nav>
+    </div>
+    <div class="lnv-drawer-footer">
+      <button class="lnv-btn lnv-btn-light lnv-btn-block" onclick="drawerLeft.close()">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <!-- DRAWER RIGHT -->
+  <div id="drawerRight" class="lnv-drawer lnv-drawer-right" data-drawer>
+    <div class="lnv-drawer-header">
+      <h3 class="lnv-drawer-title">Filtros de Búsqueda</h3>
+      <button class="lnv-drawer-close">×</button>
+    </div>
+    <div class="lnv-drawer-body">
+      <div class="lnv-form-group">
+        <label class="lnv-form-label">Tipo de Muestra</label>
+        <select class="lnv-form-control lnv-form-select">
+          <option>Todas</option>
+          <option>Sangre</option>
+          <option>Orina</option>
+          <option>Saliva</option>
+        </select>
+      </div>
+
+      <div class="lnv-form-group">
+        <label class="lnv-form-label">Rango de Fechas</label>
+        <input type="text" data-datepicker placeholder="Fecha inicio">
+        <input type="text" data-datepicker placeholder="Fecha fin" class="lnv-mt-2">
+      </div>
+
+      <div class="lnv-form-group">
+        <label class="lnv-form-label">Estado</label>
+        <div class="lnv-checkbox">
+          <input type="checkbox" id="pending" checked>
+          <label for="pending">Pendientes</label>
+        </div>
+        <div class="lnv-checkbox">
+          <input type="checkbox" id="processed">
+          <label for="processed">Procesadas</label>
+        </div>
+        <div class="lnv-checkbox">
+          <input type="checkbox" id="completed">
+          <label for="completed">Completadas</label>
+        </div>
+      </div>
+    </div>
+    <div class="lnv-drawer-footer">
+      <button class="lnv-btn lnv-btn-light">Limpiar</button>
+      <button class="lnv-btn lnv-btn-primary" onclick="drawerRight.close()">Aplicar</button>
+    </div>
+  </div>
+
+  <!-- DRAWER BOTTOM -->
+  <div id="drawerBottom" class="lnv-drawer lnv-drawer-bottom" data-drawer>
+    <div class="lnv-drawer-header">
+      <h3 class="lnv-drawer-title">Notificaciones Recientes</h3>
+      <button class="lnv-drawer-close">×</button>
+    </div>
+    <div class="lnv-drawer-body">
+      <div class="lnv-list-group">
+        <div class="lnv-list-group-item">
+          <div class="lnv-icon-box lnv-icon-box-sm lnv-icon-box-primary">✓</div>
+          <div>
+            <strong>Muestra procesada</strong>
+            <small class="lnv-d-block lnv-text-gray">Hace 5 minutos</small>
+          </div>
+        </div>
+        <div class="lnv-list-group-item">
+          <div class="lnv-icon-box lnv-icon-box-sm lnv-icon-box-warning">⚠</div>
+          <div>
+            <strong>Revisión requerida</strong>
+            <small class="lnv-d-block lnv-text-gray">Hace 15 minutos</small>
+          </div>
+        </div>
+        <div class="lnv-list-group-item">
+          <div class="lnv-icon-box lnv-icon-box-sm lnv-icon-box-success">📊</div>
+          <div>
+            <strong>Reporte generado</strong>
+            <small class="lnv-d-block lnv-text-gray">Hace 1 hora</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Framework JavaScript -->
+  <script src="js/lnv-core.js"></script>
+  <script src="js/lnv-utils.js"></script>
+  <script src="js/lnv-components-ui.js"></script>
+
+  <script>
+    // Variables globales para los drawers
+    let drawerLeft, drawerRight, drawerBottom;
+    let fileUploadInstance;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Inicializar Drawers manualmente para tener referencia
+      drawerLeft = new LNVUIComponents.Drawer('#drawerLeft', {
+        position: 'left',
+        onOpen: () => console.log('Drawer Left abierto'),
+        onClose: () => console.log('Drawer Left cerrado')
+      });
+
+      drawerRight = new LNVUIComponents.Drawer('#drawerRight', {
+        position: 'right'
+      });
+
+      drawerBottom = new LNVUIComponents.Drawer('#drawerBottom', {
+        position: 'bottom'
+      });
+
+      // Inicializar Range Sliders con callbacks
+      const rangeBasic = new LNVUIComponents.RangeSlider('#rangeBasic', {
+        showValue: true,
+        onChange: (value) => {
+          console.log('Volumen:', value);
+        }
+      });
+
+      // File Upload con callback
+      fileUploadInstance = new LNVUIComponents.FileUpload('#fileUpload', {
+        onSelect: (files) => {
+          LNV.Toast.success(`${files.length} archivo(s) seleccionado(s)`, 'Archivos');
+        },
+        onError: (error) => {
+          LNV.Toast.error(error, 'Error');
+        }
+      });
+
+      // Date Pickers con callbacks
+      const datepicker1 = new LNVUIComponents.DatePicker('#datepicker1', {
+        onSelect: (date) => {
+          console.log('Fecha seleccionada:', date);
+          LNV.Toast.info(date.toLocaleDateString('es-HN'), 'Fecha seleccionada');
+        }
+      });
+
+      console.log('%c✨ UI Components Demo Cargada', 'font-size: 16px; color: #7DD3E0; font-weight: bold;');
+    });
+
+    // Función para mostrar info de archivos
+    function showFileInfo() {
+      const files = fileUploadInstance.getFiles();
+      if (files.length === 0) {
+        LNV.Toast.warning('No hay archivos seleccionados', 'Info');
+        return;
+      }
+
+      const filesInfo = files.map(f => `• ${f.name} (${f.size})`).join('<br>');
+      
+      LNV.Modal.open('fileInfoModal');
+      document.getElementById('filesInfoContent').innerHTML = filesInfo;
+    }
+  </script>
+
+  <!-- Modal para mostrar info -->
+  <div id="fileInfoModal" class="lnv-modal">
+    <div class="lnv-modal-backdrop"></div>
+    <div class="lnv-modal-content">
+      <div class="lnv-modal-header">
+        <h3 class="lnv-modal-title">Archivos Seleccionados</h3>
+        <button class="lnv-modal-close">×</button>
+      </div>
+      <div class="lnv-modal-body">
+        <div id="filesInfoContent"></div>
+      </div>
+      <div class="lnv-modal-footer">
+        <button class="lnv-btn lnv-btn-primary" onclick="LNV.Modal.close('fileInfoModal')">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

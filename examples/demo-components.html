@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - Componentes Avanzados LNV</title>
+  
+  <!-- Framework CSS -->
+  <link rel="stylesheet" href="css/lnv-framework.css">
+</head>
+<body>
+
+  <div class="lnv-container lnv-py-8">
+    
+    <!-- Header -->
+    <div class="lnv-mb-8">
+      <h1>🎨 Componentes Avanzados - LNV Framework</h1>
+      <p class="lnv-text-gray">Carousel, Stepper, Rating, Chips y más</p>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">📸 Carousel / Slider</h2>
+      
+      <div class="lnv-carousel" data-carousel data-carousel-options='{"autoplay": true, "interval": 3000}'>
+        <div class="lnv-carousel-track">
+          <div class="lnv-carousel-slide">
+            <img src="https://via.placeholder.com/800x400/7DD3E0/FFFFFF?text=Slide+1" alt="Slide 1">
+            <div class="lnv-carousel-caption">
+              <h3>Laboratorio Nacional de Vigilancia</h3>
+              <p>Slide 1 - Excelencia en diagnóstico</p>
+            </div>
+          </div>
+          <div class="lnv-carousel-slide">
+            <img src="https://via.placeholder.com/800x400/4DB8AC/FFFFFF?text=Slide+2" alt="Slide 2">
+            <div class="lnv-carousel-caption">
+              <h3>Tecnología de Punta</h3>
+              <p>Slide 2 - Equipamiento moderno</p>
+            </div>
+          </div>
+          <div class="lnv-carousel-slide">
+            <img src="https://via.placeholder.com/800x400/28A745/FFFFFF?text=Slide+3" alt="Slide 3">
+            <div class="lnv-carousel-caption">
+              <h3>Servicio de Calidad</h3>
+              <p>Slide 3 - Atención profesional</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- STEPPER -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">🎯 Stepper / Wizard</h2>
+      
+      <div class="lnv-stepper" id="myStepper" data-stepper>
+        <div class="lnv-stepper-item">
+          <div class="lnv-stepper-circle">1</div>
+          <div class="lnv-stepper-label">Información Personal</div>
+        </div>
+        <div class="lnv-stepper-item">
+          <div class="lnv-stepper-circle">2</div>
+          <div class="lnv-stepper-label">Datos de Contacto</div>
+        </div>
+        <div class="lnv-stepper-item">
+          <div class="lnv-stepper-circle">3</div>
+          <div class="lnv-stepper-label">Confirmación</div>
+        </div>
+        <div class="lnv-stepper-item">
+          <div class="lnv-stepper-circle">4</div>
+          <div class="lnv-stepper-label">Finalizado</div>
+        </div>
+      </div>
+
+      <!-- Contenido de pasos -->
+      <div class="lnv-stepper-content active">
+        <div class="lnv-card">
+          <div class="lnv-card-body">
+            <h3>Paso 1: Información Personal</h3>
+            <p>Contenido del primer paso del wizard.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lnv-stepper-content">
+        <div class="lnv-card">
+          <div class="lnv-card-body">
+            <h3>Paso 2: Datos de Contacto</h3>
+            <p>Contenido del segundo paso del wizard.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lnv-stepper-content">
+        <div class="lnv-card">
+          <div class="lnv-card-body">
+            <h3>Paso 3: Confirmación</h3>
+            <p>Revise su información antes de continuar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lnv-stepper-content">
+        <div class="lnv-card">
+          <div class="lnv-card-body">
+            <h3>Paso 4: ¡Completado!</h3>
+            <p>Proceso finalizado exitosamente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de navegación -->
+      <div class="lnv-flex lnv-gap-3 lnv-mt-4">
+        <button class="lnv-btn lnv-btn-light" onclick="stepperInstance.prev()">
+          ← Anterior
+        </button>
+        <button class="lnv-btn lnv-btn-primary" onclick="stepperInstance.next()">
+          Siguiente →
+        </button>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- RATING -->
+    <div class="lnv-row lnv-mb-8">
+      <div class="lnv-col-12">
+        <h2 class="lnv-mb-4">⭐ Sistema de Rating</h2>
+      </div>
+
+      <div class="lnv-col-12 lnv-col-md-4">
+        <div class="lnv-card">
+          <div class="lnv-card-header">Rating Interactivo</div>
+          <div class="lnv-card-body">
+            <div id="rating1" data-rating></div>
+            <p class="lnv-mt-3 lnv-text-sm lnv-text-gray">
+              Calificación: <span id="ratingValue">0</span> / 5
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lnv-col-12 lnv-col-md-4">
+        <div class="lnv-card">
+          <div class="lnv-card-header">Rating Solo Lectura</div>
+          <div class="lnv-card-body">
+            <div class="lnv-rating-wrapper">
+              <div id="rating2" data-rating data-rating-options='{"value": 4, "readonly": true}'></div>
+              <span class="lnv-rating-value">4.0</span>
+              <span class="lnv-rating-count">(256 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lnv-col-12 lnv-col-md-4">
+        <div class="lnv-card">
+          <div class="lnv-card-header">Tamaños de Rating</div>
+          <div class="lnv-card-body">
+            <div class="lnv-mb-3">
+              <small class="lnv-d-block lnv-mb-1">Small:</small>
+              <div id="ratingSm" data-rating data-rating-options='{"size": "sm", "value": 3}'></div>
+            </div>
+            <div class="lnv-mb-3">
+              <small class="lnv-d-block lnv-mb-1">Large:</small>
+              <div id="ratingLg" data-rating data-rating-options='{"size": "lg", "value": 5}'></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- CHIPS / TAGS -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">🏷️ Chips / Tags</h2>
+      
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Chip Input</div>
+            <div class="lnv-card-body">
+              <label class="lnv-form-label">Agregar etiquetas:</label>
+              <div id="chipInput" data-chip-input data-chip-options='{"variant": "primary"}'></div>
+              
+              <div class="lnv-mt-4">
+                <button class="lnv-btn lnv-btn-sm lnv-btn-light" onclick="addSampleChip()">
+                  Agregar "JavaScript"
+                </button>
+                <button class="lnv-btn lnv-btn-sm lnv-btn-light" onclick="clearChips()">
+                  Limpiar Todo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Variantes de Chips</div>
+            <div class="lnv-card-body">
+              
+              <div class="lnv-mb-3">
+                <small class="lnv-d-block lnv-mb-2">Default:</small>
+                <div class="lnv-chip-group">
+                  <div class="lnv-chip">Chip Default</div>
+                  <div class="lnv-chip">
+                    Con Icono 📌
+                  </div>
+                  <div class="lnv-chip">
+                    Removible
+                    <button class="lnv-chip-close">×</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lnv-mb-3">
+                <small class="lnv-d-block lnv-mb-2">Colores:</small>
+                <div class="lnv-chip-group">
+                  <div class="lnv-chip lnv-chip-primary">Primary</div>
+                  <div class="lnv-chip lnv-chip-success">Success</div>
+                  <div class="lnv-chip lnv-chip-danger">Danger</div>
+                  <div class="lnv-chip lnv-chip-warning">Warning</div>
+                </div>
+              </div>
+
+              <div class="lnv-mb-3">
+                <small class="lnv-d-block lnv-mb-2">Outline:</small>
+                <div class="lnv-chip-group">
+                  <div class="lnv-chip lnv-chip-outline-primary">Primary</div>
+                  <div class="lnv-chip lnv-chip-outline-success">Success</div>
+                </div>
+              </div>
+
+              <div>
+                <small class="lnv-d-block lnv-mb-2">Tamaños:</small>
+                <div class="lnv-chip-group">
+                  <div class="lnv-chip lnv-chip-sm lnv-chip-primary">Small</div>
+                  <div class="lnv-chip lnv-chip-primary">Medium</div>
+                  <div class="lnv-chip lnv-chip-lg lnv-chip-primary">Large</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- EJEMPLOS DE USO -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">💡 Ejemplos de Uso</h2>
+      
+      <div class="lnv-card">
+        <div class="lnv-card-header">
+          <div class="lnv-flex lnv-justify-between lnv-items-center">
+            <span>Producto con Rating</span>
+            <div class="lnv-rating-wrapper">
+              <div id="productRating" data-rating data-rating-options='{"value": 4.5, "readonly": true, "size": "sm"}'></div>
+              <span class="lnv-rating-value">4.5</span>
+            </div>
+          </div>
+        </div>
+        <div class="lnv-card-body">
+          <h3>Laptop HP Pavilion</h3>
+          <p class="lnv-text-gray lnv-mb-4">Procesador Intel Core i7, 16GB RAM, 512GB SSD</p>
+          
+          <div class="lnv-mb-4">
+            <small class="lnv-d-block lnv-mb-2">Categorías:</small>
+            <div class="lnv-chip-group">
+              <div class="lnv-chip lnv-chip-sm lnv-chip-outline-primary">💻 Electrónica</div>
+              <div class="lnv-chip lnv-chip-sm lnv-chip-outline-primary">🖥️ Computadoras</div>
+              <div class="lnv-chip lnv-chip-sm lnv-chip-success">✓ En Stock</div>
+            </div>
+          </div>
+
+          <div class="lnv-flex lnv-gap-3">
+            <button class="lnv-btn lnv-btn-primary">Comprar Ahora</button>
+            <button class="lnv-btn lnv-btn-outline-primary">
+              ❤️ Favoritos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Framework JavaScript -->
+  <script src="js/lnv-core.js"></script>
+  <script src="js/lnv-utils.js"></script>
+  <script src="js/lnv-forms.js"></script>
+  <script src="js/lnv-carousel.js"></script>
+  <script src="js/lnv-components-advanced.js"></script>
+
+  <script>
+    // Inicializar Stepper
+    let stepperInstance;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Crear instancia del stepper
+      stepperInstance = new LNVComponents.Stepper('#myStepper', {
+        currentStep: 0,
+        linear: false,
+        onStepChange: (step) => {
+          console.log('Paso actual:', step + 1);
+        },
+        onComplete: () => {
+          LNV.Toast.success('¡Proceso completado!', 'Éxito');
+        }
+      });
+
+      // Rating interactivo
+      const rating1 = new LNVComponents.Rating('#rating1', {
+        onChange: (value) => {
+          document.getElementById('ratingValue').textContent = value;
+        }
+      });
+
+      // Chip Input
+      window.chipInputInstance = new LNVComponents.ChipInput('#chipInput', {
+        variant: 'primary',
+        onChange: (chips) => {
+          console.log('Chips actuales:', chips);
+        }
+      });
+
+      // Agregar chips iniciales
+      chipInputInstance.add('HTML');
+      chipInputInstance.add('CSS');
+      chipInputInstance.add('JavaScript');
+
+      console.log('%c✨ Componentes Avanzados Cargados', 'font-size: 16px; color: #7DD3E0; font-weight: bold;');
+    });
+
+    // Funciones helper para la demo
+    function addSampleChip() {
+      chipInputInstance.add('JavaScript');
+    }
+
+    function clearChips() {
+      chipInputInstance.clear();
+    }
+
+    // Remover chips existentes con el botón X
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('lnv-chip-close')) {
+        const chip = e.target.closest('.lnv-chip');
+        if (chip && !chip.closest('#chipInput')) {
+          chip.style.animation = 'lnv-fade-out 0.2s';
+          setTimeout(() => chip.remove(), 200);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - Componentes Avanzados 2 - LNV</title>
+  
+  <!-- Framework CSS -->
+  <link rel="stylesheet" href="css/lnv-framework.css">
+</head>
+<body>
+
+  <div class="lnv-container lnv-py-8">
+    
+    <!-- Header -->
+    <div class="lnv-mb-8">
+      <h1>🚀 Componentes Avanzados 2 - LNV Framework</h1>
+      <p class="lnv-text-gray">DataTable, Transfer List, Tree View, Image Gallery</p>
+    </div>
+
+    <!-- DATA TABLE -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">📊 Data Table</h2>
+      <div id="dataTable"></div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- TRANSFER LIST -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">↔️ Transfer List</h2>
+      <div class="lnv-card">
+        <div class="lnv-card-header">Asignar Permisos</div>
+        <div class="lnv-card-body">
+          <div id="transferList"></div>
+          <div class="lnv-mt-4">
+            <button class="lnv-btn lnv-btn-primary" onclick="showSelected()">
+              Ver Seleccionados
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- TREE VIEW -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">🌳 Tree View</h2>
+      <div class="lnv-row">
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">
+              <div class="lnv-flex lnv-justify-between lnv-items-center">
+                <span>Estructura de Archivos</span>
+                <div>
+                  <button class="lnv-btn lnv-btn-sm lnv-btn-light" onclick="treeInstance.expandAll()">
+                    Expandir Todo
+                  </button>
+                  <button class="lnv-btn lnv-btn-sm lnv-btn-light" onclick="treeInstance.collapseAll()">
+                    Colapsar Todo
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="lnv-card-body">
+              <div id="treeView"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lnv-col-12 lnv-col-md-6">
+          <div class="lnv-card">
+            <div class="lnv-card-header">Información del Nodo</div>
+            <div class="lnv-card-body">
+              <div id="nodeInfo">
+                <p class="lnv-text-gray lnv-text-center">Selecciona un nodo del árbol</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lnv-divider">
+
+    <!-- IMAGE GALLERY -->
+    <div class="lnv-mb-8">
+      <h2 class="lnv-mb-4">🖼️ Image Gallery</h2>
+      <div class="lnv-card">
+        <div class="lnv-card-header">Galería de Imágenes del Laboratorio</div>
+        <div class="lnv-card-body">
+          <div id="imageGallery"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Framework JavaScript -->
+  <script src="js/lnv-core.js"></script>
+  <script src="js/lnv-utils.js"></script>
+  <script src="js/lnv-components-advanced2.js"></script>
+
+  <script>
+    // Variables globales
+    let dataTableInstance, transferInstance, treeInstance, galleryInstance;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // ===========================
+      // DATA TABLE
+      // ===========================
+      
+      const tableData = [
+        { id: 1, patient: 'Juan Pérez', sample: 'Sangre', status: 'Procesando', date: '2025-10-01', priority: 'Alta' },
+        { id: 2, patient: 'María García', sample: 'Orina', status: 'Completado', date: '2025-10-02', priority: 'Media' },
+        { id: 3, patient: 'Carlos López', sample: 'Saliva', status: 'Pendiente', date: '2025-10-03', priority: 'Baja' },
+        { id: 4, patient: 'Ana Martínez', sample: 'Sangre', status: 'Completado', date: '2025-10-04', priority: 'Alta' },
+        { id: 5, patient: 'Luis Rodríguez', sample: 'Orina', status: 'Procesando', date: '2025-10-05', priority: 'Media' },
+        { id: 6, patient: 'Sofia Hernández', sample: 'Sangre', status: 'Pendiente', date: '2025-10-06', priority: 'Alta' },
+        { id: 7, patient: 'Diego Castro', sample: 'Saliva', status: 'Completado', date: '2025-10-07', priority: 'Baja' },
+        { id: 8, patient: 'Elena Vargas', sample: 'Sangre', status: 'Procesando', date: '2025-10-08', priority: 'Media' },
+        { id: 9, patient: 'Miguel Torres', sample: 'Orina', status: 'Pendiente', date: '2025-10-09', priority: 'Alta' },
+        { id: 10, patient: 'Laura Díaz', sample: 'Sangre', status: 'Completado', date: '2025-10-10', priority: 'Media' },
+        { id: 11, patient: 'Roberto Silva', sample: 'Saliva', status: 'Procesando', date: '2025-10-11', priority: 'Baja' },
+        { id: 12, patient: 'Patricia Reyes', sample: 'Sangre', status: 'Completado', date: '2025-10-12', priority: 'Alta' }
+      ];
+
+      dataTableInstance = new LNVAdvancedComponents.DataTable('#dataTable', {
+        data: tableData,
+        columns: [
+          { key: 'id', label: 'ID', sortable: true },
+          { key: 'patient', label: 'Paciente', sortable: true },
+          { key: 'sample', label: 'Muestra', sortable: true },
+          { 
+            key: 'status', 
+            label: 'Estado', 
+            sortable: true,
+            render: (value) => {
+              const colors = {
+                'Completado': 'success',
+                'Procesando': 'warning',
+                'Pendiente': 'danger'
+              };
+              return `<span class="lnv-badge lnv-badge-${colors[value]}">${value}</span>`;
+            }
+          },
+          { key: 'date', label: 'Fecha', sortable: true },
+          { 
+            key: 'priority', 
+            label: 'Prioridad',
+            render: (value) => {
+              const colors = {
+                'Alta': 'danger',
+                'Media': 'warning',
+                'Baja': 'success'
+              };
+              return `<span class="lnv-chip lnv-chip-sm lnv-chip-${colors[value]}">${value}</span>`;
+            }
+          }
+        ],
+        searchable: true,
+        sortable: true,
+        pagination: true,
+        pageSize: 5,
+        selectable: true,
+        actions: (row) => {
+          const actions = document.createElement('div');
+          actions.innerHTML = `
+            <button class="lnv-btn lnv-btn-sm lnv-btn-light" title="Ver">👁️</button>
+            <button class="lnv-btn lnv-btn-sm lnv-btn-primary" title="Editar">✏️</button>
+            <button class="lnv-btn lnv-btn-sm lnv-btn-danger" title="Eliminar">🗑️</button>
+          `;
+          return actions;
+        },
+        onSort: (column, direction) => {
+          console.log('Ordenando por:', column, direction);
+        }
+      });
+
+      
+      // ===========================
+      // TRANSFER LIST
+      // ===========================
+      
+      const permissions = [
+        'Ver Dashboard',
+        'Crear Pacientes',
+        'Editar Pacientes',
+        'Eliminar Pacientes',
+        'Ver Muestras',
+        'Procesar Muestras',
+        'Generar Reportes',
+        'Exportar Datos',
+        'Gestionar Usuarios',
+        'Configurar Sistema'
+      ];
+
+      transferInstance = new LNVAdvancedComponents.TransferList('#transferList', {
+        data: permissions,
+        leftTitle: 'Permisos Disponibles',
+        rightTitle: 'Permisos Asignados',
+        searchable: true,
+        onChange: (left, right) => {
+          console.log('Disponibles:', left);
+          console.log('Asignados:', right);
+        }
+      });
+
+      
+      // ===========================
+      // TREE VIEW
+      // ===========================
+      
+      const treeData = [
+        {
+          label: 'Laboratorio Nacional',
+          icon: '🏥',
+          badge: '245',
+          children: [
+            {
+              label: 'Microbiología',
+              icon: '🦠',
+              badge: '85',
+              children: [
+                { label: 'Bacteriología', icon: '🔬', badge: '32' },
+                { label: 'Virología', icon: '🧬', badge: '28' },
+                { label: 'Parasitología', icon: '🔍', badge: '25' }
+              ]
+            },
+            {
+              label: 'Química Clínica',
+              icon: '⚗️',
+              badge: '92',
+              children: [
+                { label: 'Bioquímica', icon: '🧪', badge: '45' },
+                { label: 'Hormonas', icon: '💉', badge: '30' },
+                { label: 'Toxicología', icon: '☣️', badge: '17' }
+              ]
+            },
+            {
+              label: 'Hematología',
+              icon: '🩸',
+              badge: '68',
+              children: [
+                { label: 'Hemograma', icon: '📊', badge: '40' },
+                { label: 'Coagulación', icon: '⏱️', badge: '28' }
+              ]
+            }
+          ]
+        },
+        {
+          label: 'Administración',
+          icon: '📋',
+          badge: '56',
+          children: [
+            { label: 'Recursos Humanos', icon: '👥', badge: '23' },
+            { label: 'Finanzas', icon: '💰', badge: '18' },
+            { label: 'Logística', icon: '📦', badge: '15' }
+          ]
+        }
+      ];
+
+      treeInstance = new LNVAdvancedComponents.TreeView('#treeView', {
+        data: treeData,
+        onSelect: (node) => {
+          document.getElementById('nodeInfo').innerHTML = `
+            <h4 class="lnv-mb-3">${node.icon} ${node.label}</h4>
+            <p><strong>Badge:</strong> ${node.badge || 'N/A'}</p>
+            <p><strong>Tiene hijos:</strong> ${node.children ? 'Sí (' + node.children.length + ')' : 'No'}</p>
+            <div class="lnv-mt-4">
+              <button class="lnv-btn lnv-btn-sm lnv-btn-primary">Ver Detalles</button>
+              <button class="lnv-btn lnv-btn-sm lnv-btn-light">Exportar</button>
+            </div>
+          `;
+        }
+      });
+
+      
+      // ===========================
+      // IMAGE GALLERY
+      // ===========================
+      
+      const images = [
+        {
+          src: 'https://via.placeholder.com/800x600/7DD3E0/FFFFFF?text=Laboratorio+1',
+          thumb: 'https://via.placeholder.com/400x300/7DD3E0/FFFFFF?text=Lab+1',
+          title: 'Área de Microbiología',
+          alt: 'Laboratorio de Microbiología'
+        },
+        {
+          src: 'https://via.placeholder.com/800x600/4DB8AC/FFFFFF?text=Laboratorio+2',
+          thumb: 'https://via.placeholder.com/400x300/4DB8AC/FFFFFF?text=Lab+2',
+          title: 'Equipos de Análisis',
+          alt: 'Equipos modernos de análisis'
+        },
+        {
+          src: 'https://via.placeholder.com/800x600/28A745/FFFFFF?text=Laboratorio+3',
+          thumb: 'https://via.placeholder.com/400x300/28A745/FFFFFF?text=Lab+3',
+          title: 'Área de Química Clínica',
+          alt: 'Laboratorio de Química Clínica'
+        },
+        {
+          src: 'https://via.placeholder.com/800x600/FFC107/FFFFFF?text=Laboratorio+4',
+          thumb: 'https://via.placeholder.com/400x300/FFC107/FFFFFF?text=Lab+4',
+          title: 'Microscopios Avanzados',
+          alt: 'Microscopios de alta precisión'
+        },
+        {
+          src: 'https://via.placeholder.com/800x600/C1272D/FFFFFF?text=Laboratorio+5',
+          thumb: 'https://via.placeholder.com/400x300/C1272D/FFFFFF?text=Lab+5',
+          title: 'Área de Hematología',
+          alt: 'Laboratorio de Hematología'
+        },
+        {
+          src: 'https://via.placeholder.com/800x600/7DD3E0/FFFFFF?text=Laboratorio+6',
+          thumb: 'https://via.placeholder.com/400x300/7DD3E0/FFFFFF?text=Lab+6',
+          title: 'Equipo de Trabajo',
+          alt: 'Personal del laboratorio'
+        }
+      ];
+
+      galleryInstance = new LNVAdvancedComponents.ImageGallery('#imageGallery', {
+        images: images,
+        columns: 3,
+        lightbox: true
+      });
+
+      console.log('%c✨ Componentes Avanzados 2 Cargados', 'font-size: 16px; color: #7DD3E0; font-weight: bold;');
+    });
+
+    // ===========================
+    // FUNCIONES HELPER
+    // ===========================
+    
+    function showSelected() {
+      const selected = transferInstance.getSelected();
+      if (selected.length === 0) {
+        LNV.Toast.warning('No hay permisos seleccionados', 'Info');
+        return;
+      }
+
+      const list = selected.join('<br>• ');
+      LNV.Confirm.show({
+        title: 'Permisos Asignados',
+        message: `<strong>Total: ${selected.length}</strong><br><br>• ${list}`,
+        confirmText: 'Guardar',
+        cancelText: 'Cerrar',
+        onConfirm: () => {
+          LNV.Toast.success('Permisos guardados correctamente', 'Éxito');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
